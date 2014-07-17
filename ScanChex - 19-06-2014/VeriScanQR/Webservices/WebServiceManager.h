@@ -127,6 +127,13 @@ withCompletionHandler:(CompletionHandler)handler;
        progressBar:(UIProgressView*)progress
 withCompletionHandler:(CompletionHandler)handler;
 
+-(void)uploadPdf:(NSString *)masterKey
+         historyID:(NSString *)historyID
+       contentType:(NSString *)contentType
+         pdfData:(NSData*)pdf
+       progressBar:(UIProgressView*)progress
+withCompletionHandler:(CompletionHandler)handler;
+
 -(void)uploadNotes:(NSString *)masterKey historyID:(NSString *)historyID notes:(NSString*)notes withCompletionHandler:(CompletionHandler)handler;
 
 -(void)upadteAnswers:(NSString *)masterKey

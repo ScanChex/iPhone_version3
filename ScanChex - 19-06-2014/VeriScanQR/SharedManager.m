@@ -17,6 +17,7 @@ static SharedManager *sharedInstance;
 	@synchronized(self){
 		if(sharedInstance ==  nil){			
 			sharedInstance = [[SharedManager alloc] init];
+            sharedInstance.isEditable = FALSE;
             
             
 		}

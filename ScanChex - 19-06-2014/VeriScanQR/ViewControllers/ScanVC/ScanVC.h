@@ -12,6 +12,9 @@
 #import "DownloadVC.h"
 #import "PDFAndMoviePlayerVC.h"
 #import "ScanQRManager.h"
+#import "PDFViewController.h"
+#import "PDF.h"
+#import "PDFDocument.h"
 
 @interface ScanVC : PDFAndMoviePlayerVC<DocumentDelegate,DownloadVCDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIAlertViewDelegate,UIActionSheetDelegate,UITableViewDataSource,UITableViewDelegate>
 
@@ -34,6 +37,7 @@
 @property (retain, nonatomic) IBOutlet UITableView *tableView;
 @property (retain , nonatomic) NSDate * startDate;
 @property (retain, nonatomic) NSTimer * startTimer;
+@property (nonatomic, strong)  PDFViewController *  pdfViewController;
 
 +(id)initWithScan;
 +(id)initWithPreview;
@@ -51,4 +55,5 @@
 -(void)assetScanNotification:(NSNotification*)notif;
 - (NSString *)elapsedTimeSince:(NSDate *)date;
 -(void)timerRepeat;
+-(void)save:(id)sender;
 @end

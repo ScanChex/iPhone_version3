@@ -11,7 +11,9 @@
 + (SharedManager*)getInstance;
 + (NSDate *)dateFromString:(NSString *)str withFormat:(NSString *)format;
 + (NSString *)stringFromDate:(NSDate *)date withFormat:(NSString *)format;
+
 @property (nonatomic, assign)BOOL isMessage;
+@property (nonatomic,assign) BOOL isEditable;
 
 
 @end

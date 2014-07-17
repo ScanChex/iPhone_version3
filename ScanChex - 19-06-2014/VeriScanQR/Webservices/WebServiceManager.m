@@ -774,21 +774,30 @@ withCompletionHandler:(CompletionHandler)block{
     [request setRequestMethod:@"POST"];
     [request setPostValue:masterKey forKey:@"master_key"];
     [request setPostValue:assetID forKey:@"asset_id"];
-    [request setPostValue:@"show_documents" forKey:@"action"];
+    [request setPostValue:@"show_documents1" forKey:@"action"];
     [request setCompletionBlock:^{
         
         NSString *response = [request responseString];
-        NSMutableArray *rootDictionary = [response JSONValue];
+        NSDictionary *rootDictionary = [response JSONValue];
         NSMutableArray* array=[NSMutableArray array];
+         NSMutableArray* array1=[NSMutableArray array];
         
-        for (NSDictionary *dict in rootDictionary) {
+        for (NSDictionary *dict in [rootDictionary objectForKey:@"non_fillable"]) {
             
             DocumentDTO *document=[DocumentDTO initWithDocument:dict];
             [array addObject:document];
         }
+        for (NSDictionary *dict in [rootDictionary objectForKey:@"fillable"]) {
+            
+            DocumentDTO *document=[DocumentDTO initWithDocument:dict];
+            [array1 addObject:document];
+        }
+        NSMutableArray* array2=[NSMutableArray array];
+        [array2 addObject:array];
+        [array2 addObject:array1];
         ///Block Calling
         dispatch_async(dispatch_get_main_queue(), ^{
-            block(array,NO);
+            block(array2,NO);
         });
     }];
     
@@ -1160,6 +1169,68 @@ withCompletionHandler:(CompletionHandler)handler
     [request startAsynchronous];
 }
 
+
+-(void)uploadPdf:(NSString *)masterKey
+       historyID:(NSString *)historyID
+     contentType:(NSString *)contentType
+         pdfData:(NSData*)pdf
+     progressBar:(UIProgressView*)progress
+withCompletionHandler:(CompletionHandler)handler {
+    DLog(@"Content Type %@",contentType);
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/veriscanAPI.php",BASE_URL]];
+    __block  ASIFormDataRequest *request = [self createRequest:url];
+    
+    [request setRequestMethod:@"POST"];
+    [request setPostValue:masterKey forKey:@"master_key"];
+    [request setPostValue:historyID forKey:@"history_id"];
+    [request setPostValue:@"upload" forKey:@"action"];
+    [request setPostValue:@"pdf" forKey:@"type"];
+    [request addData:pdf withFileName:[NSString stringWithFormat:@"pdf%@.pdf",[self generateCallId]] andContentType:contentType forKey:@"file"];
+    [request setPostValue:[self generateCallId] forKey:@"file_name"];
+    
+    [request setUploadProgressDelegate:progress];
+    [request setShowAccurateProgress:YES];
+    
+    [request setCompletionBlock:^{
+        
+        NSString *response = [request responseString];
+        NSDictionary *rootDictionary = [response JSONValue];
+        
+        DLog(@"Response Success %@",response);
+        ///Block Calling
+        dispatch_async(dispatch_get_main_queue(), ^{
+            handler(rootDictionary,NO);
+        });
+    }];
+    
+    [request setFailedBlock:^{
+        
+        NSString *response = [request responseString];
+        NSDictionary *rootDictionary = [response JSONValue];
+        
+        DLog(@"Response Failed %@",response);
+        
+        if ([[rootDictionary valueForKey:@"error"] length]>0) {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                handler([rootDictionary valueForKey:@"error"],YES);
+            });
+            
+        }
+        else
+        {
+            ///Block Calling
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                handler([rootDictionary objectForKey:@"error"],YES);
+            });
+        }
+    }];
+    
+    [request startAsynchronous];
+}
 
 -(void)upadteAnswers:(NSString *)masterKey
             questIDS:(NSMutableArray *)questIDS

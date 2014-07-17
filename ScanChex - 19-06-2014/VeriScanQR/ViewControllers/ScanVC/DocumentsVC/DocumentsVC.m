@@ -11,6 +11,7 @@
 #import "DocumentDTO.h"
 #import "TicketDTO.h"
 #import "VSSharedManager.h"
+#import "SharedManager.h"
 @interface DocumentsVC ()
 
 -(id)initWithData:(NSArray *)array andDelegate:(id<DocumentDelegate>)aDelegate;
@@ -112,9 +113,12 @@
 }
 
 #pragma TableViewDelegate
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return [self.documents count];
+    return [[self.documents objectAtIndex:section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -122,18 +126,32 @@
 
     DocumentCell *cell=[DocumentCell resuableCellForTableView:self.documenTable withOwner:self];
     cell.backgroundColor = [UIColor clearColor];
-    [cell updateCellWithDocument:[self.documents objectAtIndex:indexPath.row]];
+    [cell updateCellWithDocument:[[self.documents objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]];
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    if (indexPath.section == 0) {
+        [SharedManager getInstance].isEditable = FALSE;
+    }
+    else {
+        [SharedManager getInstance].isEditable = TRUE;
+    }
     ///download pdf and show view them here
     if ([self.delegate respondsToSelector:@selector(selectedFileWithPath:)]) {
-        DocumentDTO *document=[self.documents objectAtIndex:indexPath.row];
-        
+        DocumentDTO *document=[[self.documents objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        if (indexPath.section == 1 &&  ![[VSSharedManager sharedManager] isPreview]) {
+            [self.delegate selectedFileWithPath:[document.link stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        }
+        else if (indexPath.section ==0 ) {
+            [self.delegate selectedFileWithPath:[document.link stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        }
+        else {
+            [SharedManager getInstance].isEditable = FALSE;
+            [self.delegate selectedFileWithPath:[document.link stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        }
         //[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
-        [self.delegate selectedFileWithPath:[document.link stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        
     }
 }
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -144,5 +162,18 @@
         cell.backgroundColor = [UIColor lightGrayColor];
     }
     
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 26.0f;
+}
+
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (section ==0) {
+        return self.documentsHeader;
+    }
+    else {
+        return self.editableDocumentsHeader;
+    }
 }
 @end

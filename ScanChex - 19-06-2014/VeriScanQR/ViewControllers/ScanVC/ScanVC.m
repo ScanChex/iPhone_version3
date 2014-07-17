@@ -39,6 +39,7 @@
 #import "MMPickerView.h"
 #import "AboutUsLinksVC.h"
 #import "TicketCell.h"
+#import "PDFViewController.h"
 @interface ScanVC ()<showQuestionDelegate,assetDelegate,HistoryVCDelegate>
 {
     UIImagePickerController *imagePickerController;
@@ -852,7 +853,47 @@
         
     }
 }
-
+-(void)save:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.pdfViewController.document saveFormsToDocumentData:^(BOOL success) {
+        
+        if(success) {
+            UserDTO*user=[[VSSharedManager sharedManager] currentUser];
+            
+            [[WebServiceManager sharedManager] uploadPdf:[NSString stringWithFormat:@"%d",user.masterKey]
+                                                 historyID:[[VSSharedManager sharedManager] historyID]
+                                               contentType:@"application/pdf"
+                                                 pdfData:self.pdfViewController.document.documentData
+                                               progressBar:self.myProgressIndicator
+                                     withCompletionHandler:^(id data,BOOL error){
+                                         
+                                         [SVProgressHUD dismiss];
+                                         //  self.view.userInteractionEnabled=YES;
+                                         
+                                         [self.myProgressIndicator removeFromSuperview];
+                                         if (!error)
+                                             [self initWithPromptTitle:@"Document Uploaded" message:@"Document uploaded successfully"];
+                                         else{
+                                             [self initWithPromptTitle:@"Error" message:(NSString *)data];
+                                         }
+                                         
+                                         
+//                                         [[NSFileManager defaultManager] removeItemAtPath:path error:&fileError];
+                                         
+                                     }];
+//            [self.pdfViewController.document writeToFile:@"editedpdf.pdf"];
+            
+        }else
+        {
+            UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Failure" message:@"Save Failed. Make sure you are not using object streams (PDF 1.5)" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alertView show];
+            
+        }
+        
+        
+    }];
+}
 -(void)readPdfFileAtPath:(NSString *)filePath{
     
     
@@ -862,7 +903,20 @@
     assert(path != nil); // Path to last PDF file
 //    NSString * tempString = [filePath stringByReplacingOccurrencesOfString:@".pdf" withString:@""];
     if([[filePath lowercaseString] rangeOfString:@".pdf"].length>0) {
-        [self openPDFWithPath:path];
+        if ([SharedManager getInstance].isEditable) {
+            self.pdfViewController = [[PDFViewController alloc] initWithPath:path];
+            UINavigationController * navigationController = [[UINavigationController alloc] initWithRootViewController:self.pdfViewController];
+            navigationController.view.autoresizingMask =  UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleLeftMargin;
+            navigationController.navigationBar.translucent = NO;
+            UIBarButtonItem* saveBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(save:)];
+            
+            [self.pdfViewController.navigationItem setRightBarButtonItems:@[saveBarButtonItem]];
+            [self presentViewController:navigationController animated:YES completion:nil];
+        }
+        else {
+            [self openPDFWithPath:path];
+        }
+        
     }
     else {
         [self.navigationController pushViewController:[AboutUsLinksVC initWithFile:path] animated:YES];

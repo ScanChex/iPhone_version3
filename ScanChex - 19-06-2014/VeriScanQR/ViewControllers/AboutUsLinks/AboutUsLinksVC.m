@@ -97,16 +97,21 @@
     else if (self.isID) {
         CGRect frame = self.webView.frame;
         frame.origin.x = 15;
-        frame.origin.y = 78;
+        frame.origin.y = 70;
         frame.size.width = 290;
         frame.size.height = frame.size.height-30;
         [self.webView setFrame:frame];
         [self.webView loadHTMLString:self.urlString baseURL:nil];
-        [self.webView setScalesPageToFit:YES];
+//        [self.webView setScalesPageToFit:YES];
         NSString *jsCommand = [NSString stringWithFormat:@"document.body.style.zoom = 1.5;"];
         [self.webView stringByEvaluatingJavaScriptFromString:jsCommand];
-        [self.webView sizeToFit];
+//        [self.webView sizeToFit];
+        self.webView.opaque=NO;
+        self.webView.backgroundColor = [UIColor clearColor];
+        
+
         [self.webView.layer setCornerRadius:15.0f];
+        [self.webView setFrame:frame];
     }
     else {
         [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlString]]];
