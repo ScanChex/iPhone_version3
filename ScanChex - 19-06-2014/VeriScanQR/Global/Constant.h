@@ -15,6 +15,8 @@
 //http://scanchex.net/modules/cron
 //#define BASE_URL @"http://demo.scanchex.net/modules/cron"
 #define BASE_URL @"http://www.scanchex.net/modules/cron"
+#define BASE_URL_NEW @"http://scanchex.net/dev/api/asset/"
+
 
 #define STATUS @"Status"
 #define RESULT_KEY @"Data"

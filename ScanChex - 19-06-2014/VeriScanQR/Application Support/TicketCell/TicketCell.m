@@ -43,6 +43,12 @@
     
     return cell;
 }
++(TicketCell *)resuableCellForTableViewCheckIn:(UITableView *)tableview withOwner:(UIViewController *)owner {
+    static NSString *identifer= @"TicketCellCICO";
+    TicketCell *cell = (TicketCell *)[CustomCellHelper tableView:tableview cellWithIdentifier:identifer owner:owner];
+    
+    return cell;
+}
 
 -(void)updateCellWithTicket:(TicketDTO *)ticket{
 

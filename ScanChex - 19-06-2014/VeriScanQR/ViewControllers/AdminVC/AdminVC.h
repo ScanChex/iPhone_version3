@@ -25,6 +25,7 @@
 - (IBAction)lockLocation:(id)sender;
 - (IBAction)backButtonPressed:(id)sender;
 -(IBAction)registerEmployeeDevice:(id)sender;
+-(IBAction)checkInCheckOut:(id)sender;
 -(void)postDeviceRegistration:(NSString*)user_id;
 -(IBAction)donePressed:(id)sender;
 @end

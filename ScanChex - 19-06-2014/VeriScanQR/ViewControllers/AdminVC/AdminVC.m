@@ -14,7 +14,7 @@
 #import "TicketDTO.h"
 #import "SVProgressHUD.h"
 #import "AdminScanAssetVC.h"
-
+#import "CheckInCheckOutViewController.h"
 @interface AdminVC ()
 {
     UIImagePickerController *imagePickerController;
@@ -110,6 +110,11 @@
 //    [alert show];
 //    [alert release];
 }
+
+-(IBAction)checkInCheckOut:(id)sender {
+    [self.navigationController pushViewController:[CheckInCheckOutViewController initCheckInOutVC] animated:YES];
+}
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     NSString* detailString = [[alertView textFieldAtIndex:0] text];
     NSLog(@"String is: %@", detailString); //Put it on the debugger

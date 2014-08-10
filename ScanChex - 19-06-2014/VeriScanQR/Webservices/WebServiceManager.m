@@ -1948,5 +1948,293 @@ withCompletionHandler:(CompletionHandler)handler{
     [request startAsynchronous];
 }
 
+-(void)getAllCheckOutDataWithMasterKey:(NSString *)masterKey withCompletionHandler:(CompletionHandler)handler {
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@all",BASE_URL_NEW]];
+    
+    __block  ASIFormDataRequest *request = [self createRequest:url];
+    
+    [request setRequestMethod:@"POST"];
+    [request setPostValue:masterKey forKey:@"master_key"];
+//    [request setPostValue:@"all" forKey:@"action"];
+    [request setCompletionBlock:^{
+        
+        NSString *response = [request responseString];
+        
+        NSMutableDictionary *messagesArray = [response JSONValue];
+      
+        ///Block Calling
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ([messagesArray objectForKey:@"meta"]) {
+                if ([[[messagesArray objectForKey:@"meta"] objectForKey:@"status"] isEqualToString:@"200"]  &&  [[[messagesArray objectForKey:@"meta"] objectForKey:@"msg"] isEqualToString:@"OK"]) {
+                    handler([messagesArray valueForKey:@"data"],NO);
+                }
+            }
+            else {
+                handler(@"error",YES);
+            }
+        });
+    }];
+    
+    [request setFailedBlock:^{
+        
+        NSString *response = [request responseString];
+        NSDictionary *rootDictionary = [response JSONValue];
+        ///Block Calling
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            handler([rootDictionary objectForKey:@"error"],YES);
+        });
+    }];
+    
+    [request startAsynchronous];
+}
+
+-(void)checkoutFirstStepWithMasterKey:(NSString *)masterKey
+                          description:(NSString *)description
+                        serial_number:(NSString *)serial_number
+                              address:(NSString*)address
+                           department:(NSString*)department
+                              user_id:(NSString*)user_id
+                                 type:(NSString*)type
+                             asset_id:(NSString*)asset_id
+                               client:(NSString*)client
+                withCompletionHandler:(CompletionHandler)handler {
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@manual_lookup",BASE_URL_NEW]];
+    
+    __block  ASIFormDataRequest *request = [self createRequest:url];
+    
+    [request setRequestMethod:@"POST"];
+    [request setPostValue:masterKey forKey:@"master_key"];
+    [request setPostValue:@"description" forKey:@"description"];
+    [request setPostValue:@"serial_number" forKey:@"serial_number"];
+    [request setPostValue:@"address" forKey:@"address"];
+    [request setPostValue:@"department" forKey:@"department"];
+    [request setPostValue:@"user_id" forKey:@"user_id"];
+    [request setPostValue:@"type" forKey:@"type"];
+    [request setPostValue:@"asset_id" forKey:@"asset_id"];
+    [request setPostValue:@"client" forKey:@"client"];
+    [request setCompletionBlock:^{
+        
+        NSString *response = [request responseString];
+        
+        NSMutableDictionary *messagesArray = [response JSONValue];
+        
+        ///Block Calling
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ([messagesArray objectForKey:@"meta"]) {
+                if ([[[messagesArray objectForKey:@"meta"] objectForKey:@"status"] isEqualToString:@"200"]  &&  [[[messagesArray objectForKey:@"meta"] objectForKey:@"msg"] isEqualToString:@"OK"]) {
+                    handler([[messagesArray objectForKey:@"data"]objectForKey:@"checkout"],NO);
+                }
+            }
+            else {
+                handler(@"error",YES);
+            }
+        });
+    }];
+    
+    [request setFailedBlock:^{
+        
+        NSString *response = [request responseString];
+        NSDictionary *rootDictionary = [response JSONValue];
+        ///Block Calling
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            handler([rootDictionary objectForKey:@"error"],YES);
+        });
+    }];
+    
+    [request startAsynchronous];
+    
+}
+
+-(void)uploadSignatureforCICOWithMasterKey:(NSString *)masterKey
+                                      file:(NSData*)file
+                     withCompletionHandler:(CompletionHandler)handler {
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/veriscanAPI.php",BASE_URL]];
+    
+    
+    __block  ASIFormDataRequest *request = [self createRequest:url];
+    
+    [request setRequestMethod:@"POST"];
+    [request setPostValue:masterKey forKey:@"master_key"];
+    [request setPostValue:@"signature" forKey:@"action"];
+    [request setPostValue:@"" forKey:@"upload_array"];
+    [request addData:file withFileName:[NSString stringWithFormat:@"image%@.jpeg",[self generateCallId]] andContentType:@"image/jpeg" forKey:@"file"];
+    
+    [request setCompletionBlock:^{
+        
+        NSString *response = [request responseString];
+        NSDictionary *rootDictionary = [response JSONValue];
+        DLog(@"response %@",response);
+        
+        
+        if ([[rootDictionary valueForKey:@"error"] length]>0) {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                handler([rootDictionary valueForKey:@"error"],YES);
+            });
+            
+        }
+        else
+        {
+            
+            ///Block Calling
+            dispatch_async(dispatch_get_main_queue(), ^{
+                handler([rootDictionary objectForKey:@"path"],NO);
+            });
+        }
+    }];
+    
+    [request setFailedBlock:^{
+        
+        NSString *response = [request responseString];
+        NSDictionary *rootDictionary = [response JSONValue];
+        ///Block Calling
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            handler([rootDictionary objectForKey:@"error"],YES);
+        });
+    }];
+    
+    [request startAsynchronous];
+}
+
+-(void)checkoutWithMasterKey:(NSString *)masterKey
+                    employee:(NSString *)employee
+                  department:(NSString *)department
+               date_time_out:(NSString*)date_time_out
+            date_time_due_in:(NSString*)date_time_due_in
+                   client_id:(NSString*)client_id
+                   reference:(NSString*)reference
+                     address:(NSString*)address
+                       notes:(NSString*)notes
+                   signature:(NSString*)signature
+                    asset_id:(NSString*)asset_id
+                     user_id:(NSString*)user_id
+                   tolerance:(NSString*)tolerance
+       withCompletionHandler:(CompletionHandler)handler {
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@checkout",BASE_URL_NEW]];
+    
+    __block  ASIFormDataRequest *request = [self createRequest:url];
+    
+    [request setRequestMethod:@"POST"];
+    [request setPostValue:masterKey forKey:@"master_key"];
+    [request setPostValue:employee forKey:@"employee"];
+    [request setPostValue:department forKey:@"department"];
+    [request setPostValue:date_time_out forKey:@"date_time_out"];
+    [request setPostValue:date_time_due_in forKey:@"date_time_due_in"];
+    [request setPostValue:client_id forKey:@"client_id"];
+    [request setPostValue:reference forKey:@"reference"];
+    [request setPostValue:address forKey:@"address"];
+    [request setPostValue:notes forKey:@"notes"];
+    [request setPostValue:signature forKey:@"signature"];
+    [request setPostValue:asset_id forKey:@"asset_id"];
+    [request setPostValue:user_id forKey:@"user_id"];
+    [request setPostValue:tolerance forKey:@"tolerance"];
+    [request setPostValue:@"1" forKey:@"check_out_id"];
+    [request setPostValue:@"1" forKey:@"received_condition"];
+    [request setPostValue:@"1" forKey:@"latitude"];
+    [request setPostValue:@"1" forKey:@"longitude"];
+    [request setCompletionBlock:^{
+        
+        NSString *response = [request responseString];
+        
+        NSMutableDictionary *messagesArray = [response JSONValue];
+        
+        ///Block Calling
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ([messagesArray objectForKey:@"meta"]) {
+                if ([[[messagesArray objectForKey:@"meta"] objectForKey:@"status"] isEqualToString:@"200"]  &&  [[[messagesArray objectForKey:@"meta"] objectForKey:@"msg"] isEqualToString:@"OK"]) {
+                    handler([messagesArray objectForKey:@"data"],NO);
+                }
+            }
+            else {
+                handler(@"error",YES);
+            }
+        });
+    }];
+    
+    [request setFailedBlock:^{
+        
+        NSString *response = [request responseString];
+        NSDictionary *rootDictionary = [response JSONValue];
+        ///Block Calling
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            handler([rootDictionary objectForKey:@"error"],YES);
+        });
+    }];
+    
+    [request startAsynchronous];
+}
+
+-(void)checkoutCheckInTicketsWithMasterKey:(NSString *)masterKey userName:(NSString *)userName withCompletionHandler:(CompletionHandler)handler {
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/veriscanAPI.php",BASE_URL]];
+    
+    __block  ASIFormDataRequest *request = [self createRequest:url];
+    
+    [request setRequestMethod:@"POST"];
+    [request setPostValue:masterKey forKey:@"master_key"];
+//    [request setPostValue:@"1" forKey:@"master_key"];
+//    [request setPostValue:@"javed" forKey:@"username"];
+    [request setPostValue:userName forKey:@"username"];
+    [request setPostValue:@"show_checkin_out_tickets" forKey:@"action"];
+    [request setCompletionBlock:^{
+        
+        NSString *response = [request responseString];
+        NSMutableDictionary *ticketsArray = [response JSONValue];
+        
+        DLog(@"Ticekts Response %@",response);
+        
+        if ([[ticketsArray valueForKey:@"error"] length]>0) {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                handler([ticketsArray valueForKey:@"error"],YES);
+            });
+        }
+        else
+        {
+            ////add Ticket Model
+            NSMutableArray *ticketsData=[NSMutableArray array];
+            
+            NSArray *keys=[ticketsArray allKeys];
+            
+            DLog(@"%@",keys);
+            
+            for (int i=0; i<[keys count]; i++) {
+                
+                if ([[keys objectAtIndex:i] isEqualToString:@"route_order"] || [[keys objectAtIndex:i] isEqualToString:@"default_address"]) {
+                    
+                }
+                else
+                {
+                    TicketDTO *ticketData=[TicketDTO initWithTicketDTO:[ticketsArray objectForKey:[keys objectAtIndex:i]]];
+                    [ticketsData addObject:ticketData];
+                }
+            }
+            [[VSSharedManager sharedManager] setTicketInfo:ticketsData];
+            ///Block Calling
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                handler(ticketsData,NO);
+            });
+        }
+        
+    }];
+    
+    [request setFailedBlock:^{
+        
+        ///Block Calling
+        dispatch_async(dispatch_get_main_queue(), ^{
+            handler(@"Check your internet connection",YES);
+        });
+    }];
+    
+    [request startAsynchronous];
+}
+
 
 @end

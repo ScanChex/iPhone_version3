@@ -199,7 +199,7 @@
                   symbolName = "-[WebServiceManager sendMessage:masterkey:receiver_id:message:withCompletionHandler:]"
                   moduleName = "ScanChex"
                   urlString = "file://localhost/Volumes/DATA/Job/Veriscan/Git%20Hub%20Code%2015%20July/iPhone_version3/ScanChex%20-%2019-06-2014/VeriScanQR/Webservices/WebServiceManager.m"
-                  timestampString = "427303506.123951"
+                  timestampString = "429386842.869301"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1689"
@@ -213,7 +213,7 @@
                   symbolName = "__85-[WebServiceManager sendMessage:masterkey:receiver_id:message:withCompletionHandler:]_block_invoke"
                   moduleName = "ScanChex"
                   urlString = "file://localhost/Volumes/DATA/Job/Veriscan/Git%20Hub%20Code%2015%20July/iPhone_version3/ScanChex%20-%2019-06-2014/VeriScanQR/Webservices/WebServiceManager.m"
-                  timestampString = "427303506.124346"
+                  timestampString = "429386842.869768"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1689"
@@ -221,54 +221,6 @@
                   offsetFromSymbolStart = "51">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VeriScanQR/Webservices/WebServiceManager.m"
-            timestampString = "427290406.912671"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1788"
-            endingLineNumber = "1788"
-            landmarkName = "-deviceRegister:masterkey:withCompletionHandler:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VeriScanQR/Webservices/WebServiceManager.m"
-            timestampString = "427290406.912671"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1795"
-            endingLineNumber = "1795"
-            landmarkName = "-deviceRegister:masterkey:withCompletionHandler:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VeriScanQR/ViewControllers/AdminVC/AdminVC.m"
-            timestampString = "423739209.268302"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
-            landmarkName = "-postDeviceRegistration:"
-            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -294,11 +246,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VeriScanQR/Application Support/TicketCell/TicketCell.m"
-            timestampString = "422896264.101772"
+            timestampString = "429377186.023077"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
             landmarkName = "-updateCellWithTicket:index:"
             landmarkType = "5">
          </BreakpointContent>
@@ -310,11 +262,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VeriScanQR/Application Support/TicketCell/TicketCell.m"
-            timestampString = "422896264.101772"
+            timestampString = "429377186.023077"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
             landmarkName = "-updateCellWithTicket:"
             landmarkType = "5">
          </BreakpointContent>
@@ -326,11 +278,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VeriScanQR/Application Support/TicketCell/TicketCell.m"
-            timestampString = "422896264.101772"
+            timestampString = "429377186.023077"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
             landmarkName = "-updateCellWithTicket:"
             landmarkType = "5">
          </BreakpointContent>
@@ -709,22 +661,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "VeriScanQR/Webservices/WebServiceManager.m"
-            timestampString = "427290406.912671"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1745"
-            endingLineNumber = "1745"
-            landmarkName = "-getEmployeesWithMasterKey:withCompletionHandler:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "VeriScanQR/ViewControllers/MessageCentreVC/MessageCentreVC.m"
             timestampString = "423742324.420109"
             startingColumnNumber = "9223372036854775807"
@@ -773,7 +709,7 @@
                   symbolName = "-[ScanVC save:]"
                   moduleName = "ScanChex"
                   urlString = "file://localhost/Volumes/DATA/Job/Veriscan/Git%20Hub%20Code%2015%20July/iPhone_version3/ScanChex%20-%2019-06-2014/VeriScanQR/ViewControllers/ScanVC/ScanVC.m"
-                  timestampString = "427303506.269774"
+                  timestampString = "429386842.915804"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "859"
@@ -787,7 +723,7 @@
                   symbolName = "__15-[ScanVC save:]_block_invoke"
                   moduleName = "ScanChex"
                   urlString = "file://localhost/Volumes/DATA/Job/Veriscan/Git%20Hub%20Code%2015%20July/iPhone_version3/ScanChex%20-%2019-06-2014/VeriScanQR/ViewControllers/ScanVC/ScanVC.m"
-                  timestampString = "427303506.270277"
+                  timestampString = "429386842.916275"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "861"
@@ -810,6 +746,118 @@
             startingLineNumber = "1182"
             endingLineNumber = "1182"
             landmarkName = "-uploadPdf:historyID:contentType:pdfData:progressBar:withCompletionHandler:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VeriScanQR/ViewControllers/TicketsVC/TicketsVC.m"
+            timestampString = "429375162.582866"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "-refreshControlValueChanged:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VeriScanQR/ViewControllers/TicketsVC/TicketsVC.m"
+            timestampString = "429375180.315431"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
+            landmarkName = "-updateTickets"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VeriScanQR/Webservices/WebServiceManager.m"
+            timestampString = "429384385.722431"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2187"
+            endingLineNumber = "2187"
+            landmarkName = "-checkoutCheckInTicketsWithMasterKey:userName:withCompletionHandler:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VeriScanQR/ViewControllers/AdminVC/CheckOutStepTwoViewController.m"
+            timestampString = "429386842.311924"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "293"
+            endingLineNumber = "293"
+            landmarkName = "-touchesBegan:withEvent:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VeriScanQR/ViewControllers/AdminVC/CheckOutStepTwoViewController.m"
+            timestampString = "429386842.311924"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "301"
+            endingLineNumber = "301"
+            landmarkName = "-touchesMoved:withEvent:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VeriScanQR/ViewControllers/AdminVC/CheckOutStepTwoViewController.m"
+            timestampString = "429386842.311924"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "309"
+            endingLineNumber = "309"
+            landmarkName = "-touchesEnded:withEvent:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VeriScanQR/ViewControllers/AdminVC/CheckOutStepTwoViewController.m"
+            timestampString = "429386859.213196"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "288"
+            endingLineNumber = "288"
+            landmarkName = "-scrollViewWillBeginDragging:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

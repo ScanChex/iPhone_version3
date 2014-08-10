@@ -29,6 +29,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[IQKeyboardManager sharedManager] setEnable:YES];
+    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:YES];
     [[SharedManager getInstance] setIsMessage:FALSE];
 //    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];

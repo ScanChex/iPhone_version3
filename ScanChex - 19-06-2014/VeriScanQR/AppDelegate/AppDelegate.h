@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SharedManager.h"
-
+#import "IQKeyboardManager.h"
 @class SplashVC;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,UIAlertViewDelegate>

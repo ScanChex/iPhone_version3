@@ -187,4 +187,39 @@ withCompletionHandler:(CompletionHandler)handler;
 withCompletionHandler:(CompletionHandler)handler;
 
 -(void)getEmployeesWithMasterKey:(NSString *)masterKey withCompletionHandler:(CompletionHandler)handler;
+
+-(void)getAllCheckOutDataWithMasterKey:(NSString *)masterKey withCompletionHandler:(CompletionHandler)handler;
+
+-(void)checkoutFirstStepWithMasterKey:(NSString *)masterKey
+                            description:(NSString *)description
+                             serial_number:(NSString *)serial_number
+                            address:(NSString*)address
+                         department:(NSString*)department
+                user_id:(NSString*)user_id
+                type:(NSString*)type
+                asset_id:(NSString*)asset_id
+                client:(NSString*)client
+                withCompletionHandler:(CompletionHandler)handler;
+
+-(void)uploadSignatureforCICOWithMasterKey:(NSString *)masterKey
+                                      file:(NSData*)file
+                     withCompletionHandler:(CompletionHandler)handler;
+
+-(void)checkoutWithMasterKey:(NSString *)masterKey
+                          employee:(NSString *)employee
+                        department:(NSString *)department
+                              date_time_out:(NSString*)date_time_out
+                           date_time_due_in:(NSString*)date_time_due_in
+                              client_id:(NSString*)client_id
+                                 reference:(NSString*)reference
+                             address:(NSString*)address
+                               notes:(NSString*)notes
+            signature:(NSString*)signature
+                   asset_id:(NSString*)asset_id
+                   user_id:(NSString*)user_id
+                     tolerance:(NSString*)tolerance
+                withCompletionHandler:(CompletionHandler)handler;
+-(void)checkoutCheckInTicketsWithMasterKey:(NSString *)masterKey userName:(NSString *)userName withCompletionHandler:(CompletionHandler)handler;
+
+
 @end

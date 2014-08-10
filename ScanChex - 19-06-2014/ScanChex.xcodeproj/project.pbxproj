@@ -7,9 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04146E9319953FEC00FD3B37 /* cb_green_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 04146E8F19953FEC00FD3B37 /* cb_green_off.png */; };
+		04146E9419953FEC00FD3B37 /* cb_green_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04146E9019953FEC00FD3B37 /* cb_green_off@2x.png */; };
+		04146E9519953FEC00FD3B37 /* cb_green_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 04146E9119953FEC00FD3B37 /* cb_green_on.png */; };
+		04146E9619953FEC00FD3B37 /* cb_green_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04146E9219953FEC00FD3B37 /* cb_green_on@2x.png */; };
 		043BD082192F562D0016850A /* paypal_icons_l.gif in Resources */ = {isa = PBXBuildFile; fileRef = 043BD081192F562D0016850A /* paypal_icons_l.gif */; };
 		043BD084192F56330016850A /* note_add.png in Resources */ = {isa = PBXBuildFile; fileRef = 043BD083192F56330016850A /* note_add.png */; };
 		043BE972190AD73F0058876D /* BackgroundTaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 043BE971190AD73F0058876D /* BackgroundTaskManager.m */; };
+		04515EFC1997538E00785D18 /* CheckOutConfirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04515EFA1997538E00785D18 /* CheckOutConfirmationViewController.m */; };
+		04515EFD1997538E00785D18 /* CheckOutConfirmationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04515EFB1997538E00785D18 /* CheckOutConfirmationViewController.xib */; };
+		04515F021997BFCC00785D18 /* CheckInTicketsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04515F001997BFCC00785D18 /* CheckInTicketsViewController.m */; };
+		04515F031997BFCC00785D18 /* CheckInTicketsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04515F011997BFCC00785D18 /* CheckInTicketsViewController.xib */; };
+		04515F051997C4B000785D18 /* TicketCellCICO.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04515F041997C4B000785D18 /* TicketCellCICO.xib */; };
 		0454603118F5AC4600FF460C /* detailIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0454603018F5AC4600FF460C /* detailIcon.png */; };
 		0454603318F5ACE500FF460C /* checkmarkgreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 0454603218F5ACE500FF460C /* checkmarkgreen.png */; };
 		0454603518F5ADD600FF460C /* excalamationIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0454603418F5ADD600FF460C /* excalamationIcon.png */; };
@@ -26,6 +35,12 @@
 		045957931945AE34006909B1 /* UIView+IQKeyboardToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 045957881945AE34006909B1 /* UIView+IQKeyboardToolbar.m */; };
 		045957941945AE34006909B1 /* UIWindow+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0459578A1945AE34006909B1 /* UIWindow+Hierarchy.m */; };
 		046291A71938660400623529 /* MessageCellUser.xib in Resources */ = {isa = PBXBuildFile; fileRef = 046291A61938660400623529 /* MessageCellUser.xib */; };
+		04687A531983954500F6BE96 /* CheckInCheckOutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04687A511983954500F6BE96 /* CheckInCheckOutViewController.m */; };
+		04687A541983954500F6BE96 /* CheckInCheckOutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04687A521983954500F6BE96 /* CheckInCheckOutViewController.xib */; };
+		04687A5819839C2D00F6BE96 /* CheckOutOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04687A5619839C2D00F6BE96 /* CheckOutOptionsViewController.m */; };
+		04687A5919839C2D00F6BE96 /* CheckOutOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04687A5719839C2D00F6BE96 /* CheckOutOptionsViewController.xib */; };
+		04687A5D1983D41600F6BE96 /* CheckOutInitialInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04687A5B1983D41600F6BE96 /* CheckOutInitialInformationViewController.m */; };
+		04687A5E1983D41600F6BE96 /* CheckOutInitialInformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04687A5C1983D41600F6BE96 /* CheckOutInitialInformationViewController.xib */; };
 		0469B35E1911780700D4E0E0 /* Chat.png in Resources */ = {isa = PBXBuildFile; fileRef = 0469B35D1911780700D4E0E0 /* Chat.png */; };
 		047858FE1920B05600BDD6C1 /* MMPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 047858FD1920B05600BDD6C1 /* MMPickerView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		047D67AC191BC09700CABA8E /* CheckPointCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 047D67AB191BC09700CABA8E /* CheckPointCell.m */; };
@@ -71,6 +86,8 @@
 		04B4773A18FC4A3400357F34 /* SignatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B4773618FC4A3400357F34 /* SignatureViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		04B4773B18FC4A3400357F34 /* fingerTip.png in Resources */ = {isa = PBXBuildFile; fileRef = 04B4773718FC4A3400357F34 /* fingerTip.png */; };
 		04BA49391906B47B0064D48B /* SharedManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BA49381906B47B0064D48B /* SharedManager.m */; };
+		04D014FB1993CD0100FC2365 /* CheckOutStepTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D014F91993CD0100FC2365 /* CheckOutStepTwoViewController.m */; };
+		04D014FC1993CD0100FC2365 /* CheckOutStepTwoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D014FA1993CD0100FC2365 /* CheckOutStepTwoViewController.xib */; };
 		04D75BEF1923666F00CC9012 /* employeeCard.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D75BEE1923666F00CC9012 /* employeeCard.png */; };
 		04E0EF2219096C740088B808 /* RoutesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E0EF2019096C740088B808 /* RoutesViewController.m */; };
 		04E0EF2319096C740088B808 /* RoutesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E0EF2119096C740088B808 /* RoutesViewController.xib */; };
@@ -362,10 +379,22 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04146E8F19953FEC00FD3B37 /* cb_green_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cb_green_off.png; sourceTree = "<group>"; };
+		04146E9019953FEC00FD3B37 /* cb_green_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cb_green_off@2x.png"; sourceTree = "<group>"; };
+		04146E9119953FEC00FD3B37 /* cb_green_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cb_green_on.png; sourceTree = "<group>"; };
+		04146E9219953FEC00FD3B37 /* cb_green_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cb_green_on@2x.png"; sourceTree = "<group>"; };
 		043BD081192F562D0016850A /* paypal_icons_l.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = paypal_icons_l.gif; sourceTree = "<group>"; };
 		043BD083192F56330016850A /* note_add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = note_add.png; sourceTree = "<group>"; };
 		043BE970190AD73F0058876D /* BackgroundTaskManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundTaskManager.h; sourceTree = "<group>"; };
 		043BE971190AD73F0058876D /* BackgroundTaskManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundTaskManager.m; sourceTree = "<group>"; };
+		04515EF91997538E00785D18 /* CheckOutConfirmationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckOutConfirmationViewController.h; sourceTree = "<group>"; };
+		04515EFA1997538E00785D18 /* CheckOutConfirmationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckOutConfirmationViewController.m; sourceTree = "<group>"; };
+		04515EFB1997538E00785D18 /* CheckOutConfirmationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckOutConfirmationViewController.xib; sourceTree = "<group>"; };
+		04515EFE1997550600785D18 /* greenCheckMark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenCheckMark.png; sourceTree = "<group>"; };
+		04515EFF1997BFCC00785D18 /* CheckInTicketsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckInTicketsViewController.h; sourceTree = "<group>"; };
+		04515F001997BFCC00785D18 /* CheckInTicketsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckInTicketsViewController.m; sourceTree = "<group>"; };
+		04515F011997BFCC00785D18 /* CheckInTicketsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckInTicketsViewController.xib; sourceTree = "<group>"; };
+		04515F041997C4B000785D18 /* TicketCellCICO.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TicketCellCICO.xib; sourceTree = "<group>"; };
 		0454603018F5AC4600FF460C /* detailIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = detailIcon.png; sourceTree = "<group>"; };
 		0454603218F5ACE500FF460C /* checkmarkgreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmarkgreen.png; sourceTree = "<group>"; };
 		0454603418F5ADD600FF460C /* excalamationIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = excalamationIcon.png; sourceTree = "<group>"; };
@@ -394,6 +423,15 @@
 		045957891945AE34006909B1 /* UIWindow+Hierarchy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+Hierarchy.h"; sourceTree = "<group>"; };
 		0459578A1945AE34006909B1 /* UIWindow+Hierarchy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+Hierarchy.m"; sourceTree = "<group>"; };
 		046291A61938660400623529 /* MessageCellUser.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageCellUser.xib; sourceTree = "<group>"; };
+		04687A501983954500F6BE96 /* CheckInCheckOutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckInCheckOutViewController.h; sourceTree = "<group>"; };
+		04687A511983954500F6BE96 /* CheckInCheckOutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckInCheckOutViewController.m; sourceTree = "<group>"; };
+		04687A521983954500F6BE96 /* CheckInCheckOutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckInCheckOutViewController.xib; sourceTree = "<group>"; };
+		04687A5519839C2D00F6BE96 /* CheckOutOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckOutOptionsViewController.h; sourceTree = "<group>"; };
+		04687A5619839C2D00F6BE96 /* CheckOutOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckOutOptionsViewController.m; sourceTree = "<group>"; };
+		04687A5719839C2D00F6BE96 /* CheckOutOptionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckOutOptionsViewController.xib; sourceTree = "<group>"; };
+		04687A5A1983D41600F6BE96 /* CheckOutInitialInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckOutInitialInformationViewController.h; sourceTree = "<group>"; };
+		04687A5B1983D41600F6BE96 /* CheckOutInitialInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckOutInitialInformationViewController.m; sourceTree = "<group>"; };
+		04687A5C1983D41600F6BE96 /* CheckOutInitialInformationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckOutInitialInformationViewController.xib; sourceTree = "<group>"; };
 		0469B35D1911780700D4E0E0 /* Chat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chat.png; sourceTree = "<group>"; };
 		047858FC1920B05600BDD6C1 /* MMPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPickerView.h; sourceTree = "<group>"; };
 		047858FD1920B05600BDD6C1 /* MMPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPickerView.m; sourceTree = "<group>"; };
@@ -476,6 +514,9 @@
 		04B4773718FC4A3400357F34 /* fingerTip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fingerTip.png; sourceTree = "<group>"; };
 		04BA49371906B47B0064D48B /* SharedManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedManager.h; sourceTree = "<group>"; };
 		04BA49381906B47B0064D48B /* SharedManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedManager.m; sourceTree = "<group>"; };
+		04D014F81993CD0100FC2365 /* CheckOutStepTwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckOutStepTwoViewController.h; sourceTree = "<group>"; };
+		04D014F91993CD0100FC2365 /* CheckOutStepTwoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckOutStepTwoViewController.m; sourceTree = "<group>"; };
+		04D014FA1993CD0100FC2365 /* CheckOutStepTwoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckOutStepTwoViewController.xib; sourceTree = "<group>"; };
 		04D75BEE1923666F00CC9012 /* employeeCard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = employeeCard.png; sourceTree = "<group>"; };
 		04E0EF1F19096C740088B808 /* RoutesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoutesViewController.h; sourceTree = "<group>"; };
 		04E0EF2019096C740088B808 /* RoutesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoutesViewController.m; sourceTree = "<group>"; };
@@ -2135,6 +2176,7 @@
 				9DCEE208168633F900540E96 /* TicketCell.m */,
 				9DCEE20A1686340E00540E96 /* TicketCell.xib */,
 				045666D71934E0E90053E55E /* TicketCellPreview.xib */,
+				04515F041997C4B000785D18 /* TicketCellCICO.xib */,
 			);
 			path = TicketCell;
 			sourceTree = "<group>";
@@ -2253,6 +2295,29 @@
 				9DF5D047171951A400723C60 /* UploadAdminVC.h */,
 				9DF5D048171951A400723C60 /* UploadAdminVC.m */,
 				9DF5D049171951A400723C60 /* UploadAdminVC.xib */,
+				04687A501983954500F6BE96 /* CheckInCheckOutViewController.h */,
+				04687A511983954500F6BE96 /* CheckInCheckOutViewController.m */,
+				04687A521983954500F6BE96 /* CheckInCheckOutViewController.xib */,
+				04687A5519839C2D00F6BE96 /* CheckOutOptionsViewController.h */,
+				04687A5619839C2D00F6BE96 /* CheckOutOptionsViewController.m */,
+				04687A5719839C2D00F6BE96 /* CheckOutOptionsViewController.xib */,
+				04687A5A1983D41600F6BE96 /* CheckOutInitialInformationViewController.h */,
+				04687A5B1983D41600F6BE96 /* CheckOutInitialInformationViewController.m */,
+				04687A5C1983D41600F6BE96 /* CheckOutInitialInformationViewController.xib */,
+				04D014F81993CD0100FC2365 /* CheckOutStepTwoViewController.h */,
+				04D014F91993CD0100FC2365 /* CheckOutStepTwoViewController.m */,
+				04D014FA1993CD0100FC2365 /* CheckOutStepTwoViewController.xib */,
+				04515EF91997538E00785D18 /* CheckOutConfirmationViewController.h */,
+				04515EFA1997538E00785D18 /* CheckOutConfirmationViewController.m */,
+				04515EFB1997538E00785D18 /* CheckOutConfirmationViewController.xib */,
+				04146E8F19953FEC00FD3B37 /* cb_green_off.png */,
+				04146E9019953FEC00FD3B37 /* cb_green_off@2x.png */,
+				04146E9119953FEC00FD3B37 /* cb_green_on.png */,
+				04146E9219953FEC00FD3B37 /* cb_green_on@2x.png */,
+				04515EFE1997550600785D18 /* greenCheckMark.png */,
+				04515EFF1997BFCC00785D18 /* CheckInTicketsViewController.h */,
+				04515F001997BFCC00785D18 /* CheckInTicketsViewController.m */,
+				04515F011997BFCC00785D18 /* CheckInTicketsViewController.xib */,
 			);
 			path = AdminVC;
 			sourceTree = "<group>";
@@ -2322,12 +2387,14 @@
 				9D75C34B167A32A600A777E3 /* zbar-help.html in Resources */,
 				9D75C34C167A32A600A777E3 /* zbar-helpicons.png in Resources */,
 				9D75C34D167A32A600A777E3 /* zbar-samples.png in Resources */,
+				04146E9619953FEC00FD3B37 /* cb_green_on@2x.png in Resources */,
 				9D75C368167A37E100A777E3 /* LASER.WAV in Resources */,
 				9D7AED1A167B76CE006759A0 /* ScanVC.xib in Resources */,
 				9DE8D5EE187BF89800320E1F /* MessageCell.xib in Resources */,
 				9DE8D5F8187C24B000320E1F /* exclamation_mark.png in Resources */,
 				9D85EB9D167E783A004A3C7A /* ResetPasswordVCViewController.xib in Resources */,
 				0454603118F5AC4600FF460C /* detailIcon.png in Resources */,
+				04515EFD1997538E00785D18 /* CheckOutConfirmationViewController.xib in Resources */,
 				9D87B24E16860EAE00D57FFB /* TicketsVC.xib in Resources */,
 				043BD084192F56330016850A /* note_add.png in Resources */,
 				9DE8D5FF187C2F0200320E1F /* ic_jog_dial_answer.png in Resources */,
@@ -2338,6 +2405,9 @@
 				9DE8D601187C2F8600320E1F /* right_arrow.png in Resources */,
 				9D1D18121688D6EF0036C024 /* DocumentsVC.xib in Resources */,
 				9D1D18171688D7160036C024 /* HistoryVC.xib in Resources */,
+				04146E9419953FEC00FD3B37 /* cb_green_off@2x.png in Resources */,
+				04146E9319953FEC00FD3B37 /* cb_green_off.png in Resources */,
+				04687A541983954500F6BE96 /* CheckInCheckOutViewController.xib in Resources */,
 				9D1D18211688D7600036C024 /* MapVC.xib in Resources */,
 				9DB7D6851694BFAB00727FD2 /* alert.png in Resources */,
 				9DB7D6861694BFAB00727FD2 /* alert@2x.png in Resources */,
@@ -2364,6 +2434,7 @@
 				9D331110169DA00F004EB03E /* pdfDownload.jpeg in Resources */,
 				9DB7683E16A07EC700C925ED /* DownloadVC.xib in Resources */,
 				9D762F3016B3FAEA001B315C /* ShowQuestionsVC.xib in Resources */,
+				04515F051997C4B000785D18 /* TicketCellCICO.xib in Resources */,
 				9D762F3716B40B18001B315C /* TrueFalseCell.xib in Resources */,
 				9D762F4816B414CA001B315C /* friend_selected.png in Resources */,
 				9D762F4916B414CA001B315C /* friend_selected@2x.png in Resources */,
@@ -2388,10 +2459,12 @@
 				045666D81934E0E90053E55E /* TicketCellPreview.xib in Resources */,
 				9D6A9FD818C3C58B00FF0ED8 /* button_secondary_selected.png in Resources */,
 				9D61051416C58B4C00678760 /* logo.png in Resources */,
+				04515F031997BFCC00785D18 /* CheckInTicketsViewController.xib in Resources */,
 				9DCAB13C16C635C700CB36C4 /* VoiceRecordViewController.xib in Resources */,
 				9D6A9FD618C3C58B00FF0ED8 /* button_secondary.png in Resources */,
 				9DCAB14716C6463800CB36C4 /* NotesVC.xib in Resources */,
 				9DCAB15A16C64CCD00CB36C4 /* submit.png in Resources */,
+				04687A5919839C2D00F6BE96 /* CheckOutOptionsViewController.xib in Resources */,
 				9DCAB15B16C64CCD00CB36C4 /* submit@2x.png in Resources */,
 				9DB0AFA616C78F34003F8756 /* SplashVC.xib in Resources */,
 				9DA15B2216CAD932002A268B /* Photo_not_available.jpg in Resources */,
@@ -2401,6 +2474,7 @@
 				9DB1A2ED16E7DEC4005F2E1C /* Video Recorder.jpg in Resources */,
 				04FE51021912BC7A009D2FAA /* bottomBar@2x.png in Resources */,
 				9D6A9FDD18C3C58B00FF0ED8 /* ios_sample_icon@2x.png in Resources */,
+				04146E9519953FEC00FD3B37 /* cb_green_on.png in Resources */,
 				9DB1A2EE16E7DEC4005F2E1C /* Write Note 2.jpg in Resources */,
 				9DB1A2F116E7E1E5005F2E1C /* Camera.jpg in Resources */,
 				9DB1A2F216E7E1E5005F2E1C /* Voice Note 2.jpg in Resources */,
@@ -2412,6 +2486,7 @@
 				9DB162C5170B45640089E3BB /* SelectionVC.xib in Resources */,
 				9DB162C7170B4E510089E3BB /* MapVCFullScreen.xib in Resources */,
 				9D6A9FDA18C3C58B00FF0ED8 /* check.png in Resources */,
+				04D014FC1993CD0100FC2365 /* CheckOutStepTwoViewController.xib in Resources */,
 				9D61BED31714949400EC097B /* ExtraInfoCell.xib in Resources */,
 				9DCFE6C31715C9A700CE4024 /* ComponentsVC.xib in Resources */,
 				9DE8D5FB187C268800320E1F /* phone.jpg in Resources */,
@@ -2428,6 +2503,7 @@
 				9D46FF29172BD92400030CC4 /* AudioPlayerNoArtwork.png in Resources */,
 				9DCAB2EE17302F730026C8F0 /* ServiceCell.xib in Resources */,
 				9D9046B81730E4B30068C84C /* Avro-LICENSE.txt in Resources */,
+				04687A5E1983D41600F6BE96 /* CheckOutInitialInformationViewController.xib in Resources */,
 				9D2A1869173C0B450069670D /* currentLocation.jpeg in Resources */,
 				9D6A9FD718C3C58B00FF0ED8 /* button_secondary@2x.png in Resources */,
 				9D772218173CBD84001FAD14 /* AssetiPhone5VC.xib in Resources */,
@@ -2507,6 +2583,7 @@
 				9DB683A6167C662D0002DC40 /* ASICloudFilesCDNRequest.m in Sources */,
 				9DB683A7167C662D0002DC40 /* ASICloudFilesContainer.m in Sources */,
 				9DB683A8167C662D0002DC40 /* ASICloudFilesContainerRequest.m in Sources */,
+				04687A531983954500F6BE96 /* CheckInCheckOutViewController.m in Sources */,
 				0459578B1945AE34006909B1 /* IQBarButtonItem.m in Sources */,
 				9DB683A9167C662D0002DC40 /* ASICloudFilesContainerXMLParserDelegate.m in Sources */,
 				9DB683AA167C662D0002DC40 /* ASICloudFilesObject.m in Sources */,
@@ -2561,6 +2638,7 @@
 				045957931945AE34006909B1 /* UIView+IQKeyboardToolbar.m in Sources */,
 				9D331078169D6F93004EB03E /* DocumentCell.m in Sources */,
 				9D33109D169D8B46004EB03E /* DownloadHelper.m in Sources */,
+				04515EFC1997538E00785D18 /* CheckOutConfirmationViewController.m in Sources */,
 				9D3310EB169D9899004EB03E /* CGPDFDocument.m in Sources */,
 				9D3310EC169D9899004EB03E /* ReaderConstants.m in Sources */,
 				045957941945AE34006909B1 /* UIWindow+Hierarchy.m in Sources */,
@@ -2575,6 +2653,7 @@
 				9D3310F3169D9899004EB03E /* ReaderThumbCache.m in Sources */,
 				9D3310F4169D9899004EB03E /* ReaderThumbFetch.m in Sources */,
 				9D3310F5169D9899004EB03E /* ReaderThumbQueue.m in Sources */,
+				04D014FB1993CD0100FC2365 /* CheckOutStepTwoViewController.m in Sources */,
 				9D3310F6169D9899004EB03E /* ReaderThumbRender.m in Sources */,
 				9D3310F7169D9899004EB03E /* ReaderThumbRequest.m in Sources */,
 				9D3310F8169D9899004EB03E /* ReaderThumbsView.m in Sources */,
@@ -2611,6 +2690,7 @@
 				0459578F1945AE34006909B1 /* IQTitleBarButtonItem.m in Sources */,
 				9D4D3F6716D7F44000F75E59 /* UIImage+UIImage_Extra.m in Sources */,
 				9D4D3F6816D7F44000F75E59 /* UIImageView+UIImage_Scale.m in Sources */,
+				04515F021997BFCC00785D18 /* CheckInTicketsViewController.m in Sources */,
 				9D1FF0BB16F50DCC006CA261 /* WSUtils.m in Sources */,
 				0495F14F1977E2F3000D1C4C /* PDFPage.m in Sources */,
 				0495F14A1977E2F3000D1C4C /* PDFDocument.m in Sources */,
@@ -2629,6 +2709,7 @@
 				9D46FF26172BD8A600030CC4 /* AudioPlayerVC.m in Sources */,
 				9DCAB2E817302AB40026C8F0 /* ServiceDTO.m in Sources */,
 				9D6A9FC518C3B6E200FF0ED8 /* PaymentVC.m in Sources */,
+				04687A5819839C2D00F6BE96 /* CheckOutOptionsViewController.m in Sources */,
 				0495F1581977E2F3000D1C4C /* PDFWidgetAnnotationView.m in Sources */,
 				9DCAB2EC17302F5A0026C8F0 /* ServiceCell.m in Sources */,
 				0495F1521977E2F3000D1C4C /* PDFUtility.m in Sources */,
@@ -2639,6 +2720,7 @@
 				9DB00A57176B6B7500D8C398 /* BlockActionSheet.m in Sources */,
 				9DB00A58176B6B7500D8C398 /* BlockAlertView.m in Sources */,
 				0495F14D1977E2F3000D1C4C /* PDFFormContainer.m in Sources */,
+				04687A5D1983D41600F6BE96 /* CheckOutInitialInformationViewController.m in Sources */,
 				9DB00A59176B6B7500D8C398 /* BlockBackground.m in Sources */,
 				9DB00A5A176B6B7500D8C398 /* BlockTextPromptAlertView.m in Sources */,
 				9D49EB56177701D0003A02BC /* ImageViewVC.m in Sources */,

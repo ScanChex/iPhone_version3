@@ -55,6 +55,7 @@
 - (IBAction)signatureClearTapped:(id)sender 
 {
     [self.signatureView erase];
+    [self.signatureView setUserInteractionEnabled:TRUE];
     
     [UIView animateWithDuration:0.6 animations:^
      {
@@ -72,6 +73,7 @@
     if ((self.signature = UIImagePNGRepresentation([self.signatureView getSignatureImage])))
     {
         [self.delegate signatureViewController:self didSign:self.signature];
+        [self.signatureView setUserInteractionEnabled:FALSE];
     }
     else
     {

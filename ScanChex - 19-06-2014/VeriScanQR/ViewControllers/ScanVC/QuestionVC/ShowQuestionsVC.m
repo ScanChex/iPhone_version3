@@ -346,10 +346,12 @@
 
 -(void)multipleChoiceOptionSelected:(int)option withIndexPath:(NSIndexPath *)indexPath{
 
-    QuestionDTO *question=[self.questionArray objectAtIndex:indexPath.row];
-    question.selectedOption=option;
-    [self.questionArray replaceObjectAtIndex:indexPath.row withObject:question];
-    [self.questionTable reloadData];
+    if (![[VSSharedManager sharedManager] isPreview]) {
+        QuestionDTO *question=[self.questionArray objectAtIndex:indexPath.row];
+        question.selectedOption=option;
+        [self.questionArray replaceObjectAtIndex:indexPath.row withObject:question];
+        [self.questionTable reloadData];
+    }
     
 }
 
