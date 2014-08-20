@@ -20,6 +20,10 @@
 @property (nonatomic, retain) IBOutlet UITextField * departmentTextField;
 @property (nonatomic, retain) IBOutlet UIScrollView * scrollView;
 @property (nonatomic, retain) NSString * currentSelectedAsset;
+@property (nonatomic, retain) NSString * currentSelectedlientID;
+@property (nonatomic, retain) NSMutableArray * addressesArray;
+@property (nonatomic, retain) NSString * currentSelectedClientId;
+
 @property (assign) BOOL isScan;
 @property (nonatomic, retain) NSMutableDictionary * dataDict;
 @property (nonatomic, retain) IBOutlet UIButton * scanButton;

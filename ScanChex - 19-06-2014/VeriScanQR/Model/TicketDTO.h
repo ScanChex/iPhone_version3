@@ -34,6 +34,7 @@
 @property (nonatomic, retain) NSString * totalCheckpoints;
 @property (nonatomic ,retain) NSMutableArray * checkPoints;
 @property (nonatomic ,retain) NSString * check_point_ids;
+@property (nonatomic, retain) NSString * technician;
 //@property (nonatomic, retain) NSString * photo;
 
 +(id)initWithTicketDTO:(NSDictionary *)data;

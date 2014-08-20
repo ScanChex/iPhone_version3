@@ -49,6 +49,81 @@
     
     return cell;
 }
+-(void)updateCellWithCheckTicket:(TicketDTO *)ticket {
+    
+    TicketAddressDTO *address1 =ticket.address1;
+    TicketAddressDTO *address2 =ticket.address2;
+    
+    self.address.text =[NSString stringWithFormat:@"%@ \n%@, %@ %@ \n",address1.street,address1.city,address1.state,address1.postalCode];
+    
+    if (address2) {
+        
+        self.address.text=[self.address.text stringByAppendingString:[NSString stringWithFormat:@"%@ \n%@, %@ %@ \n",address2.street,address2.city,address2.state,address2.postalCode]];
+    }
+    
+    self.phoneNumber.text = [ticket.phoneNumber isEqualToString:@"<null>"] ? @"" :ticket.phoneNumber;
+    self.assetID.text =[ticket.unEncryptedAssetID isEqualToString:@"<null>"] ? @"" :ticket.unEncryptedAssetID;;
+    self.clientName.text=[ticket.clientName isEqualToString:@"<null>"]? @"" :ticket.clientName; ;
+    
+    TicketInfoDTO *info=[ticket.tickets objectAtIndex:indexPath.row];
+    self.ticketNumber.text=[NSString stringWithFormat:@"%@",ticket.description];
+    if (info.allow_id_card_scan) {
+        [self.employeeCardImageView setHidden:NO];
+        
+    }
+    else {
+        [self.employeeCardImageView setHidden:YES];
+    }
+    
+    // NSDate *startDate=[WSUtils getDateFromString:info.startTime withFormat:@"YYYY-MM-dd hh:mm:ss"];
+    // NSString *startDateString=[WSUtils getStrindFromDate:startDate withFormat:@"dd-MM-YYYY hh:mm:ss"];
+    
+    self.startTime.text=info.ticketID;
+    [self.dateLabel setText:info.startDate];
+    [self.timeLabel setText:info.startTime];
+    //    self.remainingScans.text=[NSString stringWithFormat:@"%@\n%@",info.startDate,info.startTime];
+    
+    //    if([info.overDue isEqualToString:@"1"]){
+    //
+    //        self.contentView.backgroundColor=[UIColor colorWithRed:251.0/255.0 green:194.0/255.0 blue:200.0/255.0 alpha:1.0];
+    //        [self.imageSign setImage:[UIImage imageNamed:@"excalamationIcon.png"]];
+    //
+    //    }
+    //  else
+    if([ [info.ticketStatus lowercaseString] isEqualToString:@"assigned"])
+    {
+        if([info.overDue isEqualToString:@"0"]){
+            [self.imageSign setImage:nil];
+            self.contentView.backgroundColor=[UIColor colorWithRed:197.0f/255.0f green:255.0f/255.0f blue:197.0f/255.0f alpha:1.0];
+            
+        }
+        else
+        {
+            [self.imageSign setImage:[UIImage imageNamed:@"excalamationIcon.png"]];
+            self.contentView.backgroundColor=[UIColor colorWithRed:251.0/255.0 green:194.0/255.0 blue:200.0/255.0 alpha:1.0];
+        }
+    }
+    else if([ [info.ticketStatus lowercaseString] isEqualToString:@"pending"])
+    {
+        
+        [self.imageSign setImage:[UIImage imageNamed:@"lightningImage.png"]];
+        self.contentView.backgroundColor=[UIColor colorWithRed:196.0f/255.0f green:208.0f/255.0f blue:255.0f/255.0f alpha:1.0];
+        
+    }
+    else if([ [info.ticketStatus lowercaseString] isEqualToString:@"complete"])
+    {
+        [self.imageSign setImage:[UIImage imageNamed:@"checkmarkgreen.png"]];
+        self.contentView.backgroundColor=[UIColor colorWithRed:236.0f/255.0f green:236.0f/255.0f blue:236.0f/255.0f alpha:1.0];
+        [self.scanButton setHidden:YES];
+    }
+    [self.photoImageView setImage:[UIImage imageNamed:@"Photo_not_available.jpg"]];
+    NSString * tempURLString = info.photoUrl;
+    tempURLString = [tempURLString stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+    [self.photoImageView setImageURL:[NSURL URLWithString:tempURLString]];
+    NSLog(@"Photo %@",info.photoUrl);
+    
+    
+}
 
 -(void)updateCellWithTicket:(TicketDTO *)ticket{
 

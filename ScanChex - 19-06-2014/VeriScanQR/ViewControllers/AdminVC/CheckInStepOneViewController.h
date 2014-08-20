@@ -1,15 +1,15 @@
 //
-//  CheckOutStepTwoViewController.h
+//  CheckInStepOneViewController.h
 //  ScanChex
 //
-//  Created by Rajeel Amjad on 07/08/2014.
+//  Created by Rajeel Amjad on 13/08/2014.
 //  Copyright (c) 2014 Adnan Ahmad. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "SignatureViewController.h"
 
-@interface CheckOutStepTwoViewController : UIViewController <SignatureViewControllerDelegate,UITextFieldDelegate, UITextViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate,UIScrollViewDelegate>
+@interface CheckInStepOneViewController : UIViewController<SignatureViewControllerDelegate,UITextFieldDelegate, UITextViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate,UIScrollViewDelegate>
 @property (nonatomic, retain) IBOutlet UIScrollView * scrollView;
 @property (nonatomic, retain) NSMutableDictionary * initialData;
 @property (nonatomic, retain) NSMutableDictionary * assetData;
@@ -19,13 +19,10 @@
 @property (nonatomic, retain) NSString * currentSelectedClient;
 @property (nonatomic, retain) NSString * currentSelectedAssetId;
 @property (nonatomic, retain) NSString * currentSelectedAssetPhoto;
-@property (nonatomic, retain) NSString * currentSelectedAddress;
-@property (nonatomic, retain) NSString * currentSelectedClientName;
 @property (nonatomic, retain) NSString * currentSelectedDateFormat;
-@property (nonatomic, retain) NSString * currentSelectedEmployeeID;
-
 
 @property (nonatomic, retain) IBOutlet UILabel * descriptionLabel;
+@property (nonatomic, retain) IBOutlet UILabel * ticketIdLabel;
 @property (nonatomic, retain) IBOutlet UILabel * serialNumberLabel;
 @property (nonatomic, retain) IBOutlet UILabel * assetIdLabel;
 @property (nonatomic, retain) IBOutlet UILabel * departmentLabel;
@@ -41,17 +38,12 @@
 @property (nonatomic, retain) IBOutlet UITextField * referenceTextField;
 @property (nonatomic, retain) IBOutlet UITextView * notesTextView;
 
-@property (nonatomic, retain) NSMutableArray * toleranceArray;
-@property (nonatomic, retain) NSMutableArray * toleranceValuesArray;
-@property (nonatomic, retain) NSString * currentSelectedTolerance;
-
 @property (nonatomic, retain) SignatureViewController * signatureController;
 @property (nonatomic, retain) IBOutlet UIView * signatureView;
 
 @property (nonatomic, retain) IBOutlet UIButton * checkButton;
-+(id)initWithData:(NSDictionary*)data assetData:(NSMutableDictionary*)assetData selectedAsset:(NSString*)selectedAsset client:(NSString*)client address:(NSString*)address clientId:(NSString*)clientId ;
++(id)initWithData:(NSDictionary*)data assetData:(NSMutableDictionary*)assetData selectedAsset:(NSString*)selectedAsset;
 -(IBAction)checkButtonPressed:(id)sender;
 - (IBAction)backButtonPressed:(id)sender;
 -(IBAction)checkOutPressed:(id)sender;
-- (void)updateDateField:(id)sender;
 @end

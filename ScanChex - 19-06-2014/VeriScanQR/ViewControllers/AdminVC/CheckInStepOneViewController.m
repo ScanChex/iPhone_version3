@@ -1,26 +1,30 @@
 //
-//  CheckOutStepTwoViewController.m
+//  CheckInStepOneViewController.m
 //  ScanChex
 //
-//  Created by Rajeel Amjad on 07/08/2014.
+//  Created by Rajeel Amjad on 13/08/2014.
 //  Copyright (c) 2014 Adnan Ahmad. All rights reserved.
 //
 
-#import "CheckOutStepTwoViewController.h"
+#import "CheckInStepOneViewController.h"
 #import "AsyncImageView.h"
 #import "SharedManager.h"
 #import "WebServiceManager.h"
-#import "CheckOutConfirmationViewController.h"
-@interface CheckOutStepTwoViewController ()
+#import "TicketDTO.h"
+#import "TicketAddressDTO.h"
+#import "TicketInfoDTO.h"
+#import "CheckInConfirmationViewController.h"
+@interface CheckInStepOneViewController ()
 
 @end
 
-@implementation CheckOutStepTwoViewController
+@implementation CheckInStepOneViewController
+
 +(id)initWithData:(NSDictionary*)data assetData:(NSMutableDictionary*)assetData selectedAsset:(NSString*)selectedAsset {
-    return [[[CheckOutStepTwoViewController alloc]initselfWithData:data assetData:assetData selectedAsset:selectedAsset] autorelease];
+    return [[[CheckInStepOneViewController alloc]initselfWithData:data assetData:assetData selectedAsset:selectedAsset] autorelease];
 }
 -(id)initselfWithData:(NSDictionary*)data assetData:(NSMutableDictionary*)assetData selectedAsset:(NSString*)selectedAsset {
-    self=[super initWithNibName:@"CheckOutStepTwoViewController" bundle:nil];
+    self=[super initWithNibName:@"CheckInStepOneViewController" bundle:nil];
     if (self) {
         self.initialData = [data mutableCopy];
         self.assetData = [assetData mutableCopy];
@@ -41,7 +45,8 @@
 
 - (void)viewDidLoad
 {
-    [self.scrollView setContentSize:CGSizeMake(320, 978)];
+    [self fetchAllData];
+    [self.scrollView setContentSize:CGSizeMake(320, 930)];
     self.signatureController = [[[SignatureViewController alloc] initWithNibName:@"SignatureView" bundle:nil] autorelease];
     self.signatureController.delegate = self;
     CGRect frame = self.signatureView.frame;
@@ -52,23 +57,41 @@
     self.signatureView = self.signatureController.view;
     [self.signatureView setBackgroundColor:[UIColor whiteColor]];
     [super viewDidLoad];
-    [self.descriptionLabel setText:[self.initialData objectForKey:@"description"]];
-    [self.serialNumberLabel setText:[self.initialData objectForKey:@"serial_number"]];
-    for (int i = 0; i<[[self.assetData objectForKey:@"assets"] count]; i++) {
-        NSDictionary * tempDict = [[self.assetData objectForKey:@"assets"]objectAtIndex:i];
-        if ([[tempDict objectForKey:@"id"] isEqualToString:self.selectedAsset]) {
-            [self.assetIdLabel setText:[tempDict objectForKey:@"asset_id"]];
-            [self.assetImageView setImageURL:[NSURL URLWithString:[tempDict objectForKey:@"asset_photo"]]];
-            self.currentSelectedAssetPhoto = [tempDict objectForKey:@"asset_photo"];
-            self.currentSelectedAssetId = [tempDict objectForKey:@"id"];
-            break;
-        }
-    }
-    
-    [self.departmentLabel setText:[self.initialData objectForKey:@"department"]];
-    [self.addressTextView setText:[self.initialData objectForKey:@"address"]];
-    [self.dateTextField setText:[SharedManager stringFromDate:[NSDate date] withFormat:@"dd-MM-yyyy HH:mm"]];
-    [self.dateTextField setEnabled:NO];
+    TicketDTO *ticket=[[VSSharedManager sharedManager] selectedTicket];
+    TicketInfoDTO *ticketInfo = [ticket.tickets objectAtIndex:[[VSSharedManager sharedManager] CurrentSelectedIndex]];
+    [self.ticketIdLabel setText:ticketInfo.ticketID];
+    [self.descriptionLabel setText:ticket.description];
+    [self.assetIdLabel setText:ticket.unEncryptedAssetID];
+    [self.assetImageView setImageURL:[NSURL URLWithString:ticket.assetPhoto]];
+    TicketAddressDTO * address1 = ticket.address1;
+    self.addressTextView.text =[NSString stringWithFormat:@"%@ \n%@, %@ %@ \n",address1.street,address1.city,address1.state,address1.postalCode];
+//    NSString * tempString = ticket.technician;
+//    NSArray * tempArray = [tempString componentsSeparatedByString:@"-"];
+    [self.employeeTextField setText:ticket.technician];
+    [self.dueTextField setText:[SharedManager stringFromDate:[NSDate date] withFormat:@"MM/dd/YY hh:mm a"]];
+    [self.dateTextField setText:ticketInfo.toleranceDate];
+    [self.clientTextField setText:ticket.clientName];
+    self.addressTextField.text =[NSString stringWithFormat:@"%@ \n%@, %@ %@ \n",address1.street,address1.city,address1.state,address1.postalCode];
+    [self fetchAllData];
+//    [self.departmentLabel setText:ticket.]
+//    [self.serialNumberLabel setText:ticket.]
+//    [self.descriptionLabel setText:[self.initialData objectForKey:@"description"]];
+//    [self.serialNumberLabel setText:[self.initialData objectForKey:@"serial_number"]];
+//    for (int i = 0; i<[[self.assetData objectForKey:@"assets"] count]; i++) {
+//        NSDictionary * tempDict = [[self.assetData objectForKey:@"assets"]objectAtIndex:i];
+//        if ([[tempDict objectForKey:@"id"] isEqualToString:self.selectedAsset]) {
+//            [self.assetIdLabel setText:[tempDict objectForKey:@"asset_id"]];
+//            [self.assetImageView setImageURL:[NSURL URLWithString:[tempDict objectForKey:@"asset_photo"]]];
+//            self.currentSelectedAssetPhoto = [tempDict objectForKey:@"asset_photo"];
+//            self.currentSelectedAssetId = [tempDict objectForKey:@"id"];
+//            break;
+//        }
+//    }
+//    
+//    [self.departmentLabel setText:[self.initialData objectForKey:@"department"]];
+//    [self.addressTextView setText:[self.initialData objectForKey:@"address"]];
+//    [self.dateTextField setText:[SharedManager stringFromDate:[NSDate date] withFormat:@"dd-MM-yyyy HH:mm"]];
+//    [self.dateTextField setEnabled:NO];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -76,6 +99,50 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)fetchAllData {
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
+    UserDTO *user=[[VSSharedManager sharedManager] currentUser];
+    [[WebServiceManager sharedManager] getAllCheckOutDataWithMasterKey:[NSString stringWithFormat:@"%d",user.masterKey] withCompletionHandler:^(id data, BOOL error)
+     {
+         
+         [SVProgressHUD dismiss];
+         if (!error) {
+             self.assetData = [data mutableCopy];
+             TicketDTO *ticket=[[VSSharedManager sharedManager] selectedTicket];
+             for (int i = 0; i<[[self.assetData objectForKey:@"assets"] count]; i++) {
+                 NSDictionary * tempDict = [[self.assetData objectForKey:@"assets"]objectAtIndex:i];
+                 if ([[tempDict objectForKey:@"id"] isEqualToString:ticket.assetID]) {
+                     [self.departmentLabel setText:[tempDict objectForKey:@"department"]];
+                     [self.departmentTextField setText:[tempDict objectForKey:@"department"]];
+                     self.currentSelectedAssetPhoto = [tempDict objectForKey:@"asset_photo"];
+                     [self.assetImageView setImageURL:[NSURL URLWithString:[tempDict objectForKey:@"asset_photo"]]];
+                     [self.descriptionLabel setText:[tempDict objectForKey:@"description"]];
+                     [self.serialNumberLabel setText:[tempDict objectForKey:@"serial_number"]];
+                     self.currentSelectedDateFormat = [tempDict objectForKey:@"datetime_format"];
+                     self.currentSelectedAssetId = ticket.assetID;
+//                     [self.dueTextField setText:[SharedManager stringFromDate:[NSDate date] withFormat:self.currentSelectedDateFormat]];
+                     
+//                     [self.addressTextField setText:[tempDict objectForKey:@""]]
+                     for (int i = 0; i< [[self.assetData objectForKey:@"clients"] count]; i++) {
+                         NSMutableDictionary * tempDict1 = [[self.assetData objectForKey:@"clients"] objectAtIndex:i];
+                         if ([[tempDict1 objectForKey:@"id"] isEqualToString:[tempDict objectForKey:@"client_id"]]) {
+                             [self.clientTextField setText:[tempDict1 objectForKey:@"name"]];
+                             self.currentSelectedClient =[tempDict objectForKey:@"id"];
+//                             if ([[tempDict1 objectForKey:@"addresses"] count]>0) {
+//                                 [self.addressTextField setText:@""]
+//                             }
+                         }
+                     }
+                     
+                 }
+             }
+         }
+         
+         
+         
+     }];
 }
 
 #pragma mark Button Pressed Events
@@ -89,8 +156,11 @@
 
 -(IBAction)checkOutPressed:(id)sender {
     BOOL temp = FALSE;
+//    [self.departmentTextField setText:@" "];
+//    [self.dateTextField setText:@" "];
+    [self.toleranceTextField setText:@" "];
     for (UIView * v in [self.scrollView subviews]) {
-        if ([v isKindOfClass:[UITextField class]]) {
+        if ([v isKindOfClass:[UITextField class]] && (![(UITextField*)v isEqual:self.dateTextField] || ![(UITextField*)v isEqual:self.departmentTextField]  || ![(UITextField*)v isEqual:self.toleranceTextField])) {
             if ([[(UITextField*)v text] length] == 0 ) {
                 temp = TRUE;
                 break;
@@ -111,7 +181,9 @@
                 if (self.uploadedSignaturePath) {
                     [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
                     UserDTO *user=[[VSSharedManager sharedManager] currentUser];
-                    [[WebServiceManager sharedManager]checkoutWithMasterKey:[NSString stringWithFormat:@"%d",user.masterKey] employee:[self.employeeTextField text] department:[self.departmentTextField text] date_time_out:[self.dateTextField text] date_time_due_in:[self.dueTextField text] client_id:self.currentSelectedClient reference:[self.referenceTextField text] address:[self.addressTextField text] notes:[self.notesTextView text] signature:self.uploadedSignaturePath asset_id:self.currentSelectedAssetId user_id:[[NSUserDefaults standardUserDefaults] objectForKey:@"userID"] tolerance:[self.toleranceTextField text] withCompletionHandler:^(id data, BOOL error)
+                    TicketDTO *ticket=[[VSSharedManager sharedManager] selectedTicket];
+                    TicketInfoDTO *ticketInfo = [ticket.tickets objectAtIndex:[[VSSharedManager sharedManager] CurrentSelectedIndex]];
+                    [[WebServiceManager sharedManager]checkinWithMasterKey:[NSString stringWithFormat:@"%d",user.masterKey] employee:[self.employeeTextField text] department:[self.departmentTextField text] date_time_out:[self.dueTextField text] date_time_due_in:[self.dateTextField text] client_id:self.currentSelectedClient reference:[self.referenceTextField text] address:[self.addressTextField text] notes:[self.notesTextView text] signature:self.uploadedSignaturePath asset_id:self.currentSelectedAssetId user_id:[[NSUserDefaults standardUserDefaults] objectForKey:@"userID"] tolerance:@"0" ticket:ticketInfo.tblTicketID serialNumber:[self.serialNumberLabel text] description:[self.descriptionLabel text] withCompletionHandler:^(id data, BOOL error)
                      {
                          
                          
@@ -129,7 +201,7 @@
                              NSString * temp = [NSString stringWithFormat:@"%@",[dict objectForKey:@"ticket_id"]];
                              [tempDict setObject:[self.dueTextField text] forKey:@"return"];
                              [tempDict setObject:temp forKey:@"ticket_id"];
-                             [self.navigationController pushViewController:[CheckOutConfirmationViewController initWithData:tempDict] animated:YES];
+                             [self.navigationController pushViewController:[CheckInConfirmationViewController initWithData:tempDict ticketID:[self.ticketIdLabel text]] animated:YES];
                              
                          }
                          
@@ -143,7 +215,7 @@
                 }
             }
             else {
-            UIAlertView * tempAlert = [[[UIAlertView alloc] initWithTitle:@"Attention" message:@"CheckBox not checked" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+                UIAlertView * tempAlert = [[[UIAlertView alloc] initWithTitle:@"Attention" message:@"CheckBox not checked" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
                 [tempAlert show];
             }
             
@@ -169,8 +241,8 @@
          
          
      }];
-//    UIImageWriteToSavedPhotosAlbum([UIImage imageWithData:thisSignature], nil, nil, nil);
-//    self.signature = [UIImage imageWithData:thisSignature];
+    //    UIImageWriteToSavedPhotosAlbum([UIImage imageWithData:thisSignature], nil, nil, nil);
+    //    self.signature = [UIImage imageWithData:thisSignature];
     //
     // Do something with thisSignature, like save it to a file or a database as binary data.
     //
@@ -181,15 +253,15 @@
     [self.view endEditing:YES];
 }
 -(void)textFieldDidBeginEditing:(UITextField *)textField {
-//    UIToolbar * keyboardToolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
-//    
-//    keyboardToolBar.barStyle = UIBarStyleDefault;
-//    [keyboardToolBar setItems: [NSArray arrayWithObjects:
-//                                
-//                                [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-//                                [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(resignKeyboard)],
-//                                nil]];
-//    textField.inputAccessoryView = keyboardToolBar;
+    //    UIToolbar * keyboardToolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+    //
+    //    keyboardToolBar.barStyle = UIBarStyleDefault;
+    //    [keyboardToolBar setItems: [NSArray arrayWithObjects:
+    //
+    //                                [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+    //                                [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(resignKeyboard)],
+    //                                nil]];
+    //    textField.inputAccessoryView = keyboardToolBar;
     
     if ([textField isEqual:self.employeeTextField]) {
         UIPickerView * tempPicker = [[UIPickerView alloc]init];
@@ -268,7 +340,7 @@
         self.employeeTextField.text = [[[self.assetData objectForKey:@"employees"] objectAtIndex:row] objectForKey:@"full_name"];
     }
     if ([pickerView tag] == 1) {
-        self.departmentTextField.text =  [[[self.assetData objectForKey:@"departments"] objectAtIndex:row] objectForKey:@"name"];   
+        self.departmentTextField.text =  [[[self.assetData objectForKey:@"departments"] objectAtIndex:row] objectForKey:@"name"];
     }
     if ([pickerView tag] == 3) {
         self.addressTextField.text =  [[[self.assetData objectForKey:@"addresses"] objectAtIndex:row] objectForKey:@"address1"];
@@ -296,7 +368,7 @@
     if ([self.signatureView pointInside:viewPoint withEvent:event]) {
         self.scrollView.scrollEnabled = NO;
         self.scrollView.scrollEnabled = YES;
-                    }
+    }
 }
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     CGPoint locationPoint = [[touches anyObject] locationInView:self.view];

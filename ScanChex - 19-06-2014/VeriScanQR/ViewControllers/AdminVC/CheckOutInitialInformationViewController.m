@@ -52,6 +52,7 @@
 
 - (void)viewDidLoad
 {
+    self.addressesArray = [[NSMutableArray alloc] initWithObjects:@"Empty", nil];
     [self.scrollView setContentSize:CGSizeMake(320, 490)];
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateScanner:) name:K_Update_ScanCode object:Nil];
@@ -79,29 +80,46 @@
 
 -(IBAction)checkOutAction:(id)sender {
     NSLog(@"Check Out");
-    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
-    UserDTO *user=[[VSSharedManager sharedManager] currentUser];
-    [[WebServiceManager sharedManager] checkoutFirstStepWithMasterKey:[NSString stringWithFormat:@"%d",user.masterKey] description:[self.descriptionTextField text] serial_number:[self.serialNumberTextField text] address:[self.addressTextView text] department:[self.departmentTextField text] user_id:[[NSUserDefaults standardUserDefaults] objectForKey:@"userID"] type:@"check_out" asset_id:self.currentSelectedAsset client:[self.clientTextField text] withCompletionHandler:^(id data, BOOL error)
-     {
-      
-         
-         [SVProgressHUD dismiss];
-         if (!error) {
-             NSMutableArray * tempDict = [data mutableCopy];
-             NSLog(@"%@",tempDict);
-             [self.navigationController pushViewController:[CheckOutStepTwoViewController initWithData:[tempDict objectAtIndex:0] assetData:self.dataDict selectedAsset:self.currentSelectedAsset]  animated:YES];
-         }
-         
-         
-         
-     }];
+    
+    BOOL temp = FALSE;
+    for (UIView * v in [self.scrollView subviews]) {
+        if ([v isKindOfClass:[UITextField class]]) {
+            if ([[(UITextField*)v text] length] == 0 ) {
+                temp = TRUE;
+                break;
+            }
+        }
+    }
+    if (temp) {
+        UIAlertView * tempAlert = [[[UIAlertView alloc] initWithTitle:@"Attention" message:@"Please fill all fields" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+        [tempAlert show];
+    }
+    else {
+        [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
+        UserDTO *user=[[VSSharedManager sharedManager] currentUser];
+        [[WebServiceManager sharedManager] checkoutFirstStepWithMasterKey:[NSString stringWithFormat:@"%d",user.masterKey] description:[self.descriptionTextField text] serial_number:[self.serialNumberTextField text] address:[self.addressTextView text] department:[self.departmentTextField text] user_id:[[NSUserDefaults standardUserDefaults] objectForKey:@"userID"] type:@"check_out" asset_id:self.currentSelectedAsset client:[self.clientTextField text] withCompletionHandler:^(id data, BOOL error)
+         {
+             
+             
+             [SVProgressHUD dismiss];
+             if (!error) {
+                 NSMutableArray * tempDict = [data mutableCopy];
+                 NSLog(@"%@",tempDict);
+                 [self.navigationController pushViewController:[CheckOutStepTwoViewController initWithData:[tempDict objectAtIndex:0] assetData:self.dataDict selectedAsset:self.currentSelectedAsset client:[self.clientTextField text] address:[self.addressTextView text] clientId:self.currentSelectedClientId]  animated:YES];
+             }
+             
+             
+             
+         }];
+    }
+    
 }
 
 #pragma mark- NSNOTIFICATION CENTRE
 
 -(void)updateScanner:(NSNotification *)info
 {
-    
+    self.currentScannedCode = (NSString *)[info object];
     DLog(@"Current Scan %@",self.currentScannedCode);
     [self fetchAllData];
    
@@ -117,24 +135,39 @@
          if (!error) {
              self.dataDict = [data mutableCopy];
              if (self.isScan) {
+                 BOOL checkScan = FALSE;
                  for (int i  = 0; i<[[self.dataDict objectForKey:@"assets"] count]; i++) {
-                     if ([[[[self.dataDict objectForKey:@"assets"] objectAtIndex:i] objectForKey:@"asset_code"] isEqualToString:self.currentScannedCode]) {
+                     NSLog(@"%@",[self.currentScannedCode lowercaseString]);
+                     NSLog(@"%@",[[[[self.dataDict objectForKey:@"assets"] objectAtIndex:i] objectForKey:@"asset_code"] lowercaseString]);
+//                     count++;
+                     if ([[[[[self.dataDict objectForKey:@"assets"] objectAtIndex:i] objectForKey:@"asset_code"] lowercaseString] isEqualToString:[self.currentScannedCode lowercaseString]]) {
+                         checkScan = TRUE;
                          [self.descriptionTextField setText:[[[self.dataDict objectForKey:@"assets"] objectAtIndex:i] objectForKey:@"description"]];
                          [self.assetImageView setImageURL:[NSURL URLWithString:[[[self.dataDict objectForKey:@"assets"] objectAtIndex:i] objectForKey:@"asset_photo"]]];
                          [self.assetIDTextField setText:[[[self.dataDict objectForKey:@"assets"] objectAtIndex:i] objectForKey:@"asset_id"]];
                          self.currentSelectedAsset = [[[self.dataDict objectForKey:@"assets"] objectAtIndex:i] objectForKey:@"id"];
-                         [self.addressTextView setText:[[[self.dataDict objectForKey:@"assets"] objectAtIndex:i] objectForKey:@"address"]];
+                         NSDictionary * tempDict = [[self.dataDict objectForKey:@"assets"] objectAtIndex:i];
+                         self.addressTextView.text =  [NSString stringWithFormat:@"%@, %@, %@, %@, %@",[[tempDict objectForKey:@"address"] objectForKey:@"address1"],[[tempDict objectForKey:@"address"] objectForKey:@"city"],[[tempDict objectForKey:@"address"] objectForKey:@"state"],[[tempDict objectForKey:@"address"] objectForKey:@"zip_postal_code"],[[tempDict objectForKey:@"address"] objectForKey:@"country"]];
+//                         [self.addressTextView setText:[[[self.dataDict objectForKey:@"assets"] objectAtIndex:i] objectForKey:@"address"]];
+                         [self.descriptionTextField setText:[[[self.dataDict objectForKey:@"assets"] objectAtIndex:i] objectForKey:@"description"]];
                          [self.departmentTextField setText:[[[self.dataDict objectForKey:@"assets"] objectAtIndex:i] objectForKey:@"department"]];
+                         [self.serialNumberTextField setText:[[[self.dataDict objectForKey:@"assets"] objectAtIndex:i] objectForKey:@"serial_number"]];
                          for (int j = 0; j<[[self.dataDict objectForKey:@"clients"] count]; j++) {
                              NSDictionary * tempDict = [[self.dataDict objectForKey:@"clients"]objectAtIndex:j];
                              if ([[tempDict objectForKey:@"id"] isEqualToString:[[[self.dataDict objectForKey:@"assets"] objectAtIndex:i] objectForKey:@"client_id"]]) {
                                  [self.clientTextField setText:[tempDict objectForKey:@"name"]];
+                                 self.currentSelectedClientId = [tempDict objectForKey:@"id"];
+                                  self.addressesArray = [[tempDict objectForKey:@"addresses"] mutableCopy];
                                  break;
                                  
                              }
                          }
                          break;
                      }
+                 }
+                 if (!checkScan) {
+                     UIAlertView * tempAlert = [[[UIAlertView alloc] initWithTitle:@"Attention" message:@"No Assets match the scanned code" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+                     [tempAlert show];
                  }
              }
          }
@@ -175,11 +208,18 @@
         [textField setInputView:tempPicker];
     }
     if ([textField isEqual:self.departmentTextField]) {
-        UIPickerView * tempPicker = [[UIPickerView alloc]init];
-        [tempPicker setTag:3];
-        [tempPicker setDataSource:self];
-        [tempPicker setDelegate:self];
-        [textField setInputView:tempPicker];
+        if ([[self.dataDict objectForKey:@"departments"] count]>0) {
+            UIPickerView * tempPicker = [[UIPickerView alloc]init];
+            [tempPicker setTag:3];
+            [tempPicker setDataSource:self];
+            [tempPicker setDelegate:self];
+            [textField setInputView:tempPicker];
+        }
+        else {
+            UIAlertView * tempAlert = [[[UIAlertView alloc] initWithTitle:@"Attention" message:@"No Department Exists" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+            [tempAlert show];
+        }
+        
     }
     if ([textField isEqual:self.clientTextField]) {
         UIPickerView * tempPicker = [[UIPickerView alloc]init];
@@ -201,13 +241,20 @@
 //                                nil]];
 //    textView.inputAccessoryView = keyboardToolBar;
     
-    
+    if ([[self.addressesArray objectAtIndex:0] isKindOfClass:[NSString class]]) {
+        [textView resignFirstResponder];
+        UIAlertView * tempAlert = [[[UIAlertView alloc] initWithTitle:@"Attention" message:@"Please Select Asset First" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+        [tempAlert show];
+    }
+    else {
         UIPickerView * tempPicker = [[UIPickerView alloc]init];
         [tempPicker setTag:2];
         [tempPicker setDataSource:self];
         [tempPicker setDelegate:self];
         [textView setInputView:tempPicker];
         [textView reloadInputViews];
+    }
+    
     
 }
 
@@ -223,7 +270,7 @@
         return [[self.dataDict objectForKey:@"assets"] count];
     }
     if ([pickerView tag] == 2) {
-        return [[self.dataDict objectForKey:@"addresses"] count];
+        return [self.addressesArray count];
     }
     if ([pickerView tag] == 3) {
         return [[self.dataDict objectForKey:@"departments"] count];
@@ -246,7 +293,7 @@
         return [[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"asset_id"];
     }
     if ([pickerView tag] == 2) {
-        return [[[self.dataDict objectForKey:@"addresses"] objectAtIndex:row] objectForKey:@"address1"];
+        return [NSString stringWithFormat:@"%@, %@, %@, %@, %@",[[self.addressesArray objectAtIndex:row] objectForKey:@"address1"],[[self.addressesArray objectAtIndex:row] objectForKey:@"city"],[[self.addressesArray objectAtIndex:row] objectForKey:@"state"],[[self.addressesArray objectAtIndex:row] objectForKey:@"zip_postal_code"],[[self.addressesArray objectAtIndex:row] objectForKey:@"country"]];
     }
     if ([pickerView tag] == 3) {
         return [[[self.dataDict objectForKey:@"departments"] objectAtIndex:row] objectForKey:@"name"];
@@ -267,15 +314,33 @@
         self.assetIDTextField.text =  [[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"asset_id"];
         self.currentSelectedAsset =[[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"id"];
         [self.assetImageView setImageURL:[NSURL URLWithString:[[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"asset_photo"]]];
+        [self.departmentTextField setText:[[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"department"]];
+         [self.serialNumberTextField setText:[[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"serial_number"]];
+        self.currentSelectedlientID =[[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"client_id"];
+//        [self.addressTextView setText:[[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"address"]];
+        NSDictionary * tempDict = [[self.dataDict objectForKey:@"assets"] objectAtIndex:row];
+        self.addressTextView.text =  [NSString stringWithFormat:@"%@, %@, %@, %@, %@",[[tempDict objectForKey:@"address"] objectForKey:@"address1"],[[tempDict objectForKey:@"address"] objectForKey:@"city"],[[tempDict objectForKey:@"address"] objectForKey:@"state"],[[tempDict objectForKey:@"address"] objectForKey:@"zip_postal_code"],[[tempDict objectForKey:@"address"] objectForKey:@"country"]];
+        [self.descriptionTextField setText:[[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"description"]];
+        for (int i = 0; i< [[self.dataDict objectForKey:@"clients"] count]; i++) {
+            NSMutableDictionary * tempDict = [[self.dataDict objectForKey:@"clients"] objectAtIndex:i];
+            if ([[tempDict objectForKey:@"id"] isEqualToString:self.currentSelectedlientID]) {
+                [self.clientTextField setText:[tempDict objectForKey:@"name"]];
+                self.currentSelectedClientId =[tempDict objectForKey:@"id"];
+                if ([[tempDict objectForKey:@"addresses"] count]>0) {
+                    self.addressesArray = [[tempDict objectForKey:@"addresses"] mutableCopy];
+                }
+            }
+        }
     }
     if ([pickerView tag] == 2) {
-        self.addressTextView.text =  [[[self.dataDict objectForKey:@"addresses"] objectAtIndex:row] objectForKey:@"address1"];
+        self.addressTextView.text =  [NSString stringWithFormat:@"%@, %@, %@, %@, %@",[[self.addressesArray objectAtIndex:row] objectForKey:@"address1"],[[self.addressesArray objectAtIndex:row] objectForKey:@"city"],[[self.addressesArray objectAtIndex:row] objectForKey:@"state"],[[self.addressesArray objectAtIndex:row] objectForKey:@"zip_postal_code"],[[self.addressesArray objectAtIndex:row] objectForKey:@"country"]];
     }
     if ([pickerView tag] == 3) {
         self.departmentTextField.text =  [[[self.dataDict objectForKey:@"departments"] objectAtIndex:row] objectForKey:@"name"];
     }
     if ([pickerView tag] == 4) {
         self.clientTextField.text =  [[[self.dataDict objectForKey:@"clients"] objectAtIndex:row] objectForKey:@"name"];
+        self.currentSelectedClientId = [[[self.dataDict objectForKey:@"clients"] objectAtIndex:row] objectForKey:@"id"];
     }
     
 }

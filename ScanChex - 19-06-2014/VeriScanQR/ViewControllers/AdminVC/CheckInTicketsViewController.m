@@ -11,6 +11,7 @@
 #import "SharedManager.h"
 #import "WebServiceManager.h"
 #import "TicketCell.h"
+#import "CheckInStepOneViewController.h"
 
 @interface CheckInTicketsViewController ()
 
@@ -101,7 +102,7 @@
         
         TicketCell *cell=[TicketCell resuableCellForTableViewCheckIn:self.ticketsTable withOwner:self];
         cell.indexPath=indexPath;
-        [cell updateCellWithTicket:[self.tickets objectAtIndex:indexPath.section]];
+        [cell updateCellWithCheckTicket:[self.tickets objectAtIndex:indexPath.section]];
         
 //        [cell.callButton addTarget: self
 //                            action: @selector(callAccessoryButtonTapped:withEvent:)
@@ -203,15 +204,16 @@
 - (void)scanAccessoryButtonTapped: (UIControl *) button withEvent: (UIEvent *) event{
     
     
-//    NSIndexPath * indexPath = [self.ticketsTable indexPathForRowAtPoint: [[[event touchesForView: button] anyObject] locationInView: self.ticketsTable]];
-//    if ( indexPath == nil )
-//        return;
-//    
-//    [[VSSharedManager sharedManager] setCurrentSelectedIndex:indexPath.row];
-//    [[VSSharedManager sharedManager] setCurrentSelectedSection:indexPath.section];
+    NSIndexPath * indexPath = [self.ticketsTable indexPathForRowAtPoint: [[[event touchesForView: button] anyObject] locationInView: self.ticketsTable]];
+    if ( indexPath == nil )
+        return;
+//
+    [[VSSharedManager sharedManager] setCurrentSelectedIndex:indexPath.row];
+    [[VSSharedManager sharedManager] setCurrentSelectedSection:indexPath.section];
 //    if ([self.tickets count]>0) {
 //        
-//        [[VSSharedManager sharedManager]setSelectedTicket:[self.tickets objectAtIndex:indexPath.section]];
+        [[VSSharedManager sharedManager]setSelectedTicket:[self.tickets objectAtIndex:indexPath.section]];
+    [self.navigationController pushViewController:[CheckInStepOneViewController initWithData:nil assetData:nil selectedAsset:nil] animated:YES];
 //        TicketDTO *ticket=[self.tickets objectAtIndex:indexPath.section];
 //        NSMutableArray *array=[NSMutableArray arrayWithArray:ticket.tickets];
 //        TicketInfoDTO *ticketInfo =[array objectAtIndex:indexPath.row];

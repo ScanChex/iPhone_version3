@@ -218,8 +218,27 @@ withCompletionHandler:(CompletionHandler)handler;
                    asset_id:(NSString*)asset_id
                    user_id:(NSString*)user_id
                      tolerance:(NSString*)tolerance
+                     checkID:(NSString*)checkID
                 withCompletionHandler:(CompletionHandler)handler;
 -(void)checkoutCheckInTicketsWithMasterKey:(NSString *)masterKey userName:(NSString *)userName withCompletionHandler:(CompletionHandler)handler;
+
+-(void)checkinWithMasterKey:(NSString *)masterKey
+                    employee:(NSString *)employee
+                  department:(NSString *)department
+               date_time_out:(NSString*)date_time_out
+            date_time_due_in:(NSString*)date_time_due_in
+                   client_id:(NSString*)client_id
+                   reference:(NSString*)reference
+                     address:(NSString*)address
+                       notes:(NSString*)notes
+                   signature:(NSString*)signature
+                    asset_id:(NSString*)asset_id
+                     user_id:(NSString*)user_id
+                   tolerance:(NSString*)tolerance
+                     ticket:(NSString*)ticket
+               serialNumber:(NSString*)serialNumber
+                description:(NSString*)description
+       withCompletionHandler:(CompletionHandler)handler;
 
 
 @end

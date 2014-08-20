@@ -105,7 +105,7 @@
 //    self.currentScannedCode=[NSString stringWithFormat:@"UEstNjU1MTA0Mi0wMDAxLTAwMDEtMDAwMg=="];
 //    self.currentScannedCode = [NSString stringWithFormat:@"vvmtmzy2mjkzmi0wmdaxltawmdetmdawmg=="];
 //    self.currentScannedCode=[NSString stringWithFormat:@"UEstMTIzNC0wMDAxLTAwMDEtMDAwMQ=="];
-    self.currentScannedCode=[NSString stringWithFormat:@"vvmtmzy2mjkzmi0wmdaxltawmdetmdawmg=="];
+    self.currentScannedCode=[NSString stringWithFormat:@"uestmtiznc0wmdaxltawmdetmdaxmg=="];
     [[NSNotificationCenter defaultCenter] postNotificationName:K_Update_ScanCode object:self.currentScannedCode];
     
 

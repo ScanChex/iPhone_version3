@@ -31,6 +31,7 @@
 +(TicketCell *)resuableCellForTableView2:(UITableView *)tableview withOwner:(UIViewController *)owner;
 +(TicketCell *)resuableCellForTableViewCheckIn:(UITableView *)tableview withOwner:(UIViewController *)owner;
 -(void)updateCellWithTicket:(TicketDTO *)ticket;
+-(void)updateCellWithCheckTicket:(TicketDTO *)ticket;
 -(void)updateCellWithTicket:(TicketDTO *)ticket index:(NSInteger)index;
 - (IBAction)callButton:(id)sender;
 

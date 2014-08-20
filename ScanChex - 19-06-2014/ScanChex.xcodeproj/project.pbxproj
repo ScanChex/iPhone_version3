@@ -42,6 +42,11 @@
 		04687A5D1983D41600F6BE96 /* CheckOutInitialInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04687A5B1983D41600F6BE96 /* CheckOutInitialInformationViewController.m */; };
 		04687A5E1983D41600F6BE96 /* CheckOutInitialInformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04687A5C1983D41600F6BE96 /* CheckOutInitialInformationViewController.xib */; };
 		0469B35E1911780700D4E0E0 /* Chat.png in Resources */ = {isa = PBXBuildFile; fileRef = 0469B35D1911780700D4E0E0 /* Chat.png */; };
+		0474071E199B51B300007BEC /* CheckInStepOneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0474071C199B51B300007BEC /* CheckInStepOneViewController.m */; };
+		0474071F199B51B300007BEC /* CheckInStepOneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0474071D199B51B300007BEC /* CheckInStepOneViewController.xib */; };
+		04740726199BA36800007BEC /* CheckInConfirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04740724199BA36800007BEC /* CheckInConfirmationViewController.m */; };
+		04740727199BA36800007BEC /* CheckInConfirmationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04740725199BA36800007BEC /* CheckInConfirmationViewController.xib */; };
+		04740729199BAE1500007BEC /* greenCheckMark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04740728199BAE1500007BEC /* greenCheckMark@2x.png */; };
 		047858FE1920B05600BDD6C1 /* MMPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 047858FD1920B05600BDD6C1 /* MMPickerView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		047D67AC191BC09700CABA8E /* CheckPointCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 047D67AB191BC09700CABA8E /* CheckPointCell.m */; };
 		047D67AE191BC0B300CABA8E /* CheckPointCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 047D67AD191BC0B300CABA8E /* CheckPointCell.xib */; };
@@ -433,6 +438,13 @@
 		04687A5B1983D41600F6BE96 /* CheckOutInitialInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckOutInitialInformationViewController.m; sourceTree = "<group>"; };
 		04687A5C1983D41600F6BE96 /* CheckOutInitialInformationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckOutInitialInformationViewController.xib; sourceTree = "<group>"; };
 		0469B35D1911780700D4E0E0 /* Chat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chat.png; sourceTree = "<group>"; };
+		0474071B199B51B300007BEC /* CheckInStepOneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckInStepOneViewController.h; sourceTree = "<group>"; };
+		0474071C199B51B300007BEC /* CheckInStepOneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckInStepOneViewController.m; sourceTree = "<group>"; };
+		0474071D199B51B300007BEC /* CheckInStepOneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckInStepOneViewController.xib; sourceTree = "<group>"; };
+		04740723199BA36800007BEC /* CheckInConfirmationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckInConfirmationViewController.h; sourceTree = "<group>"; };
+		04740724199BA36800007BEC /* CheckInConfirmationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckInConfirmationViewController.m; sourceTree = "<group>"; };
+		04740725199BA36800007BEC /* CheckInConfirmationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckInConfirmationViewController.xib; sourceTree = "<group>"; };
+		04740728199BAE1500007BEC /* greenCheckMark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "greenCheckMark@2x.png"; sourceTree = "<group>"; };
 		047858FC1920B05600BDD6C1 /* MMPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPickerView.h; sourceTree = "<group>"; };
 		047858FD1920B05600BDD6C1 /* MMPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPickerView.m; sourceTree = "<group>"; };
 		047D67AA191BC09700CABA8E /* CheckPointCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CheckPointCell.h; path = CheckPointCell/CheckPointCell.h; sourceTree = "<group>"; };
@@ -2315,9 +2327,16 @@
 				04146E9119953FEC00FD3B37 /* cb_green_on.png */,
 				04146E9219953FEC00FD3B37 /* cb_green_on@2x.png */,
 				04515EFE1997550600785D18 /* greenCheckMark.png */,
+				04740728199BAE1500007BEC /* greenCheckMark@2x.png */,
 				04515EFF1997BFCC00785D18 /* CheckInTicketsViewController.h */,
 				04515F001997BFCC00785D18 /* CheckInTicketsViewController.m */,
 				04515F011997BFCC00785D18 /* CheckInTicketsViewController.xib */,
+				0474071B199B51B300007BEC /* CheckInStepOneViewController.h */,
+				0474071C199B51B300007BEC /* CheckInStepOneViewController.m */,
+				0474071D199B51B300007BEC /* CheckInStepOneViewController.xib */,
+				04740723199BA36800007BEC /* CheckInConfirmationViewController.h */,
+				04740724199BA36800007BEC /* CheckInConfirmationViewController.m */,
+				04740725199BA36800007BEC /* CheckInConfirmationViewController.xib */,
 			);
 			path = AdminVC;
 			sourceTree = "<group>";
@@ -2402,6 +2421,7 @@
 				9DCEE20D168636BA00540E96 /* grdint.png in Resources */,
 				9DE8D5F7187C24B000320E1F /* check_mark@2x.png in Resources */,
 				9D1D180D1688D6BB0036C024 /* AssetVC.xib in Resources */,
+				04740729199BAE1500007BEC /* greenCheckMark@2x.png in Resources */,
 				9DE8D601187C2F8600320E1F /* right_arrow.png in Resources */,
 				9D1D18121688D6EF0036C024 /* DocumentsVC.xib in Resources */,
 				9D1D18171688D7160036C024 /* HistoryVC.xib in Resources */,
@@ -2432,6 +2452,7 @@
 				9D3310E9169D9899004EB03E /* Reader-Thumbs.png in Resources */,
 				9D3310EA169D9899004EB03E /* Reader-Thumbs@2x.png in Resources */,
 				9D331110169DA00F004EB03E /* pdfDownload.jpeg in Resources */,
+				04740727199BA36800007BEC /* CheckInConfirmationViewController.xib in Resources */,
 				9DB7683E16A07EC700C925ED /* DownloadVC.xib in Resources */,
 				9D762F3016B3FAEA001B315C /* ShowQuestionsVC.xib in Resources */,
 				04515F051997C4B000785D18 /* TicketCellCICO.xib in Resources */,
@@ -2540,6 +2561,7 @@
 				9DA7969D1784B46200A3BC80 /* voice recorder icon.jpg in Resources */,
 				9DAEA7C5178DD2B200542491 /* take_picture.png in Resources */,
 				047D67AE191BC0B300CABA8E /* CheckPointCell.xib in Resources */,
+				0474071F199B51B300007BEC /* CheckInStepOneViewController.xib in Resources */,
 				9D6A9FD918C3C58B00FF0ED8 /* button_secondary_selected@2x.png in Resources */,
 				9DAEA7C6178DD2B200542491 /* video_recorder.png in Resources */,
 				9DAEA7C7178DD2B200542491 /* voice_recorder.png in Resources */,
@@ -2590,6 +2612,7 @@
 				9DB683AB167C662D0002DC40 /* ASICloudFilesObjectRequest.m in Sources */,
 				04E0EF2219096C740088B808 /* RoutesViewController.m in Sources */,
 				9DB683AC167C662D0002DC40 /* ASICloudFilesRequest.m in Sources */,
+				04740726199BA36800007BEC /* CheckInConfirmationViewController.m in Sources */,
 				9DB683AD167C662D0002DC40 /* ASIS3Bucket.m in Sources */,
 				9DB683AE167C662D0002DC40 /* ASIS3BucketObject.m in Sources */,
 				9DB683AF167C662D0002DC40 /* ASIS3BucketRequest.m in Sources */,
@@ -2642,6 +2665,7 @@
 				9D3310EB169D9899004EB03E /* CGPDFDocument.m in Sources */,
 				9D3310EC169D9899004EB03E /* ReaderConstants.m in Sources */,
 				045957941945AE34006909B1 /* UIWindow+Hierarchy.m in Sources */,
+				0474071E199B51B300007BEC /* CheckInStepOneViewController.m in Sources */,
 				9D3310ED169D9899004EB03E /* ReaderContentPage.m in Sources */,
 				9D3310EE169D9899004EB03E /* ReaderContentTile.m in Sources */,
 				9DE8D5F1187BF9DC00320E1F /* MessageDTO.m in Sources */,
@@ -2858,8 +2882,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = ScanChex;
-				PROVISIONING_PROFILE = "5EF72411-C327-45DC-882F-600893512FE7";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5EF72411-C327-45DC-882F-600893512FE7";
+				PROVISIONING_PROFILE = "af64616c-c2b3-4982-8534-6ef672198f43";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "af64616c-c2b3-4982-8534-6ef672198f43";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;

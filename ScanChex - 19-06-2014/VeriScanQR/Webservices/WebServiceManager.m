@@ -2005,14 +2005,14 @@ withCompletionHandler:(CompletionHandler)handler{
     
     [request setRequestMethod:@"POST"];
     [request setPostValue:masterKey forKey:@"master_key"];
-    [request setPostValue:@"description" forKey:@"description"];
-    [request setPostValue:@"serial_number" forKey:@"serial_number"];
-    [request setPostValue:@"address" forKey:@"address"];
-    [request setPostValue:@"department" forKey:@"department"];
-    [request setPostValue:@"user_id" forKey:@"user_id"];
-    [request setPostValue:@"type" forKey:@"type"];
-    [request setPostValue:@"asset_id" forKey:@"asset_id"];
-    [request setPostValue:@"client" forKey:@"client"];
+    [request setPostValue:description forKey:@"description"];
+    [request setPostValue:serial_number forKey:@"serial_number"];
+    [request setPostValue:address forKey:@"address"];
+    [request setPostValue:department forKey:@"department"];
+    [request setPostValue:user_id forKey:@"user_id"];
+    [request setPostValue:type forKey:@"type"];
+    [request setPostValue:asset_id forKey:@"asset_id"];
+    [request setPostValue:client forKey:@"client"];
     [request setCompletionBlock:^{
         
         NSString *response = [request responseString];
@@ -2113,9 +2113,82 @@ withCompletionHandler:(CompletionHandler)handler{
                     asset_id:(NSString*)asset_id
                      user_id:(NSString*)user_id
                    tolerance:(NSString*)tolerance
+                     checkID:(NSString*)checkID
        withCompletionHandler:(CompletionHandler)handler {
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@checkout",BASE_URL_NEW]];
+    
+    __block  ASIFormDataRequest *request = [self createRequest:url];
+    
+    [request setRequestMethod:@"POST"];
+    [request setPostValue:masterKey forKey:@"master_key"];
+    [request setPostValue:employee forKey:@"employee"];
+    [request setPostValue:department forKey:@"department"];
+    [request setPostValue:date_time_out forKey:@"date_time_out"];
+    [request setPostValue:date_time_due_in forKey:@"date_time_due_in"];
+    [request setPostValue:client_id forKey:@"client_id"];
+    [request setPostValue:reference forKey:@"reference"];
+    [request setPostValue:address forKey:@"address"];
+    [request setPostValue:notes forKey:@"notes"];
+    [request setPostValue:signature forKey:@"signature"];
+    [request setPostValue:asset_id forKey:@"asset_id"];
+    [request setPostValue:user_id forKey:@"user_id"];
+    [request setPostValue:tolerance forKey:@"tolerance"];
+    [request setPostValue:checkID forKey:@"check_out_id"];
+    [request setPostValue:@"1" forKey:@"received_condition"];
+    [request setPostValue:@"1" forKey:@"latitude"];
+    [request setPostValue:@"1" forKey:@"longitude"];
+    [request setCompletionBlock:^{
+        
+        NSString *response = [request responseString];
+        
+        NSMutableDictionary *messagesArray = [response JSONValue];
+        
+        ///Block Calling
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ([messagesArray objectForKey:@"meta"]) {
+                if ([[[messagesArray objectForKey:@"meta"] objectForKey:@"status"] isEqualToString:@"200"]  &&  [[[messagesArray objectForKey:@"meta"] objectForKey:@"msg"] isEqualToString:@"OK"]) {
+                    handler([messagesArray objectForKey:@"data"],NO);
+                }
+            }
+            else {
+                handler(@"error",YES);
+            }
+        });
+    }];
+    
+    [request setFailedBlock:^{
+        
+        NSString *response = [request responseString];
+        NSDictionary *rootDictionary = [response JSONValue];
+        ///Block Calling
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            handler([rootDictionary objectForKey:@"error"],YES);
+        });
+    }];
+    
+    [request startAsynchronous];
+}
+
+-(void)checkinWithMasterKey:(NSString *)masterKey
+                   employee:(NSString *)employee
+                 department:(NSString *)department
+              date_time_out:(NSString*)date_time_out
+           date_time_due_in:(NSString*)date_time_due_in
+                  client_id:(NSString*)client_id
+                  reference:(NSString*)reference
+                    address:(NSString*)address
+                      notes:(NSString*)notes
+                  signature:(NSString*)signature
+                   asset_id:(NSString*)asset_id
+                    user_id:(NSString*)user_id
+                  tolerance:(NSString*)tolerance
+                     ticket:(NSString*)ticket
+               serialNumber:(NSString*)serialNumber
+                description:(NSString*)description
+      withCompletionHandler:(CompletionHandler)handler {
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@checkin",BASE_URL_NEW]];
     
     __block  ASIFormDataRequest *request = [self createRequest:url];
     
@@ -2137,6 +2210,9 @@ withCompletionHandler:(CompletionHandler)handler{
     [request setPostValue:@"1" forKey:@"received_condition"];
     [request setPostValue:@"1" forKey:@"latitude"];
     [request setPostValue:@"1" forKey:@"longitude"];
+    [request setPostValue:ticket forKey:@"ticket_id"];
+    [request setPostValue:serialNumber forKey:@"serial_number"];
+    [request setPostValue:description forKey:@"description"];
     [request setCompletionBlock:^{
         
         NSString *response = [request responseString];
