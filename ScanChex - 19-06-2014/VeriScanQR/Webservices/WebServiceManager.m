@@ -291,7 +291,7 @@ static WebServiceManager *sharedInstance;
         NSDictionary *rootDictionary = [response JSONValue];
         DLog(@"Response %@",response);
         
-        if (![[[rootDictionary valueForKey:@"exist"] stringValue] isEqualToString:@"0"]) {
+        if ([[[rootDictionary valueForKey:@"exist"] stringValue] isEqualToString:@"1"]) {
             
             //Populate UserIfo In UserDTO.
             [[VSSharedManager sharedManager] setCurrentUser:[UserDTO userWithDictionary:rootDictionary]];

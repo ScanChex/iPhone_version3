@@ -199,7 +199,7 @@
                   symbolName = "-[WebServiceManager sendMessage:masterkey:receiver_id:message:withCompletionHandler:]"
                   moduleName = "ScanChex"
                   urlString = "file://localhost/Volumes/DATA/Job/Veriscan/Git%20Hub%20Code%2015%20July/iPhone_version3/ScanChex%20-%2019-06-2014/VeriScanQR/Webservices/WebServiceManager.m"
-                  timestampString = "430248366.190551"
+                  timestampString = "430575070.075388"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1689"
@@ -213,7 +213,7 @@
                   symbolName = "__85-[WebServiceManager sendMessage:masterkey:receiver_id:message:withCompletionHandler:]_block_invoke"
                   moduleName = "ScanChex"
                   urlString = "file://localhost/Volumes/DATA/Job/Veriscan/Git%20Hub%20Code%2015%20July/iPhone_version3/ScanChex%20-%2019-06-2014/VeriScanQR/Webservices/WebServiceManager.m"
-                  timestampString = "430248366.190909"
+                  timestampString = "430575070.075921"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1689"
@@ -709,7 +709,7 @@
                   symbolName = "-[ScanVC save:]"
                   moduleName = "ScanChex"
                   urlString = "file://localhost/Volumes/DATA/Job/Veriscan/Git%20Hub%20Code%2015%20July/iPhone_version3/ScanChex%20-%2019-06-2014/VeriScanQR/ViewControllers/ScanVC/ScanVC.m"
-                  timestampString = "430248366.253884"
+                  timestampString = "430575070.508967"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "859"
@@ -723,7 +723,7 @@
                   symbolName = "__15-[ScanVC save:]_block_invoke"
                   moduleName = "ScanChex"
                   urlString = "file://localhost/Volumes/DATA/Job/Veriscan/Git%20Hub%20Code%2015%20July/iPhone_version3/ScanChex%20-%2019-06-2014/VeriScanQR/ViewControllers/ScanVC/ScanVC.m"
-                  timestampString = "430248366.254264"
+                  timestampString = "430575070.509381"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "861"
@@ -756,44 +756,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VeriScanQR/ViewControllers/TicketsVC/TicketsVC.m"
-            timestampString = "429375162.582866"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
-            landmarkName = "-refreshControlValueChanged:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VeriScanQR/ViewControllers/TicketsVC/TicketsVC.m"
             timestampString = "429375180.315431"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "183"
             endingLineNumber = "183"
             landmarkName = "-updateTickets"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VeriScanQR/Webservices/WebServiceManager.m"
-            timestampString = "430170861.563402"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2258"
-            endingLineNumber = "2258"
-            landmarkName = "-checkoutCheckInTicketsWithMasterKey:userName:withCompletionHandler:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -820,11 +788,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VeriScanQR/ViewControllers/AdminVC/CheckInStepOneViewController.m"
-            timestampString = "430248229.769063"
+            timestampString = "430573669.302666"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "199"
-            endingLineNumber = "199"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
             landmarkName = "-checkOutPressed:"
             landmarkType = "5">
          </BreakpointContent>
@@ -905,7 +873,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "2215"
             endingLineNumber = "2215"
-            landmarkName = "-checkinWithMasterKey:employee:department:date_time_out:date_time_due_in:client_id:reference:address:notes:signature:asset_id:user_id:tolerance:ticket:withCompletionHandler:"
+            landmarkName = "-checkinWithMasterKey:employee:department:date_time_out:date_time_due_in:client_id:reference:address:notes:signature:asset_id:user_id:tolerance:ticket:serialNumber:description:withCompletionHandler:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -921,38 +889,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "2211"
             endingLineNumber = "2211"
-            landmarkName = "-checkinWithMasterKey:employee:department:date_time_out:date_time_due_in:client_id:reference:address:notes:signature:asset_id:user_id:tolerance:ticket:withCompletionHandler:"
+            landmarkName = "-checkinWithMasterKey:employee:department:date_time_out:date_time_due_in:client_id:reference:address:notes:signature:asset_id:user_id:tolerance:ticket:serialNumber:description:withCompletionHandler:"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[WebServiceManager checkinWithMasterKey:employee:department:date_time_out:date_time_due_in:client_id:reference:address:notes:signature:asset_id:user_id:tolerance:ticket:withCompletionHandler:]"
-                  moduleName = "ScanChex"
-                  urlString = "file://localhost/Volumes/DATA/Job/Veriscan/Git%20Hub%20Code%2015%20July/iPhone_version3/ScanChex%20-%2019-06-2014/VeriScanQR/Webservices/WebServiceManager.m"
-                  timestampString = "430248366.266091"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "2211"
-                  endingLineNumber = "2211"
-                  offsetFromSymbolStart = "1391">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__193-[WebServiceManager checkinWithMasterKey:employee:department:date_time_out:date_time_due_in:client_id:reference:address:notes:signature:asset_id:user_id:tolerance:ticket:withCompletionHandler:]_block_invoke"
-                  moduleName = "ScanChex"
-                  urlString = "file://localhost/Volumes/DATA/Job/Veriscan/Git%20Hub%20Code%2015%20July/iPhone_version3/ScanChex%20-%2019-06-2014/VeriScanQR/Webservices/WebServiceManager.m"
-                  timestampString = "430248366.266503"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "2211"
-                  endingLineNumber = "2211"
-                  offsetFromSymbolStart = "51">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

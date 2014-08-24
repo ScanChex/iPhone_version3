@@ -59,7 +59,7 @@
                             </connections>
                         </button>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="logo.png" id="DNb-PB-gmL" customClass="AsyncImageView">
-                            <rect key="frame" x="82" y="21" width="206" height="75"/>
+                            <rect key="frame" x="58" y="0.0" width="253" height="108"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                         </imageView>
                         <view contentMode="scaleToFill" id="FLj-xY-dTP">
@@ -149,7 +149,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" id="1Gr-ew-1hv">
-                                    <rect key="frame" x="141" y="248" width="159" height="54"/>
+                                    <rect key="frame" x="141" y="251" width="159" height="54"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <color key="textColor" red="0.86666666670000003" green="0.5450980392" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>

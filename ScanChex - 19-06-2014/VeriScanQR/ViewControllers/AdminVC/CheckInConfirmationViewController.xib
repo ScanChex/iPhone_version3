@@ -51,7 +51,7 @@
                             </connections>
                         </button>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="logo.png" id="yIb-vp-WQz" customClass="AsyncImageView">
-                            <rect key="frame" x="82" y="21" width="206" height="75"/>
+                            <rect key="frame" x="58" y="0.0" width="253" height="108"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                         </imageView>
                         <view contentMode="scaleToFill" id="fuY-LZ-H0s">
