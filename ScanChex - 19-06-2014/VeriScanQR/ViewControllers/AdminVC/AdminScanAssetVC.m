@@ -92,7 +92,7 @@
          
              [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:2] animated:YES];
          }];
-         [alert addButtonWithTitle:@"Proceeded" block:^{
+         [alert addButtonWithTitle:@"Proceed" block:^{
              
              
              [self.navigationController pushViewController:[UploadAdminVC initWithUpload:self.scannerImage assetID:[NSString stringWithFormat:@"%@",self.currentScannedCode] isPicture:self.isPicture] animated:YES];

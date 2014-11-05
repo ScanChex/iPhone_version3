@@ -8,6 +8,7 @@
 
 #import "CheckOutOptionsViewController.h"
 #import "CheckOutInitialInformationViewController.h"
+#import "CheckOutTodayViewController.h"
 
 @interface CheckOutOptionsViewController ()
 
@@ -52,6 +53,10 @@
 }
 - (IBAction)manualLookUp:(id)sender {
     [self.navigationController pushViewController:[CheckOutInitialInformationViewController initCheckWithManual] animated:YES];
+}
+- (IBAction)checkedOutToday:(id)sender {
+  NSLog(@"Checkout out today");
+  [self.navigationController pushViewController:[CheckOutTodayViewController initWithTickets] animated:YES];
 }
 
 @end

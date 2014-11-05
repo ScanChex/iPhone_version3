@@ -25,6 +25,9 @@
 @synthesize ticket_start_time = _ticket_start_time;
 @synthesize ticket_end_time = _ticket_end_time;
 @synthesize ticket_total_time = _ticket_total_time;
+@synthesize ticket_type = _ticket_type;
+@synthesize employee = _employee;
+
 +(id)initWithTicketInfo:(NSDictionary *)info{
 
     return [[[self alloc] initWithDictionary:info] autorelease];
@@ -48,11 +51,16 @@
     self.ticket_start_time = [dictionary valueForKey:@"ticket_start_time"];
     self.ticket_end_time = [dictionary valueForKey:@"ticket_end_time"];
     self.ticket_total_time = [dictionary valueForKey:@"ticket_total_time"];
+    self.employee = [dictionary valueForKey:@"employee"];
+  
     if ([[dictionary valueForKey:@"allow_id_card_scan"] isEqualToString:@"Yes"]) {
         self.allow_id_card_scan = TRUE;
     }
     else {
         self.allow_id_card_scan = FALSE;
+    }
+    if ([dictionary valueForKey:@"ticket_type"]) {
+        self.ticket_type = [dictionary valueForKey:@"ticket_type"];
     }
 }
 

@@ -58,11 +58,11 @@
                 </subviews>
             </tableViewCellContentView>
             <connections>
-                <outlet property="description" destination="13" id="14"/>
                 <outlet property="notes" destination="17" id="19"/>
                 <outlet property="price" destination="10" id="15"/>
                 <outlet property="qty" destination="20" id="21"/>
                 <outlet property="total" destination="11" id="16"/>
+                <outlet property="txtDescription" destination="13" id="ov7-4y-PdN"/>
             </connections>
         </tableViewCell>
         <view contentMode="scaleToFill" id="22">
@@ -113,10 +113,16 @@
                 </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
     <resources>
         <image name="notes.png" width="21" height="23"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

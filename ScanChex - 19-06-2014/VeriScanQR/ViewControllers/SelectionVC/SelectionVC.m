@@ -94,7 +94,10 @@
 
     UserDTO *user=[[VSSharedManager sharedManager] currentUser];
     self.name.text=user.name;
-    
+  self.logo.layer.borderWidth=3.0;
+  self.logo.layer.borderColor=[UIColor lightGrayColor].CGColor;
+  
+  
     if (![user.logo isKindOfClass:[NSNull class]])
         [self.logo setImageURL:[NSURL URLWithString:user.logo]];
     
@@ -121,6 +124,11 @@
 }
 -(IBAction)logoutButtonPressed:(id)sender{
 
+    [[VSLocationManager sharedManager] stopListening];
+    UserDTO * user = [[VSSharedManager sharedManager] currentUser];
+    [[WebServiceManager sharedManager] logoutWithMasterKey:[NSString stringWithFormat:@"%d",user.masterKey] username:[[VSSharedManager sharedManager] currentUser].name session_id:[[VSSharedManager sharedManager] currentUser].session_id withCompletionHandler:^(id data,BOOL error){
+        
+    }];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 

@@ -50,7 +50,11 @@
     return cell;
 }
 -(void)updateCellWithCheckTicket:(TicketDTO *)ticket {
-    
+  TicketInfoDTO *info=[ticket.tickets objectAtIndex:indexPath.row];
+  
+  
+    [self.scanButton setTitle:@"CHECK IN" forState:UIControlStateNormal];
+    [self.scanButton setBackgroundColor:[UIColor colorWithRed:164.0f/255.0f green:254.0f/255.0f blue:255.0f/255.0f alpha:1.0f]];
     TicketAddressDTO *address1 =ticket.address1;
     TicketAddressDTO *address2 =ticket.address2;
     
@@ -63,9 +67,9 @@
     
     self.phoneNumber.text = [ticket.phoneNumber isEqualToString:@"<null>"] ? @"" :ticket.phoneNumber;
     self.assetID.text =[ticket.unEncryptedAssetID isEqualToString:@"<null>"] ? @"" :ticket.unEncryptedAssetID;;
-    self.clientName.text=[ticket.clientName isEqualToString:@"<null>"]? @"" :ticket.clientName; ;
+    //self.clientName.text=[ticket.clientName isEqualToString:@"<null>"]? @"" :ticket.clientName; ;
     
-    TicketInfoDTO *info=[ticket.tickets objectAtIndex:indexPath.row];
+ //   TicketInfoDTO *info=[ticket.tickets objectAtIndex:indexPath.row];
     self.ticketNumber.text=[NSString stringWithFormat:@"%@",ticket.description];
     if (info.allow_id_card_scan) {
         [self.employeeCardImageView setHidden:NO];
@@ -81,6 +85,7 @@
     self.startTime.text=info.ticketID;
     [self.dateLabel setText:info.startDate];
     [self.timeLabel setText:info.startTime];
+    self.clientName.text=[info.employee isEqualToString:@"<null>"]? @"" :info.employee; ;
     //    self.remainingScans.text=[NSString stringWithFormat:@"%@\n%@",info.startDate,info.startTime];
     
     //    if([info.overDue isEqualToString:@"1"]){
@@ -114,15 +119,25 @@
     {
         [self.imageSign setImage:[UIImage imageNamed:@"checkmarkgreen.png"]];
         self.contentView.backgroundColor=[UIColor colorWithRed:236.0f/255.0f green:236.0f/255.0f blue:236.0f/255.0f alpha:1.0];
-        [self.scanButton setHidden:YES];
+        if ([info.ticket_type isEqualToString:@"check_in"]) {
+            [self.scanButton setBackgroundColor:[UIColor clearColor]];
+        }
+        else {
+            [self.scanButton setTitle:@"CHECK OUT" forState:UIControlStateNormal];
+            [self.scanButton setBackgroundColor:[UIColor clearColor]];
+        }
+//        [self.scanButton setHidden:YES];
     }
     [self.photoImageView setImage:[UIImage imageNamed:@"Photo_not_available.jpg"]];
+  self.photoImageView.layer.borderWidth=3.0;
+  self.photoImageView.layer.borderColor=[UIColor lightGrayColor].CGColor;
+  
     NSString * tempURLString = info.photoUrl;
     tempURLString = [tempURLString stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     [self.photoImageView setImageURL:[NSURL URLWithString:tempURLString]];
     NSLog(@"Photo %@",info.photoUrl);
     
-    
+  
 }
 
 -(void)updateCellWithTicket:(TicketDTO *)ticket{
@@ -192,6 +207,8 @@
         self.contentView.backgroundColor=[UIColor colorWithRed:236.0f/255.0f green:236.0f/255.0f blue:236.0f/255.0f alpha:1.0];
     }
     [self.photoImageView setImage:[UIImage imageNamed:@"Photo_not_available.jpg"]];
+    self.photoImageView.layer.borderWidth=3.0;
+    self.photoImageView.layer.borderColor=[UIColor lightGrayColor].CGColor;
     NSString * tempURLString = info.photoUrl;
     tempURLString = [tempURLString stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     [self.photoImageView setImageURL:[NSURL URLWithString:tempURLString]];
@@ -260,6 +277,9 @@
         self.contentView.backgroundColor=[UIColor colorWithRed:236.0f/255.0f green:236.0f/255.0f blue:236.0f/255.0f alpha:1.0];
     }
  [self.photoImageView setImage:[UIImage imageNamed:@"Photo_not_available.jpg"]];
+  self.photoImageView.layer.borderWidth=3.0;
+  self.photoImageView.layer.borderColor=[UIColor lightGrayColor].CGColor;
+  
     NSString * tempURLString = info.photoUrl;
     tempURLString = [tempURLString stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     [self.photoImageView setImageURL:[NSURL URLWithString:tempURLString]];

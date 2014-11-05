@@ -40,6 +40,8 @@
 #import "AboutUsLinksVC.h"
 #import "TicketCell.h"
 #import "PDFViewController.h"
+#import "HistoryDTO.h"
+#import "RoutesViewController.h"
 @interface ScanVC ()<showQuestionDelegate,assetDelegate,HistoryVCDelegate>
 {
     UIImagePickerController *imagePickerController;
@@ -80,6 +82,8 @@
 @synthesize audioArray = _audioArray;
 @synthesize videoArray = _videoArray;
 @synthesize receivedArray = _receivedArray;
+@synthesize notesimageSign = _notesimageSign;
+@synthesize questionsimageSign = _questionsimageSign;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -87,6 +91,7 @@
     if (self) {
         _audioArray = [[NSMutableArray alloc] initWithObjects:nil];
         _videoArray = [[NSMutableArray alloc] initWithObjects:nil];
+        self.historyArray = [[NSMutableArray alloc]initWithObjects:nil];
         [[VSSharedManager sharedManager] setIsPreview:FALSE];
         self.isScanHidden = FALSE;
         self.isScanning = FALSE;
@@ -134,6 +139,23 @@
 #pragma -mark Life Cycle
 - (void)viewDidLoad
 {
+    TicketDTO *ticketAsset =[[VSSharedManager sharedManager] selectedTicket];
+    [self.historyArray removeAllObjects];
+    UserDTO *user=[[VSSharedManager sharedManager] currentUser];
+    [[WebServiceManager sharedManager] showHistory:[NSString stringWithFormat:@"%d",user.masterKey] ticketID:ticketAsset.assetID withCompletionHandler:^(id data, BOOL error){
+        
+        //  [SVProgressHUD dismiss];
+        if (!error) {
+            
+            //                                [self.historyArray removeAllObjects];
+            self.historyArray  = [NSMutableArray arrayWithArray:(NSMutableArray*)data];
+            
+            
+        }
+        else
+            [self initWithPromptTitle:@"Error" message:(NSString *)data];
+        
+    }];
     if (self.isScanHidden) {
         [self.btnSecondScan setEnabled:NO];
     }
@@ -191,8 +213,27 @@
             
         }
     }
-    
-   
+    if ([[[[VSSharedManager sharedManager] selectedTicketInfo] notes] length]>0) {
+        [self.segmentControl setTitle:@"Notes !" forSegmentAtIndex:4];
+     
+      if ( ![[[[VSSharedManager sharedManager] selectedTicketInfo] notes] isEqualToString:@""] ) {
+      _notesimageSign.hidden=NO;
+      [self.notesimageSign setImage:[UIImage imageNamed:@"excalamationIcon.png"]];
+      } else {
+         _notesimageSign.hidden=YES;
+      }
+      
+    } else {
+      _notesimageSign.hidden=YES;
+    }
+  
+   [self.questionsimageSign setImage:[UIImage imageNamed:@"excalamationIcon.png"]];
+  
+  
+  //DEBUG****remove for testing.
+  //[[VSSharedManager sharedManager] setIsPreview:FALSE];
+  //
+  
 //    self.view.backgroundColor=[UIColor blackColor];
     [self.segmentControl setSelectedSegmentIndex:0];
     [self performSelector:@selector(segmentChanged:)];
@@ -351,14 +392,16 @@
    
                 UserDTO*user=[[VSSharedManager sharedManager] currentUser];
                 TicketDTO *ticket=[[VSSharedManager sharedManager] selectedTicket];
-                
-                [[WebServiceManager sharedManager] getQuetsions:[NSString stringWithFormat:@"%d",user.masterKey] assetID:ticket.assetID withCompletionHandler:^(id data,BOOL error){
+                TicketInfoDTO *ticketinfo =[[VSSharedManager sharedManager] selectedTicketInfo];
+                [[WebServiceManager sharedManager] getQuetsions:[NSString stringWithFormat:@"%d",user.masterKey] assetID:ticket.assetID tikcetID:ticketinfo.tblTicketID withCompletionHandler:^(id data,BOOL error){
                     
                     [SVProgressHUD dismiss];
                     
                     if (!error) {
                         
-                        self.questionView=[ShowQuestionsVC initWithQuesitons:(NSMutableArray*)data];
+                        
+                        
+                        self.questionView=[ShowQuestionsVC initWithQuesitons:(NSMutableArray*)data history:self.historyArray];
                         self.questionView.delegate=self;
 //                        [self.view addSubview:self.questionView.view];
                         [self.scrollView addSubview:self.questionView.view];
@@ -369,7 +412,7 @@
                      
                         //[self initWithPromptTitle:@"Error" message:(NSString*)data];
                         
-                        self.questionView=[ShowQuestionsVC initWithQuesitons:nil];
+                        self.questionView=[ShowQuestionsVC initWithQuesitons:nil history:self.historyArray];
                         self.questionView.delegate=self;
                         [self.scrollView addSubview:self.questionView.view];
                         [self.scrollView setContentSize:self.questionView.view.frame.size];
@@ -474,11 +517,13 @@
         case 4:{
             if ([[[[VSSharedManager sharedManager] selectedTicketInfo] notes] length]>0) {
                  [self initWithPromptTitle:@"Ticket Notes" message:[[[VSSharedManager sharedManager] selectedTicketInfo] notes]];
+              
             }
             else {
+              
                 [self initWithPromptTitle:@"Ticket Notes" message:@"---"];
             }
-           
+            [self.notesimageSign setImage:[UIImage imageNamed:@"checkmarkgreen.png"]];
             
             break;
         }
@@ -1001,8 +1046,21 @@
     [self.navigationController pushViewController:[VoiceRecordViewController initWithRecording] animated:YES];
 }
 -(void)notesButtonPressed{
+    if ([self.self.historyView.historyArray count]>0) {
+        HistoryDTO *historyData=[self.historyView.historyArray objectAtIndex:0];
+        [self.navigationController pushViewController:[NotesVC initWithCompontentNotes:historyData.notes] animated:YES];
+    }
+    else {
+        [self.navigationController pushViewController:[NotesVC initWithNotes] animated:YES];
+    }
     
-    [self.navigationController pushViewController:[NotesVC initWithNotes] animated:YES];
+    
+}
+-(void)allQuestionsAnswered{
+  
+  [self.questionsimageSign setImage:[UIImage imageNamed:@"checkmarkgreen.png"]];
+  
+  
 }
 
 
@@ -1217,7 +1275,67 @@
         NSURL *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
         NSData *videoData = [NSData dataWithContentsOfURL:videoURL];
         //You can store the path of the saved video file in sqlite/coredata here.
-        
+      
+    //  http://stackoverflow.com/questions/20282672/record-save-and-or-convert-video-in-mp4-format
+      
+//      if (CFStringCompare ((__bridge_retained CFStringRef) mediaType, kUTTypeMovie, 0) == kCFCompareEqualTo)
+//      {
+//        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(moviePath))
+//        {
+//          NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+//          NSString *moviePath = [[info objectForKey:UIImagePickerControllerMediaURL] path];
+//          NSString *videoPath1 =[NSString stringWithFormat:@"%@/xyz.mov",docDir];
+//          NSURL *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
+//          NSData *videoData = [NSData dataWithContentsOfURL:videoURL];
+//          [videoData writeToFile:videoPath1 atomically:NO];
+//          //  UISaveVideoAtPathToSavedPhotosAlbum(moviePath, self, nil, nil);
+//        }
+//      }
+//      
+//      AVURLAsset *avAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:videoPath1] options:nil];
+//      NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:avAsset];
+//      
+//      if ([compatiblePresets containsObject:AVAssetExportPresetLowQuality])
+//      {
+//        AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]initWithAsset:avAsset presetName:AVAssetExportPresetPassthrough];
+//        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//        videoPath = [NSString stringWithFormat:@"%@/xyz.mp4", [paths objectAtIndex:0]];
+//        exportSession.outputURL = [NSURL fileURLWithPath:videoPath];
+//        NSLog(@"videopath of your mp4 file = %@",videoPath);  // PATH OF YOUR .mp4 FILE
+//        exportSession.outputFileType = AVFileTypeMPEG4;
+//        
+//        //  CMTime start = CMTimeMakeWithSeconds(1.0, 600);
+//        //  CMTime duration = CMTimeMakeWithSeconds(3.0, 600);
+//        //  CMTimeRange range = CMTimeRangeMake(start, duration);
+//        //   exportSession.timeRange = range;
+//        //  UNCOMMENT ABOVE LINES FOR CROP VIDEO
+//        [exportSession exportAsynchronouslyWithCompletionHandler:^{
+//          
+//          switch ([exportSession status]) {
+//              
+//            case AVAssetExportSessionStatusFailed:
+//              NSLog(@"Export failed: %@", [[exportSession error] localizedDescription]);
+//              
+//              break;
+//              
+//            case AVAssetExportSessionStatusCancelled:
+//              
+//              NSLog(@"Export canceled");
+//              
+//              break;
+//              
+//            default:
+//              
+//              break;
+//              
+//          }
+//          UISaveVideoAtPathToSavedPhotosAlbum(videoPath, self, nil, nil);
+//          [exportSession release];
+//          
+//        }];
+//        
+//      }
+      
         self.myProgressIndicator=[[UIProgressView alloc]initWithProgressViewStyle:UIProgressViewStyleDefault];
         self.myProgressIndicator.frame=CGRectMake(10, 260, 300, 14);
         [self.view addSubview:self.myProgressIndicator];
@@ -1432,13 +1550,13 @@
 //    if ([self.tickets count]>0) {
     
         
-        TicketCell *cell=[TicketCell resuableCellForTableView2:self.tableView withOwner:self];
+        TicketCell *cell=[TicketCell resuableCellForTableView:self.tableView withOwner:self];
         cell.indexPath=indexPath;
     VSSharedManager * temp = [VSSharedManager sharedManager];
     NSInteger tempint = [[VSSharedManager sharedManager] CurrentSelectedIndex];
         [cell updateCellWithTicket:[[VSSharedManager sharedManager] selectedTicket] index:tempint];
-    [cell.mapButton setHidden:YES];
-//        [cell. mapButton addTarget:self action:@selector(showDirections) forControlEvents:UIControlEventTouchUpInside];
+//    [cell.mapButton setHidden:YES];
+        [cell. mapButton addTarget:self action:@selector(showDirections) forControlEvents:UIControlEventTouchUpInside];
         //        [cell.mapButton addTarget: self
         //                           action: @selector(accessoryButtonTapped:withEvent:)
         //                 forControlEvents: UIControlEventTouchUpInside];
@@ -1469,6 +1587,13 @@
     
 //    return nil;
     
+}
+-(void)showDirections {
+    RoutesViewController * tempRoute = [[RoutesViewController alloc] initWithNibName:@"RoutesViewController" bundle:[NSBundle mainBundle]];
+    tempRoute.tickets = [NSArray arrayWithArray:[[VSSharedManager sharedManager] ticketInfo]];
+    tempRoute.currentSelectedTicket = [[VSSharedManager sharedManager] CurrentSelectedIndex];
+    tempRoute.currentSelectedSection = [[VSSharedManager sharedManager] CurrentSelectedSection];
+    [self.navigationController pushViewController:tempRoute animated:YES];
 }
 
 - (NSString *)elapsedTimeSince:(NSDate *)date {

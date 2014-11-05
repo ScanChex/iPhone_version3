@@ -141,11 +141,19 @@
 }
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     if (indexPath.row%2==1) {
         
-        cell.backgroundColor = [UIColor lightGrayColor];
+        cell.backgroundColor = [UIColor colorWithRed:255.0f/255.0f green:255.0f/255.0f blue:226.0f/255.0f alpha:255.0f];
+        //        cell.backgroundColor = [UIColor lightGrayColor];
     }
+    else {
+        cell.backgroundColor = [UIColor colorWithRed:255.0f/255.0f green:255.0f/255.0f blue:255.0f/255.0f alpha:255.0f];
+        //        cell.backgroundColor = [UIColor whiteColor];
+    }
+//    if (indexPath.row%2==1) {
+//        
+//        cell.backgroundColor = [UIColor lightGrayColor];
+//    }
     
 }
 - (void)dealloc {

@@ -18,7 +18,7 @@
 @property (retain, nonatomic) IBOutlet AsyncImageView *logo;
 @property (retain, nonatomic) IBOutlet AsyncImageView *asset;
 @property (retain, nonatomic) IBOutlet UILabel *assetID;
-@property (retain, nonatomic) IBOutlet UILabel *description;
+@property (retain, nonatomic) IBOutlet UILabel *lblDescription;
 @property (retain, nonatomic) IBOutlet UILabel *serialNumber;
 @property (retain, nonatomic) IBOutlet UITextView *address;
 @property (retain, nonatomic) IBOutlet UILabel *lastScannedDate;

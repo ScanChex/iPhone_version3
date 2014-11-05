@@ -10,6 +10,10 @@
 #import "WebServiceManager.h"
 #import "AsyncImageView.h"
 #import "CheckOutStepTwoViewController.h"
+#import "FTWCache.h"
+#import "NSString+MD5.h"
+#import "WebImageOperations.h"
+
 @interface CheckOutInitialInformationViewController ()
 -(id)initWithScan;
 -(id)initWithManual;
@@ -65,6 +69,10 @@
         [self fetchAllData];
     }
     // Do any additional setup after loading the view from its nib.
+  
+  self.assetImageView.layer.borderWidth=3.0;
+  self.assetImageView.layer.borderColor=[UIColor lightGrayColor].CGColor;
+  
 }
 
 - (void)didReceiveMemoryWarning
@@ -147,7 +155,7 @@
                          [self.assetIDTextField setText:[[[self.dataDict objectForKey:@"assets"] objectAtIndex:i] objectForKey:@"asset_id"]];
                          self.currentSelectedAsset = [[[self.dataDict objectForKey:@"assets"] objectAtIndex:i] objectForKey:@"id"];
                          NSDictionary * tempDict = [[self.dataDict objectForKey:@"assets"] objectAtIndex:i];
-                         self.addressTextView.text =  [NSString stringWithFormat:@"%@, %@, %@, %@, %@",[[tempDict objectForKey:@"address"] objectForKey:@"address1"],[[tempDict objectForKey:@"address"] objectForKey:@"city"],[[tempDict objectForKey:@"address"] objectForKey:@"state"],[[tempDict objectForKey:@"address"] objectForKey:@"zip_postal_code"],[[tempDict objectForKey:@"address"] objectForKey:@"country"]];
+                         self.addressTextView.text =  [NSString stringWithFormat:@"%@\n%@, %@, %@",[[tempDict objectForKey:@"address"] objectForKey:@"address1"],[[tempDict objectForKey:@"address"] objectForKey:@"city"],[[tempDict objectForKey:@"address"] objectForKey:@"state"],[[tempDict objectForKey:@"address"] objectForKey:@"zip_postal_code"]];
 //                         [self.addressTextView setText:[[[self.dataDict objectForKey:@"assets"] objectAtIndex:i] objectForKey:@"address"]];
                          [self.descriptionTextField setText:[[[self.dataDict objectForKey:@"assets"] objectAtIndex:i] objectForKey:@"description"]];
                          [self.departmentTextField setText:[[[self.dataDict objectForKey:@"assets"] objectAtIndex:i] objectForKey:@"department"]];
@@ -285,55 +293,164 @@
     
 }
 
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    if ([pickerView tag] == 0) {
-        return [[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"description"];
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+{
+  
+  if ([pickerView tag] == 0) {
+    UILabel *thisLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, 40)];
+        thisLabel.text = [[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"description"];;
+    
+        return thisLabel;  }
+  
+  if ([pickerView tag] == 1) {
+//    UILabel *thisLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 40)];
+//    thisLabel.text = [[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"asset_id"];;
+//    
+//    return thisLabel;
+    
+    UIView *pickerCustomView = (id)view;
+    UILabel *pickerViewLabel;
+    UIImageView *pickerImageView;
+    
+    
+    if (!pickerCustomView) {
+      pickerCustomView= [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f,
+                                                                 [pickerView rowSizeForComponent:component].width - 10.0f, [pickerView rowSizeForComponent:component].height)];
+      pickerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(90.0f, 0.0f, 35.0f, 35.0f)];
+      pickerViewLabel= [[UILabel alloc] initWithFrame:CGRectMake(130.0f, -5.0f,
+                                                                 [pickerView rowSizeForComponent:component].width - 10.0f, [pickerView rowSizeForComponent:component].height)];
+      // the values for x and y are specific for my example
+      [pickerCustomView addSubview:pickerImageView];
+      [pickerCustomView addSubview:pickerViewLabel];
     }
-    if ([pickerView tag] == 1) {
-        return [[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"asset_id"];
+    
+    NSString *photoURL = [[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"asset_photo"];
+    
+    NSString *key = [photoURL MD5Hash];
+    NSData *data = [FTWCache objectForKey:key];
+    if (data) {
+      UIImage *image = [UIImage imageWithData:data];
+      pickerImageView.image = image;
+      
+    } else {
+      
+      [WebImageOperations processImageDataWithURLString:photoURL andBlock:^(NSData *imageData) {
+        if (self.view.window) {
+          [FTWCache setObject:imageData forKey:key];
+          UIImage *image = [UIImage imageWithData:imageData];
+          dispatch_async(dispatch_get_main_queue(), ^{
+        
+             pickerImageView.image = image;
+           });
+          
+        }
+        
+      }];
     }
-    if ([pickerView tag] == 2) {
-        return [NSString stringWithFormat:@"%@, %@, %@, %@, %@",[[self.addressesArray objectAtIndex:row] objectForKey:@"address1"],[[self.addressesArray objectAtIndex:row] objectForKey:@"city"],[[self.addressesArray objectAtIndex:row] objectForKey:@"state"],[[self.addressesArray objectAtIndex:row] objectForKey:@"zip_postal_code"],[[self.addressesArray objectAtIndex:row] objectForKey:@"country"]];
-    }
-    if ([pickerView tag] == 3) {
-        return [[[self.dataDict objectForKey:@"departments"] objectAtIndex:row] objectForKey:@"name"];
-    }
-    if ([pickerView tag] == 4) {
-        return [[[self.dataDict objectForKey:@"clients"] objectAtIndex:row] objectForKey:@"name"];
-    }
-    else {
-        return nil;
-    }
+
+    
+    
+    
+    
+    NSLog(@" photo %@",[[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"asset_photo"]);
+    //[UIImage imageNamed:@"01.png"]
+   // NSURL *imageURL = [NSURL URLWithString:[[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"asset_photo"]];
+   // NSData * imageData = [NSData dataWithContentsOfURL:imageURL];  // pickerImageView.image = [UIImage imageWithData: imageData];
+    //pickerImageView.image = [UIImage imageWithData:imageData];
+    pickerViewLabel.backgroundColor = [UIColor clearColor];
+    pickerViewLabel.text = [[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"asset_id"]; // where therapyTypes[row] is a specific example from my code
+    // pickerViewLabel.font = [UIFont fontWithName:@"avenir" size:14];
+    return pickerCustomView;
+
+  }
+  if ([pickerView tag] == 2) {
+    UILabel *thisLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 40)];
+    thisLabel.text = [NSString stringWithFormat:@"%@, %@, %@, %@, %@",[[self.addressesArray objectAtIndex:row] objectForKey:@"address1"],[[self.addressesArray objectAtIndex:row] objectForKey:@"city"],[[self.addressesArray objectAtIndex:row] objectForKey:@"state"],[[self.addressesArray objectAtIndex:row] objectForKey:@"zip_postal_code"],[[self.addressesArray objectAtIndex:row] objectForKey:@"country"]];;
+    
+    return thisLabel;
+  }
+  if ([pickerView tag] == 3) {
+    UILabel *thisLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 40)];
+    thisLabel.text = [[[self.dataDict objectForKey:@"departments"] objectAtIndex:row] objectForKey:@"name"];
+    
+    return thisLabel;
+    
+  }
+  if ([pickerView tag] == 4) {
+    UILabel *thisLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 40)];
+    thisLabel.text = [[[self.dataDict objectForKey:@"clients"] objectAtIndex:row] objectForKey:@"name"];
+    
+    return thisLabel;
+    
+  }
+
+  else {
+    return nil;
+  }
+  
+  
 }
+
+
+
+
+
+//- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+//    if ([pickerView tag] == 0) {
+//        return [[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"description"];
+//    }
+//    if ([pickerView tag] == 1) {
+//        return [[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"asset_id"];
+//    }
+//    if ([pickerView tag] == 2) {
+//        return [NSString stringWithFormat:@"%@, %@, %@, %@, %@",[[self.addressesArray objectAtIndex:row] objectForKey:@"address1"],[[self.addressesArray objectAtIndex:row] objectForKey:@"city"],[[self.addressesArray objectAtIndex:row] objectForKey:@"state"],[[self.addressesArray objectAtIndex:row] objectForKey:@"zip_postal_code"],[[self.addressesArray objectAtIndex:row] objectForKey:@"country"]];
+//    }
+//    if ([pickerView tag] == 3) {
+//        return [[[self.dataDict objectForKey:@"departments"] objectAtIndex:row] objectForKey:@"name"];
+//    }
+//    if ([pickerView tag] == 4) {
+//        return [[[self.dataDict objectForKey:@"clients"] objectAtIndex:row] objectForKey:@"name"];
+//    }
+//    else {
+//        return nil;
+//    }
+//}
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     if ([pickerView tag] == 0) {
         self.descriptionTextField.text = [[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"description"];
     }
     if ([pickerView tag] == 1) {
-        self.assetIDTextField.text =  [[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"asset_id"];
-        self.currentSelectedAsset =[[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"id"];
-        [self.assetImageView setImageURL:[NSURL URLWithString:[[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"asset_photo"]]];
-        [self.departmentTextField setText:[[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"department"]];
-         [self.serialNumberTextField setText:[[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"serial_number"]];
-        self.currentSelectedlientID =[[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"client_id"];
-//        [self.addressTextView setText:[[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"address"]];
-        NSDictionary * tempDict = [[self.dataDict objectForKey:@"assets"] objectAtIndex:row];
-        self.addressTextView.text =  [NSString stringWithFormat:@"%@, %@, %@, %@, %@",[[tempDict objectForKey:@"address"] objectForKey:@"address1"],[[tempDict objectForKey:@"address"] objectForKey:@"city"],[[tempDict objectForKey:@"address"] objectForKey:@"state"],[[tempDict objectForKey:@"address"] objectForKey:@"zip_postal_code"],[[tempDict objectForKey:@"address"] objectForKey:@"country"]];
-        [self.descriptionTextField setText:[[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"description"]];
-        for (int i = 0; i< [[self.dataDict objectForKey:@"clients"] count]; i++) {
-            NSMutableDictionary * tempDict = [[self.dataDict objectForKey:@"clients"] objectAtIndex:i];
-            if ([[tempDict objectForKey:@"id"] isEqualToString:self.currentSelectedlientID]) {
-                [self.clientTextField setText:[tempDict objectForKey:@"name"]];
-                self.currentSelectedClientId =[tempDict objectForKey:@"id"];
-                if ([[tempDict objectForKey:@"addresses"] count]>0) {
-                    self.addressesArray = [[tempDict objectForKey:@"addresses"] mutableCopy];
+        if (![[[[self.dataDict objectForKey:@"assets"]objectAtIndex:row] objectForKey:@"asset_status"] isEqualToString:@"checked_out"]) {
+            self.assetIDTextField.text =  [[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"asset_id"];
+            self.currentSelectedAsset =[[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"id"];
+            [self.assetImageView setImageURL:[NSURL URLWithString:[[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"asset_photo"]]];
+            [self.departmentTextField setText:[[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"department"]];
+            [self.serialNumberTextField setText:[[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"serial_number"]];
+            self.currentSelectedlientID =[[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"client_id"];
+            //        [self.addressTextView setText:[[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"address"]];
+            NSDictionary * tempDict = [[self.dataDict objectForKey:@"assets"] objectAtIndex:row];
+            self.addressTextView.text =  [NSString stringWithFormat:@"%@\n%@, %@, %@",[[tempDict objectForKey:@"address"] objectForKey:@"address1"],[[tempDict objectForKey:@"address"] objectForKey:@"city"],[[tempDict objectForKey:@"address"] objectForKey:@"state"],[[tempDict objectForKey:@"address"] objectForKey:@"zip_postal_code"]];
+            [self.descriptionTextField setText:[[[self.dataDict objectForKey:@"assets"] objectAtIndex:row] objectForKey:@"description"]];
+            for (int i = 0; i< [[self.dataDict objectForKey:@"clients"] count]; i++) {
+                NSMutableDictionary * tempDict = [[self.dataDict objectForKey:@"clients"] objectAtIndex:i];
+                if ([[tempDict objectForKey:@"id"] isEqualToString:self.currentSelectedlientID]) {
+                    [self.clientTextField setText:[tempDict objectForKey:@"name"]];
+                    self.currentSelectedClientId =[tempDict objectForKey:@"id"];
+                    if ([[tempDict objectForKey:@"addresses"] count]>0) {
+                        self.addressesArray = [[tempDict objectForKey:@"addresses"] mutableCopy];
+                    }
                 }
             }
+
+        }
+        else {
+            UIAlertView * tempAlert = [[[UIAlertView alloc] initWithTitle:@"Attention" message:@"Asset is not available already checked out" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+            [tempAlert show];
         }
     }
     if ([pickerView tag] == 2) {
-        self.addressTextView.text =  [NSString stringWithFormat:@"%@, %@, %@, %@, %@",[[self.addressesArray objectAtIndex:row] objectForKey:@"address1"],[[self.addressesArray objectAtIndex:row] objectForKey:@"city"],[[self.addressesArray objectAtIndex:row] objectForKey:@"state"],[[self.addressesArray objectAtIndex:row] objectForKey:@"zip_postal_code"],[[self.addressesArray objectAtIndex:row] objectForKey:@"country"]];
+        self.addressTextView.text =  [NSString stringWithFormat:@"%@\n%@, %@, %@",[[self.addressesArray objectAtIndex:row] objectForKey:@"address1"],[[self.addressesArray objectAtIndex:row] objectForKey:@"city"],[[self.addressesArray objectAtIndex:row] objectForKey:@"state"],[[self.addressesArray objectAtIndex:row] objectForKey:@"zip_postal_code"]];
     }
     if ([pickerView tag] == 3) {
         self.departmentTextField.text =  [[[self.dataDict objectForKey:@"departments"] objectAtIndex:row] objectForKey:@"name"];

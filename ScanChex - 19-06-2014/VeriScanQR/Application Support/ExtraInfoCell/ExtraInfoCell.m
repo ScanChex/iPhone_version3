@@ -38,14 +38,14 @@
 }
 -(void)updateCellWithComponents:(ComponentDTO *)component{
 
-    self.description.text =[NSString stringWithFormat:@"  %@ \n %@",component.compID,component.description];
+    self.txtDescription.text =[NSString stringWithFormat:@"  %@ \n %@",component.compID,component.description];
     self.qty.text=component.qty;
     self.price.text=component.price;
     self.total.text=component.totalPrice;
 }
 
 - (void)dealloc {
-    [_description release];
+    [_txtDescription release];
     [_price release];
     [_total release];
     [_notes release];

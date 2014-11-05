@@ -98,11 +98,21 @@
 		04E0EF2319096C740088B808 /* RoutesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E0EF2119096C740088B808 /* RoutesViewController.xib */; };
 		04F75745195332610017D5AD /* map_go.png in Resources */ = {isa = PBXBuildFile; fileRef = 04F75744195332610017D5AD /* map_go.png */; };
 		04F757471953326B0017D5AD /* map_edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 04F757461953326B0017D5AD /* map_edit.png */; };
+		04FA934F19C17C7800394C6B /* DSTableViewWithDynamicHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FA934E19C17C7800394C6B /* DSTableViewWithDynamicHeight.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		04FA935119C18DE000394C6B /* newMesage.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FA935019C18DE000394C6B /* newMesage.png */; };
 		04FB716B18C77D190029D876 /* libzbar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04FB716A18C77D190029D876 /* libzbar.a */; };
 		04FB716D18C77D390029D876 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04FB716C18C77D390029D876 /* libFlurry.a */; };
 		04FB716F18C77D810029D876 /* libPayPalMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04FB716E18C77D810029D876 /* libPayPalMobile.a */; };
 		04FE51011912BC7A009D2FAA /* bottomBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FE50FF1912BC7A009D2FAA /* bottomBar.png */; };
 		04FE51021912BC7A009D2FAA /* bottomBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FE51001912BC7A009D2FAA /* bottomBar@2x.png */; };
+		63177DF21A009E7A0041AFD6 /* Icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 63177DF11A009E7A0041AFD6 /* Icon-120.png */; };
+		63177DF41A00A1F30041AFD6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63177DF31A00A1F30041AFD6 /* Images.xcassets */; };
+		637B6A7619FA86CD00DB93D2 /* CheckOutTodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 637B6A7419FA86CD00DB93D2 /* CheckOutTodayViewController.m */; };
+		637B6A7719FA86CD00DB93D2 /* CheckOutTodayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 637B6A7519FA86CD00DB93D2 /* CheckOutTodayViewController.xib */; };
+		63D5705319FE41600013B599 /* FTWCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D5705219FE41600013B599 /* FTWCache.m */; };
+		63D5705619FE423F0013B599 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D5705519FE423F0013B599 /* NSString+MD5.m */; };
+		63D5705919FE42AD0013B599 /* WebImageOperations.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D5705819FE42AD0013B599 /* WebImageOperations.m */; };
+		63FC1D5319FFBFCE00C68DCE /* Icon120*120.png in Resources */ = {isa = PBXBuildFile; fileRef = 63FC1D5219FFBFCE00C68DCE /* Icon120*120.png */; };
 		9D1753881711E50400675ACA /* UIDevice-Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1753871711E50400675ACA /* UIDevice-Hardware.m */; };
 		9D1D180C1688D6BB0036C024 /* AssetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1D180A1688D6BB0036C024 /* AssetVC.m */; };
 		9D1D180D1688D6BB0036C024 /* AssetVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D1D180B1688D6BB0036C024 /* AssetVC.xib */; };
@@ -535,11 +545,27 @@
 		04E0EF2119096C740088B808 /* RoutesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoutesViewController.xib; sourceTree = "<group>"; };
 		04F75744195332610017D5AD /* map_go.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_go.png; sourceTree = "<group>"; };
 		04F757461953326B0017D5AD /* map_edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_edit.png; sourceTree = "<group>"; };
+		04FA934C19C17C7800394C6B /* DSTableViewCellWithDynamicHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSTableViewCellWithDynamicHeight.h; sourceTree = "<group>"; };
+		04FA934D19C17C7800394C6B /* DSTableViewWithDynamicHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSTableViewWithDynamicHeight.h; sourceTree = "<group>"; };
+		04FA934E19C17C7800394C6B /* DSTableViewWithDynamicHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSTableViewWithDynamicHeight.m; sourceTree = "<group>"; };
+		04FA935019C18DE000394C6B /* newMesage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newMesage.png; sourceTree = "<group>"; };
 		04FB716A18C77D190029D876 /* libzbar.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libzbar.a; sourceTree = "<group>"; };
 		04FB716C18C77D390029D876 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
 		04FB716E18C77D810029D876 /* libPayPalMobile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPayPalMobile.a; sourceTree = "<group>"; };
 		04FE50FF1912BC7A009D2FAA /* bottomBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottomBar.png; sourceTree = "<group>"; };
 		04FE51001912BC7A009D2FAA /* bottomBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottomBar@2x.png"; sourceTree = "<group>"; };
+		63177DF11A009E7A0041AFD6 /* Icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-120.png"; sourceTree = "<group>"; };
+		63177DF31A00A1F30041AFD6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ScanChex/Images.xcassets; sourceTree = "<group>"; };
+		637B6A7319FA86CD00DB93D2 /* CheckOutTodayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckOutTodayViewController.h; sourceTree = "<group>"; };
+		637B6A7419FA86CD00DB93D2 /* CheckOutTodayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckOutTodayViewController.m; sourceTree = "<group>"; };
+		637B6A7519FA86CD00DB93D2 /* CheckOutTodayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckOutTodayViewController.xib; sourceTree = "<group>"; };
+		63D5705119FE41600013B599 /* FTWCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTWCache.h; sourceTree = "<group>"; };
+		63D5705219FE41600013B599 /* FTWCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTWCache.m; sourceTree = "<group>"; };
+		63D5705419FE423F0013B599 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
+		63D5705519FE423F0013B599 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
+		63D5705719FE42AD0013B599 /* WebImageOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebImageOperations.h; sourceTree = "<group>"; };
+		63D5705819FE42AD0013B599 /* WebImageOperations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebImageOperations.m; sourceTree = "<group>"; };
+		63FC1D5219FFBFCE00C68DCE /* Icon120*120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon120*120.png"; sourceTree = "<group>"; };
 		9D1753861711E50400675ACA /* UIDevice-Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice-Hardware.h"; sourceTree = "<group>"; };
 		9D1753871711E50400675ACA /* UIDevice-Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice-Hardware.m"; sourceTree = "<group>"; };
 		9D1D18091688D6BB0036C024 /* AssetVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetVC.h; sourceTree = "<group>"; };
@@ -1193,6 +1219,19 @@
 			path = Signature;
 			sourceTree = "<group>";
 		};
+		63D5705019FE414D0013B599 /* FTW */ = {
+			isa = PBXGroup;
+			children = (
+				63D5705119FE41600013B599 /* FTWCache.h */,
+				63D5705219FE41600013B599 /* FTWCache.m */,
+				63D5705419FE423F0013B599 /* NSString+MD5.h */,
+				63D5705519FE423F0013B599 /* NSString+MD5.m */,
+				63D5705719FE42AD0013B599 /* WebImageOperations.h */,
+				63D5705819FE42AD0013B599 /* WebImageOperations.m */,
+			);
+			name = FTW;
+			sourceTree = "<group>";
+		};
 		9D1D18031688D6900036C024 /* AssetVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -1535,6 +1574,7 @@
 		9D75C2BD1679CA5F00A777E3 /*  External Sources */ = {
 			isa = PBXGroup;
 			children = (
+				63D5705019FE414D0013B599 /* FTW */,
 				0495F11A1977E2F3000D1C4C /* ILPDFKit */,
 				047858FB1920B05600BDD6C1 /* MMPickerView */,
 				04A401AB19140C2B004EA31F /* CustomIOS7AlertView.h */,
@@ -1597,6 +1637,7 @@
 			children = (
 				04D75BEE1923666F00CC9012 /* employeeCard.png */,
 				0469B35D1911780700D4E0E0 /* Chat.png */,
+				63FC1D5219FFBFCE00C68DCE /* Icon120*120.png */,
 				0454603618F5AE4400FF460C /* lightningImage.png */,
 				0454603018F5AC4600FF460C /* detailIcon.png */,
 				0454603418F5ADD600FF460C /* excalamationIcon.png */,
@@ -1613,6 +1654,7 @@
 			isa = PBXGroup;
 			children = (
 				9D92F099174AB6A200EDAD60 /* Icon@2x.png */,
+				63177DF11A009E7A0041AFD6 /* Icon-120.png */,
 				9D92F097174AB69D00EDAD60 /* Icon.png */,
 				9DFAE8C816D2C5C10054C82B /* Default-568h@2x.png */,
 				9D75C2C81679CF0400A777E3 /* Default.png */,
@@ -1820,6 +1862,7 @@
 		9DA5625A1678CBB5006CC95E = {
 			isa = PBXGroup;
 			children = (
+				63177DF31A00A1F30041AFD6 /* Images.xcassets */,
 				9DA5626F1678CBB5006CC95E /* VeriScanQR */,
 				9DA562681678CBB5006CC95E /* Frameworks */,
 				9DA562661678CBB5006CC95E /* Products */,
@@ -2264,6 +2307,10 @@
 		9DE8D5E3187BE82100320E1F /* MessageCentreVC */ = {
 			isa = PBXGroup;
 			children = (
+				04FA935019C18DE000394C6B /* newMesage.png */,
+				04FA934C19C17C7800394C6B /* DSTableViewCellWithDynamicHeight.h */,
+				04FA934D19C17C7800394C6B /* DSTableViewWithDynamicHeight.h */,
+				04FA934E19C17C7800394C6B /* DSTableViewWithDynamicHeight.m */,
 				9DE8D5E4187BE84E00320E1F /* MessageCentreVC.h */,
 				9DE8D5E5187BE84E00320E1F /* MessageCentreVC.m */,
 				9DE8D5E6187BE84E00320E1F /* MessageCentreVC.xib */,
@@ -2322,6 +2369,9 @@
 				04515EF91997538E00785D18 /* CheckOutConfirmationViewController.h */,
 				04515EFA1997538E00785D18 /* CheckOutConfirmationViewController.m */,
 				04515EFB1997538E00785D18 /* CheckOutConfirmationViewController.xib */,
+				637B6A7319FA86CD00DB93D2 /* CheckOutTodayViewController.h */,
+				637B6A7419FA86CD00DB93D2 /* CheckOutTodayViewController.m */,
+				637B6A7519FA86CD00DB93D2 /* CheckOutTodayViewController.xib */,
 				04146E8F19953FEC00FD3B37 /* cb_green_off.png */,
 				04146E9019953FEC00FD3B37 /* cb_green_off@2x.png */,
 				04146E9119953FEC00FD3B37 /* cb_green_on.png */,
@@ -2410,6 +2460,7 @@
 				9D75C368167A37E100A777E3 /* LASER.WAV in Resources */,
 				9D7AED1A167B76CE006759A0 /* ScanVC.xib in Resources */,
 				9DE8D5EE187BF89800320E1F /* MessageCell.xib in Resources */,
+				63177DF21A009E7A0041AFD6 /* Icon-120.png in Resources */,
 				9DE8D5F8187C24B000320E1F /* exclamation_mark.png in Resources */,
 				9D85EB9D167E783A004A3C7A /* ResetPasswordVCViewController.xib in Resources */,
 				0454603118F5AC4600FF460C /* detailIcon.png in Resources */,
@@ -2419,9 +2470,11 @@
 				9DE8D5FF187C2F0200320E1F /* ic_jog_dial_answer.png in Resources */,
 				9DCEE20B1686340E00540E96 /* TicketCell.xib in Resources */,
 				9DCEE20D168636BA00540E96 /* grdint.png in Resources */,
+				63FC1D5319FFBFCE00C68DCE /* Icon120*120.png in Resources */,
 				9DE8D5F7187C24B000320E1F /* check_mark@2x.png in Resources */,
 				9D1D180D1688D6BB0036C024 /* AssetVC.xib in Resources */,
 				04740729199BAE1500007BEC /* greenCheckMark@2x.png in Resources */,
+				04FA935119C18DE000394C6B /* newMesage.png in Resources */,
 				9DE8D601187C2F8600320E1F /* right_arrow.png in Resources */,
 				9D1D18121688D6EF0036C024 /* DocumentsVC.xib in Resources */,
 				9D1D18171688D7160036C024 /* HistoryVC.xib in Resources */,
@@ -2470,6 +2523,7 @@
 				04F757471953326B0017D5AD /* map_edit.png in Resources */,
 				9D9C698C16B9433F00F496D3 /* HistoryCell.xib in Resources */,
 				9D9C699016B9467300F496D3 /* notes.png in Resources */,
+				63177DF41A00A1F30041AFD6 /* Images.xcassets in Resources */,
 				9D9C699116B9467300F496D3 /* video.png in Resources */,
 				9D9C699216B9467300F496D3 /* voice.png in Resources */,
 				0454603518F5ADD600FF460C /* excalamationIcon.png in Resources */,
@@ -2488,6 +2542,7 @@
 				04687A5919839C2D00F6BE96 /* CheckOutOptionsViewController.xib in Resources */,
 				9DCAB15B16C64CCD00CB36C4 /* submit@2x.png in Resources */,
 				9DB0AFA616C78F34003F8756 /* SplashVC.xib in Resources */,
+				637B6A7719FA86CD00DB93D2 /* CheckOutTodayViewController.xib in Resources */,
 				9DA15B2216CAD932002A268B /* Photo_not_available.jpg in Resources */,
 				9DAF605416CFFA750031BE14 /* SplashiPhone5.xib in Resources */,
 				9DFAE8C916D2C5C10054C82B /* Default-568h@2x.png in Resources */,
@@ -2625,6 +2680,7 @@
 				0495F1481977E2F3000D1C4C /* PDFArray.m in Sources */,
 				04BA49391906B47B0064D48B /* SharedManager.m in Sources */,
 				9DB683B5167C662D0002DC40 /* SBJSON.m in Sources */,
+				63D5705919FE42AD0013B599 /* WebImageOperations.m in Sources */,
 				9DB683B6167C662D0002DC40 /* SBJsonBase.m in Sources */,
 				9DB683B7167C662D0002DC40 /* SBJsonParser.m in Sources */,
 				9DB683B8167C662D0002DC40 /* SBJsonWriter.m in Sources */,
@@ -2646,10 +2702,12 @@
 				9D1D18161688D7160036C024 /* HistoryVC.m in Sources */,
 				9D1D18201688D7600036C024 /* MapVC.m in Sources */,
 				045957921945AE34006909B1 /* UIView+Hierarchy.m in Sources */,
+				04FA934F19C17C7800394C6B /* DSTableViewWithDynamicHeight.m in Sources */,
 				9D1D182B1688DB920036C024 /* AddressesDTO.m in Sources */,
 				047858FE1920B05600BDD6C1 /* MMPickerView.m in Sources */,
 				0495F1471977E2F3000D1C4C /* PDFViewController.m in Sources */,
 				9D1D182E1688DCC30036C024 /* MyLocation.m in Sources */,
+				63D5705319FE41600013B599 /* FTWCache.m in Sources */,
 				9DBA10C0169CB10E00F7EB7E /* FillBlankCell.m in Sources */,
 				0495F1461977E2F3000D1C4C /* PDFSerializer.m in Sources */,
 				04A401AD19140C2B004EA31F /* CustomIOS7AlertView.m in Sources */,
@@ -2677,6 +2735,7 @@
 				9D3310F3169D9899004EB03E /* ReaderThumbCache.m in Sources */,
 				9D3310F4169D9899004EB03E /* ReaderThumbFetch.m in Sources */,
 				9D3310F5169D9899004EB03E /* ReaderThumbQueue.m in Sources */,
+				63D5705619FE423F0013B599 /* NSString+MD5.m in Sources */,
 				04D014FB1993CD0100FC2365 /* CheckOutStepTwoViewController.m in Sources */,
 				9D3310F6169D9899004EB03E /* ReaderThumbRender.m in Sources */,
 				9D3310F7169D9899004EB03E /* ReaderThumbRequest.m in Sources */,
@@ -2711,6 +2770,7 @@
 				9DB0AFA516C78F34003F8756 /* SplashVC.m in Sources */,
 				9DF614D216D69FBD00B1E208 /* AdminVC.m in Sources */,
 				0495F1531977E2F3000D1C4C /* PDFFormButtonField.m in Sources */,
+				637B6A7619FA86CD00DB93D2 /* CheckOutTodayViewController.m in Sources */,
 				0459578F1945AE34006909B1 /* IQTitleBarButtonItem.m in Sources */,
 				9D4D3F6716D7F44000F75E59 /* UIImage+UIImage_Extra.m in Sources */,
 				9D4D3F6816D7F44000F75E59 /* UIImageView+UIImage_Scale.m in Sources */,
@@ -2775,8 +2835,8 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Rexhep  Aliu (6VW3W5X7HZ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Rexhep  Aliu (6VW3W5X7HZ)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Veriscan, Inc (EHZ88WLSRM)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Veriscan, Inc (EHZ88WLSRM)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -2792,8 +2852,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				"LIBRARY_SEARCH_PATHS[arch=*]" = "";
 				ONLY_ACTIVE_ARCH = NO;
-				PROVISIONING_PROFILE = "ABF11AFB-1DB3-462D-8079-FF3B2AE89370";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "ABF11AFB-1DB3-462D-8079-FF3B2AE89370";
+				PROVISIONING_PROFILE = "6ea196fd-731f-42e7-8c81-eba1a6c7244b";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6ea196fd-731f-42e7-8c81-eba1a6c7244b";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv7 arm7a";
 			};
@@ -2807,8 +2867,8 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Rexhep  Aliu (6VW3W5X7HZ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Rexhep  Aliu (6VW3W5X7HZ)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Veriscan, Inc (EHZ88WLSRM)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Veriscan, Inc (EHZ88WLSRM)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -2817,8 +2877,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "ABF11AFB-1DB3-462D-8079-FF3B2AE89370";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "ABF11AFB-1DB3-462D-8079-FF3B2AE89370";
+				PROVISIONING_PROFILE = "6ea196fd-731f-42e7-8c81-eba1a6c7244b";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6ea196fd-731f-42e7-8c81-eba1a6c7244b";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "armv7 arm7a";
@@ -2828,39 +2888,8 @@
 		9DA5628A1678CBB5006CC95E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Chris Hunt (MK8PHSSXK4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chris Hunt (MK8PHSSXK4)";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "VeriScanQR/ScanChex-Prefix.pch";
-				"HEADER_SEARCH_PATHS[arch=*]" = /usr/include/libxml2;
-				INFOPLIST_FILE = "VeriScanQR/ScanChex-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\\\\\\\\\\\\\\\"$(SRCROOT)/VeriScanQR/ZBarSDK\\\\\\\\\\\\\\\"",
-					"\\\\\\\\\\\\\\\"$(SRCROOT)/VeriScanQR/\\\\\\\\\\\\\\ External\\\\\\\\\\\\\\ Sources/Flurry\\\\\\\\\\\\\\\"",
-					"/Volumes/DATA/Job/Veriscan/Version\\ 3\\ 3rd\\ march/New\\ Version\\ 3.0/veriscan_ios/iPhoneVersion\\ -FinalVersion/VeriScanQR/ZBarSDK",
-					"/Volumes/DATA/Job/Veriscan/Version\\ 3\\ 3rd\\ march/New\\ Version\\ 3.0/veriscan_ios/iPhoneVersion\\ -FinalVersion/VeriScanQR/\\ External\\ Sources/Flurry",
-					"/Volumes/DATA/Job/Veriscan/Version\\ 3\\ 3rd\\ march/New\\ Version\\ 3.0/veriscan_ios/iPhoneVersion\\ -FinalVersion/VeriScanQR/\\ External\\ Sources/PayPalMobile",
-					"/Volumes/DATA/Job/Veriscan/Version\\ 3\\ 3rd\\ march/New\\ Version\\ 3.0/veriscan_ios/iPhoneVersion\\ -FinalVersion/VeriScanQR/\\ External\\ Sources/lame",
-				);
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = (
-					"-lc++",
-					"-ObjC",
-				);
-				PRODUCT_NAME = ScanChex;
-				PROVISIONING_PROFILE = "B3D6E688-9D29-4510-BA9B-A8AA92C238D3";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B3D6E688-9D29-4510-BA9B-A8AA92C238D3";
-				SDKROOT = iphoneos;
-				VALID_ARCHS = armv7;
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		9DA5628B1678CBB5006CC95E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Veriscan, Inc (EHZ88WLSRM)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Veriscan, Inc (EHZ88WLSRM)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2872,18 +2901,53 @@
 					"$(inherited)",
 					"\\\\\\\\\\\\\\\"$(SRCROOT)/VeriScanQR/ZBarSDK\\\\\\\\\\\\\\\"",
 					"\\\\\\\\\\\\\\\"$(SRCROOT)/VeriScanQR/\\\\\\\\\\\\\\ External\\\\\\\\\\\\\\ Sources/Flurry\\\\\\\\\\\\\\\"",
-					"/Volumes/DATA/Job/Veriscan/Version\\ 3\\ 3rd\\ march/New\\ Version\\ 3.0/veriscan_ios/iPhoneVersion\\ -FinalVersion/VeriScanQR/ZBarSDK",
-					"/Volumes/DATA/Job/Veriscan/Version\\ 3\\ 3rd\\ march/New\\ Version\\ 3.0/veriscan_ios/iPhoneVersion\\ -FinalVersion/VeriScanQR/\\ External\\ Sources/Flurry",
-					"/Volumes/DATA/Job/Veriscan/Version\\ 3\\ 3rd\\ march/New\\ Version\\ 3.0/veriscan_ios/iPhoneVersion\\ -FinalVersion/VeriScanQR/\\ External\\ Sources/PayPalMobile",
-					"/Volumes/DATA/Job/Veriscan/Version\\ 3\\ 3rd\\ march/New\\ Version\\ 3.0/veriscan_ios/iPhoneVersion\\ -FinalVersion/VeriScanQR/\\ External\\ Sources/lame",
+					"$(SRCROOT)//VeriScanQR/ZBarSDK",
+					"$(SRCROOT)/VeriScanQR/\\ External\\ Sources/Flurry",
+					"$(SRCROOT)//VeriScanQR/\\ External\\ Sources/PayPalMobile",
+					"$(SRCROOT)//VeriScanQR/\\ External\\ Sources/lame",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"-lc++",
+					"-ObjC",
+				);
+				PRODUCT_NAME = ScanChex;
+				PROVISIONING_PROFILE = "03e4cb05-6a8b-4ec9-bd41-73db011514b7";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "03e4cb05-6a8b-4ec9-bd41-73db011514b7";
+				SDKROOT = iphoneos;
+				VALID_ARCHS = armv7;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		9DA5628B1678CBB5006CC95E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Veriscan, Inc (EHZ88WLSRM)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Veriscan, Inc (EHZ88WLSRM)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "VeriScanQR/ScanChex-Prefix.pch";
+				"HEADER_SEARCH_PATHS[arch=*]" = /usr/include/libxml2;
+				INFOPLIST_FILE = "VeriScanQR/ScanChex-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\\\\\\\\\\\\\\\"$(SRCROOT)/VeriScanQR/ZBarSDK\\\\\\\\\\\\\\\"",
+					"\\\\\\\\\\\\\\\"$(SRCROOT)/VeriScanQR/\\\\\\\\\\\\\\ External\\\\\\\\\\\\\\ Sources/Flurry\\\\\\\\\\\\\\\"",
+					"$(SRCROOT)//VeriScanQR/ZBarSDK",
+					"$(SRCROOT)//VeriScanQR/\\ External\\ Sources/Flurry",
+					"$(SRCROOT)//VeriScanQR/\\ External\\ Sources/PayPalMobile",
+					"$(SRCROOT)//VeriScanQR/\\ External\\ Sources/lame",
 				);
 				OTHER_LDFLAGS = (
 					"-lc++",
 					"-ObjC",
 				);
 				PRODUCT_NAME = ScanChex;
-				PROVISIONING_PROFILE = "af64616c-c2b3-4982-8534-6ef672198f43";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "af64616c-c2b3-4982-8534-6ef672198f43";
+				PROVISIONING_PROFILE = "03e4cb05-6a8b-4ec9-bd41-73db011514b7";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "03e4cb05-6a8b-4ec9-bd41-73db011514b7";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;

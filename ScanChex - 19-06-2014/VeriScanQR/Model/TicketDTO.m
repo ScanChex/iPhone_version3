@@ -40,6 +40,7 @@
 @synthesize technician = _technician;
 
 
+
 +(id)initWithTicketDTO:(NSDictionary *)data{
 
 
@@ -67,7 +68,7 @@
     self.totalCheckpoints = [dictionary valueForKey:@"total_checkpoints"];
     self.check_point_ids = [dictionary valueForKey:@"check_point_ids"];
     self.technician = [dictionary valueForKey:@"technician"];
-
+  
     if (![[dictionary valueForKey:@"address2"] isKindOfClass:[NSNull class]]) {
         
      //   self.address2=[TicketAddressDTO initWithTicketAdderss:[dictionary valueForKey:@"address2"]];

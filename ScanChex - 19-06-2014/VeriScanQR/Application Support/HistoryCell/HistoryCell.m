@@ -57,7 +57,8 @@
         [self.yes setImage:[UIImage imageNamed:@"friend_unselected"]];
         [self.no setImage:[UIImage imageNamed:@"friend_unselected"]];
     }
-    [self.ticketNoLabel setText:ticket.serialNumber];
+    TicketInfoDTO * tempTicketInfo = [[VSSharedManager sharedManager] selectedTicketInfo];
+    [self.ticketNoLabel setText:ticket.ticketID];
     
     if ([ticket.notes count]==0){ self.notes.hidden=YES; self.notesLabel.hidden = YES; }else{ self.notes.hidden=NO;self.notesLabel.hidden = NO;self.notesLabel.text = [NSString stringWithFormat:@"%d",[ticket.notes count]]; [self.notesLabel.layer setCornerRadius:5.0f];}
     if ([ticket.voice count]==0){ self.voice.hidden=YES; self.voiceLabel.hidden = YES;}else{ self.voice.hidden=NO;self.voiceLabel.hidden = NO;self.voiceLabel.text = [NSString stringWithFormat:@"%d",[ticket.voice count]];[self.voiceLabel.layer setCornerRadius:5.0f];}

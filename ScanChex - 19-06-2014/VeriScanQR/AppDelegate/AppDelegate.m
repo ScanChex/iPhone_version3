@@ -32,6 +32,9 @@
     [[IQKeyboardManager sharedManager] setEnable:YES];
     [[IQKeyboardManager sharedManager] setEnableAutoToolbar:YES];
     [[SharedManager getInstance] setIsMessage:FALSE];
+
+    [[UIDevice currentDevice] setBatteryMonitoringEnabled:YES];
+
 //    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     if (![[NSUserDefaults standardUserDefaults] objectForKey:@"color"]) {
@@ -65,8 +68,23 @@
 
     DLog(@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"apns_device_token"]);
     // Let the device know we want to receive push notifications
-	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:
-     (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+
+    //[[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+    // (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    
+
+    //Push Notification change for IOS 8
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }
+    else
+    {
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+         (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    }
+
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     //clear notifications

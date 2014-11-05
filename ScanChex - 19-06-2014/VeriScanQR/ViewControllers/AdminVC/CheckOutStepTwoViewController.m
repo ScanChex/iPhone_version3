@@ -11,6 +11,11 @@
 #import "SharedManager.h"
 #import "WebServiceManager.h"
 #import "CheckOutConfirmationViewController.h"
+#import "FTWCache.h"
+#import "WebImageOperations.h"
+#import "NSString+MD5.h"
+
+
 @interface CheckOutStepTwoViewController ()
 
 @end
@@ -74,6 +79,7 @@
     self.signatureView = self.signatureController.view;
     [self.signatureView setBackgroundColor:[UIColor whiteColor]];
     [super viewDidLoad];
+    [self.signatureController.signatureView setUserInteractionEnabled:FALSE];
 //    [self.descriptionLabel setText:[self.initialData objectForKey:@"description"]];
 //    [self.serialNumberLabel setText:[self.initialData objectForKey:@"serial_number"]];
     [self.clientTextField setText:self.currentSelectedClientName];
@@ -83,6 +89,8 @@
         NSDictionary * tempDict = [[self.assetData objectForKey:@"assets"]objectAtIndex:i];
         if ([[tempDict objectForKey:@"id"] isEqualToString:self.selectedAsset]) {
             [self.assetIdLabel setText:[tempDict objectForKey:@"asset_id"]];
+            self.assetImageView.layer.borderWidth=3.0;
+            self.assetImageView.layer.borderColor=[UIColor lightGrayColor].CGColor;
             [self.assetImageView setImageURL:[NSURL URLWithString:[tempDict objectForKey:@"asset_photo"]]];
             self.currentSelectedAssetPhoto = [tempDict objectForKey:@"asset_photo"];
             self.currentSelectedAssetId = [tempDict objectForKey:@"id"];
@@ -121,6 +129,9 @@
 #pragma mark Button Pressed Events
 -(IBAction)checkButtonPressed:(id)sender {
     [self.checkButton setSelected:!self.checkButton.selected];
+    if ([self.checkButton isSelected]) {
+        [self.signatureController.signatureView setUserInteractionEnabled:TRUE];
+    }
 }
 - (IBAction)backButtonPressed:(id)sender {
     
@@ -169,6 +180,7 @@
                              NSString * temp = [NSString stringWithFormat:@"%@",[dict objectForKey:@"ticket_id"]];
                              [tempDict setObject:[self.dueTextField text] forKey:@"return"];
                              [tempDict setObject:temp forKey:@"ticket_id"];
+                             [tempDict setObject:[dict objectForKey:@"ticket_number"] forKey:@"ticket_number"];
                              [self.navigationController pushViewController:[CheckOutConfirmationViewController initWithData:tempDict] animated:YES];
                              
                          }
@@ -204,6 +216,10 @@
          [SVProgressHUD dismiss];
          if (!error) {
              self.uploadedSignaturePath = [data mutableCopy];
+             [self.signatureController.signatureView erase];
+             [self.signatureController.signatureView setUserInteractionEnabled:NO];
+             UIAlertView * tempAlert = [[[UIAlertView alloc]initWithTitle:@"Signature" message:@"Signature Accepted" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+             [tempAlert show];
          }
          
          
@@ -317,10 +333,104 @@
     
 }
 
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    if ([pickerView tag] == 0) {
-        return [[[self.assetData objectForKey:@"employees"] objectAtIndex:row] objectForKey:@"full_name"];
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+{
+
+  if ([pickerView tag] == 0) {
+    UIView *pickerCustomView = (id)view;
+    UILabel *pickerViewLabel;
+    UIImageView *pickerImageView;
+    
+ 
+  if (!pickerCustomView) {
+    pickerCustomView= [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f,
+                                                               [pickerView rowSizeForComponent:component].width - 10.0f, [pickerView rowSizeForComponent:component].height)];
+    pickerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(90.0f, 0.0f, 35.0f, 35.0f)];
+    pickerViewLabel= [[UILabel alloc] initWithFrame:CGRectMake(130.0f, -5.0f,
+                                                               [pickerView rowSizeForComponent:component].width - 10.0f, [pickerView rowSizeForComponent:component].height)];
+    // the values for x and y are specific for my example
+    [pickerCustomView addSubview:pickerImageView];
+    [pickerCustomView addSubview:pickerViewLabel];
+  }
+    
+    
+    NSString *photoURL = [[[self.assetData objectForKey:@"employees"] objectAtIndex:row] objectForKey:@"photo"];
+    
+    NSString *key = [photoURL MD5Hash];
+    NSData *data = [FTWCache objectForKey:key];
+    if (data) {
+      UIImage *image = [UIImage imageWithData:data];
+      pickerImageView.image = image;
+      
+    } else {
+      
+      [WebImageOperations processImageDataWithURLString:photoURL andBlock:^(NSData *imageData) {
+        if (self.view.window) {
+          [FTWCache setObject:imageData forKey:key];
+          UIImage *image = [UIImage imageWithData:imageData];
+          dispatch_async(dispatch_get_main_queue(), ^{
+            
+            pickerImageView.image = image;
+          });
+          
+        }
+        
+      }];
     }
+    
+
+    
+    NSLog(@" photo %@",[[[self.assetData objectForKey:@"employees"] objectAtIndex:row] objectForKey:@"photo"]);
+  //[UIImage imageNamed:@"01.png"]
+  //  NSURL *imageURL = [NSURL URLWithString:[[[self.assetData objectForKey:@"employees"] objectAtIndex:row] objectForKey:@"photo"]];
+  //  NSData * imageData = [NSData dataWithContentsOfURL:imageURL];  // pickerImageView.image = [UIImage imageWithData: imageData];
+   // pickerImageView.image = [UIImage imageWithData:imageData];
+  pickerViewLabel.backgroundColor = [UIColor clearColor];
+  pickerViewLabel.text = [[[self.assetData objectForKey:@"employees"] objectAtIndex:row] objectForKey:@"full_name"]; // where therapyTypes[row] is a specific example from my code
+ // pickerViewLabel.font = [UIFont fontWithName:@"avenir" size:14];
+    return pickerCustomView;
+  }
+
+  if ([pickerView tag] == 1) {
+    UILabel *thisLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 40)];
+    thisLabel.text = [[[self.assetData objectForKey:@"departments"] objectAtIndex:row] objectForKey:@"name"];
+    
+    return thisLabel;
+  }
+  if ([pickerView tag] == 3) {
+    UILabel *thisLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 40)];
+    thisLabel.text = [[[self.assetData objectForKey:@"addresses"] objectAtIndex:row] objectForKey:@"address1"];
+    
+    return thisLabel;
+    
+  }
+  if ([pickerView tag] == 4) {
+    UILabel *thisLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 40)];
+    thisLabel.text = [[[self.assetData objectForKey:@"clients"] objectAtIndex:row] objectForKey:@"name"];
+    
+    return thisLabel;
+    
+  }
+  if ([pickerView tag] == 5) {
+    UILabel *thisLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 40)];
+    thisLabel.text = [self.toleranceArray objectAtIndex:row];
+    
+    return thisLabel;
+    
+  }
+  else {
+    return nil;
+  }
+
+  
+  }
+
+
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+//    if ([pickerView tag] == 0) {
+//        return [[[self.assetData objectForKey:@"employees"] objectAtIndex:row] objectForKey:@"full_name"];
+//    }
     if ([pickerView tag] == 1) {
         return [[[self.assetData objectForKey:@"departments"] objectAtIndex:row] objectForKey:@"name"];
     }

@@ -11,7 +11,7 @@
 
 @interface ExtraInfoCell : UITableViewCell
 
-@property (retain, nonatomic) IBOutlet UITextView *description;
+@property (retain, nonatomic) IBOutlet UITextView *txtDescription;
 @property (retain, nonatomic) IBOutlet UILabel *price;
 @property (retain, nonatomic) IBOutlet UILabel *total;
 @property (retain, nonatomic) IBOutlet UILabel *qty;

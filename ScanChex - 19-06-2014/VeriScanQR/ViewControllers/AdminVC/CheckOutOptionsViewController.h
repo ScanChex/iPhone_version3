@@ -13,4 +13,5 @@
 - (IBAction)backButtonPressed:(id)sender;
 - (IBAction)scanCode:(id)sender;
 - (IBAction)manualLookUp:(id)sender;
+- (IBAction)checkedOutToday:(id)sender;
 @end

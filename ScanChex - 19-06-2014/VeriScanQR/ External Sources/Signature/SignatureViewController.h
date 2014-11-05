@@ -15,9 +15,9 @@
 
 
 @interface SignatureViewController : UIViewController
-
+@property (strong, nonatomic) IBOutlet SignatureView *signatureView;
 @property (strong, nonatomic) id<SignatureViewControllerDelegate> delegate;
-
+@property (strong, nonatomic) IBOutlet UITextField *signatureTextField;
 -(void)checkSign;
 
 @end

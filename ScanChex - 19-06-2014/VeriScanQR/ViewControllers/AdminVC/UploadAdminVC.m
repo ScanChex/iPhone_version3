@@ -131,7 +131,7 @@
         [self.asset setImageURL:[NSURL URLWithString:assetInfo.photo]];
     }
         
-    self.description.text=assetInfo.description;
+    self.lblDescription.text=assetInfo.description;
     self.serialNumber.text  =![assetInfo.serialNumber isEqualToString:@"<null>"] ? assetInfo.serialNumber : @"N/A";
     self.address.text =[NSString stringWithFormat:@"%@ \n%@, %@ %@",assetInfo.street,assetInfo.city,assetInfo.state,assetInfo.postalCode];
     self.lastScannedDate.text=![assetInfo.scannedDate isEqualToString:@"<null>"] ? assetInfo.scannedDate : @"N/A";
@@ -150,7 +150,7 @@
     [_logo release];
     [_asset release];
     [_assetID release];
-    [_description release];
+    [_lblDescription release];
     [_serialNumber release];
     [_address release];
     [_lastScannedDate release];

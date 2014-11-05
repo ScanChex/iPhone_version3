@@ -56,6 +56,7 @@
         [self.replyButton setHidden:NO];
     }
     self.lblMessage.text = messageDTO.message;
+    [self.lblMessage setNumberOfLines:0];
     NSString * tempstring  = messageDTO.sender_photo;
     tempstring = [tempstring stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     [self.imgMessage setImageURL:[NSURL URLWithString:tempstring]];
@@ -78,4 +79,9 @@
     [_timeLabel release];
     [super dealloc];
 }
+
++ (CGFloat)heightForCellWidth:(CGFloat)cellWidth {
+    return cellWidth / 2;
+};
+
 @end

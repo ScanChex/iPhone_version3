@@ -9,6 +9,7 @@
 #import "BaseVC.h"
 #import "WebServiceManager.h"
 #import "CustomIOS7AlertView.h"
+#import "DSTableViewWithDynamicHeight.h"
 
 @interface MessageCentreVC : BaseVC<UITableViewDelegate, UITableViewDataSource,UIAlertViewDelegate>
 

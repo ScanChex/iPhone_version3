@@ -107,7 +107,12 @@
 
 
     [self resignKeyBoard];
-    
+  
+//  UserDTO *user =[[VSSharedManager sharedManager] currentUser];
+//  
+//  if ( ( [user.name isEqual:[NSNull null]] ) || ( [user.name length] == 0 ) ) {
+//  
+  
     [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
     
     [[WebServiceManager sharedManager] loginWithCustomerID:self.companyID.text userID:self.userID.text password:self.password.text withCompletionHandler:^(id data,BOOL error){
@@ -125,10 +130,17 @@
             
         }
         else
-            [self initWithPromptTitle:@"Network Error" message:(NSString*)data];
+            [self initWithPromptTitle:@"Error" message:(NSString*)data];
         
     }];
-    
+//  } else {
+//    UserDTO*user =[[VSSharedManager sharedManager] currentUser];
+//    if ([user.levelID isEqualToString:@"Admin"])
+//      [self.navigationController pushViewController:[AdminVC initWithAdmin] animated:YES];
+//    else
+//      [self.navigationController pushViewController:[SelectionVC initWithSelection] animated:YES];
+//  }
+  
 }
 
 - (IBAction)forgotPasswordButtonPressed:(id)sender {

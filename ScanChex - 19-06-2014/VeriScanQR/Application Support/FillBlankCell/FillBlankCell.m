@@ -45,6 +45,10 @@
     self.question.text=question.question;
     if ([question.fieldValue length]>0) self.answer.text=question.fieldValue;
     else self.answer.text=@"";
+    
+    if ([question.questionAnswer isKindOfClass:[NSString class]] && [question.questionAnswer length]>0) {
+        [self.answer setText:question.questionAnswer];
+    }
 }
 
 - (void)dealloc {

@@ -288,8 +288,10 @@ static WebServiceManager *sharedInstance;
         NSString *response =[request responseString];
 //        UIAlertView * tempAlert = [[UIAlertView alloc] initWithTitle:@"DeviceToken login" message:response delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 //        [tempAlert show];
+        
         NSDictionary *rootDictionary = [response JSONValue];
         DLog(@"Response %@",response);
+        
         
         if ([[[rootDictionary valueForKey:@"exist"] stringValue] isEqualToString:@"1"]) {
             
@@ -302,6 +304,12 @@ static WebServiceManager *sharedInstance;
                 block(rootDictionary,NO);
             });
             
+        }
+        else if ([[[rootDictionary valueForKey:@"exist"] stringValue] isEqualToString:@"0"]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                block([rootDictionary valueForKey:@"message"],YES);
+            });
         }
         else{
             
@@ -634,7 +642,7 @@ withCompletionHandler:(CompletionHandler)block
 
 }
 
--(void)getQuetsions:(NSString *)masterkey assetID:(NSString *)assetID withCompletionHandler:(CompletionHandler)block{
+-(void)getQuetsions:(NSString *)masterkey assetID:(NSString *)assetID tikcetID:(NSString*)ticketID withCompletionHandler:(CompletionHandler)block{
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/veriscanAPI.php",BASE_URL]];
     
@@ -643,7 +651,8 @@ withCompletionHandler:(CompletionHandler)block
     [request setRequestMethod:@"POST"];
     [request setPostValue:masterkey forKey:@"master_key"];
     [request setPostValue:assetID forKey:@"asset_id"];
-    [request setPostValue:@"show_questions" forKey:@"action"];
+    [request setPostValue:ticketID forKey:@"ticket_id"];
+    [request setPostValue:@"show_questions1" forKey:@"action"];
     [request setCompletionBlock:^{
         
         NSString *response = [request responseString];
@@ -877,6 +886,8 @@ withCompletionHandler:(CompletionHandler)block{
              deviceID:(NSString *)deviceID
              latitude:(NSString *)lat
             longitude:(NSString *)lon
+                speed:(NSString *)speed
+       batteryStatus:(NSString *)batteryStatus
 withCompletionHandler:(CompletionHandler)block
 {
     
@@ -897,8 +908,22 @@ withCompletionHandler:(CompletionHandler)block
     [request setPostValue:deviceMake forKey:@"device_make"];
     [request setPostValue:model forKey:@"device_model"];
     [request setPostValue:deviceOS forKey:@"device_os"];
+    [request setPostValue:speed forKey:@"speed"];
+    [request setPostValue:batteryStatus forKey:@"battery_status"];
 
-    [request setPostValue:@"update_user_location" forKey:@"action"];
+    
+    if ([[VSSharedManager sharedManager] selectedTicketInfo]) {
+        [request setPostValue:[[VSSharedManager sharedManager] selectedTicketInfo].tblTicketID forKey:@"ticket_id"];
+    }
+    else {
+        [request setPostValue:@"" forKey:@"ticket_id"];
+    }
+    [request setPostValue:[[VSSharedManager sharedManager] currentUser].session_id forKey:@"session_id"];
+    [request setPostValue:@"iphone" forKey:@"handset_make"];
+    
+
+    [request setPostValue:@"update_user_location1" forKey:@"action"];
+//    [request setPostValue:@"update_user_location" forKey:@"action"];
     
     [request setCompletionBlock:^{
         
@@ -1732,11 +1757,14 @@ withCompletionHandler:(CompletionHandler)handler
     
     [request setRequestMethod:@"POST"];
     [request setPostValue:masterKey forKey:@"master_key"];
-    [request setPostValue:@"employees" forKey:@"action"];
+    [request setPostValue:@"employees_list" forKey:@"action"];
+    [request setPostValue:[[[UIDevice currentDevice] identifierForVendor] UUIDString] forKey:@"udid"];
     [request setCompletionBlock:^{
         
         NSString *response = [request responseString];
-        
+//        UIAlertView * tempAlert1 = [[UIAlertView alloc] initWithTitle:@"Employee" message:response delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//        [tempAlert1 show];
+
         NSMutableDictionary *messagesArray = [response JSONValue];
         
         ///Block Calling
@@ -1777,7 +1805,7 @@ withCompletionHandler:(CompletionHandler)handler
     [request startAsynchronous];
     
 }
--(void)deviceRegister:(NSString *)userName masterkey:(NSString *)masterKey withCompletionHandler:(CompletionHandler)handler{
+-(void)deviceRegister:(NSString *)userName masterkey:(NSString *)masterKey currentUser:(NSString*)currentUser withCompletionHandler:(CompletionHandler)handler{
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/veriscanAPI.php",BASE_URL]];
     
     __block  ASIFormDataRequest *request = [self createRequest:url];
@@ -1785,8 +1813,11 @@ withCompletionHandler:(CompletionHandler)handler
     [request setRequestMethod:@"POST"];
     [request setPostValue:masterKey forKey:@"master_key"];
     [request setPostValue:userName forKey:@"username"];
+    [request setPostValue:currentUser forKey:@"created_by"];
     [request setPostValue:@"iphone" forKey:@"device_type"];
-    [request setPostValue:[[[UIDevice currentDevice] identifierForVendor] UUIDString] forKey:@"uuid"];
+    [request setPostValue:@"model" forKey:@"model"];
+    [request setPostValue:@"12123101234" forKey:@"phone"];
+      [request setPostValue:[[[UIDevice currentDevice] identifierForVendor] UUIDString] forKey:@"uuid"];
     [request setPostValue:@"device" forKey:@"action"];
     [request setCompletionBlock:^{
         
@@ -1959,7 +1990,8 @@ withCompletionHandler:(CompletionHandler)handler{
     [request setCompletionBlock:^{
         
         NSString *response = [request responseString];
-        
+//        UIAlertView * tempAlert1 = [[UIAlertView alloc] initWithTitle:@"Manual Lookup" message:response delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//        [tempAlert1 show];
         NSMutableDictionary *messagesArray = [response JSONValue];
       
         ///Block Calling
@@ -2246,7 +2278,7 @@ withCompletionHandler:(CompletionHandler)handler{
     [request startAsynchronous];
 }
 
--(void)checkoutCheckInTicketsWithMasterKey:(NSString *)masterKey userName:(NSString *)userName withCompletionHandler:(CompletionHandler)handler {
+-(void)checkoutCheckInTicketsWithMasterKey:(NSString *)masterKey userName:(NSString *)userName   today:(NSString *)today withCompletionHandler:(CompletionHandler)handler {
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/veriscanAPI.php",BASE_URL]];
     
     __block  ASIFormDataRequest *request = [self createRequest:url];
@@ -2255,7 +2287,9 @@ withCompletionHandler:(CompletionHandler)handler{
     [request setPostValue:masterKey forKey:@"master_key"];
 //    [request setPostValue:@"1" forKey:@"master_key"];
 //    [request setPostValue:@"javed" forKey:@"username"];
-    [request setPostValue:userName forKey:@"username"];
+    [request setPostValue:today forKey:@"username"];
+    [request setPostValue:@"NO" forKey:@"today"];
+  
     [request setPostValue:@"show_checkin_out_tickets" forKey:@"action"];
     [request setCompletionBlock:^{
         
@@ -2312,5 +2346,44 @@ withCompletionHandler:(CompletionHandler)handler{
     [request startAsynchronous];
 }
 
+-(void)logoutWithMasterKey:(NSString *)masterKey
+                  username:(NSString *)username
+                session_id:(NSString *)session_id
+     withCompletionHandler:(CompletionHandler)handler {
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/veriscanAPI.php",BASE_URL]];
+    
+    __block  ASIFormDataRequest *request = [self createRequest:url];
+    
+    [request setRequestMethod:@"POST"];
+    [request setPostValue:masterKey forKey:@"master_key"];
+    [request setPostValue:session_id forKey:@"session_id"];
+    [request setPostValue:username forKey:@"username"];
+    [request setPostValue:@"logout" forKey:@"action"];
+    [request setCompletionBlock:^{
+        
+        NSString *response = [request responseString];
+        NSMutableDictionary *ticketsArray = [response JSONValue];
+        
+        DLog(@"Ticekts Response %@",response);
+        
+                    ///Block Calling
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                handler(@"Yes",NO);
+            });
+        
+        
+    }];
+    
+    [request setFailedBlock:^{
+        
+        ///Block Calling
+        dispatch_async(dispatch_get_main_queue(), ^{
+            handler(@"Check your internet connection",YES);
+        });
+    }];
+    
+    [request startAsynchronous];
+}
 
 @end

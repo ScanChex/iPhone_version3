@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "MessageDTO.h"
 #import "AsyncImageView.h"
+@protocol DSTableViewCellWithDynamicHeight <NSObject>
 
++ (CGFloat)heightForCellWidth:(CGFloat)cellWidth;
+@end
 @interface MessageCell : UITableViewCell
 
 @property (retain, nonatomic) IBOutlet UILabel *lblMessage;
@@ -20,4 +23,5 @@
 +(MessageCell *)resuableCellForTableView:(UITableView *)tableview withOwner:(UIViewController *)owner;
 +(MessageCell *)resuableCellForTableView2:(UITableView *)tableview withOwner:(UIViewController *)owner;
 -(void)updateCellWithMessage:(MessageDTO *)messageDTO;
++ (CGFloat)heightForCellWidth:(CGFloat)cellWidth;
 @end

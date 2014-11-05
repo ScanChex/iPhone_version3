@@ -47,6 +47,7 @@
     self.question.text=ticket.question;
     
     [self showAnswers:ticket.answers];
+    
     switch (ticket.selectedOption) {
         case 1:
         {
@@ -97,6 +98,65 @@
             break;
         }
     }
+    
+    for (int i = 0; i<[ticket.answers count]; i++) {
+        
+        NSString * tempString = [ticket.answers objectAtIndex:i];
+        if ([tempString isEqualToString:ticket.questionAnswer]) {
+            switch (i) {
+                case 0:
+                {
+                    [self.btn1 setImage:[UIImage imageNamed:@"friend_selected"] forState:UIControlStateNormal];
+                    [self.btn2 setImage:[UIImage imageNamed:@"friend_unselected"] forState:UIControlStateNormal];
+                    [self.btn3 setImage:[UIImage imageNamed:@"friend_unselected"] forState:UIControlStateNormal];
+                    [self.btn4 setImage:[UIImage imageNamed:@"friend_unselected"] forState:UIControlStateNormal];
+                    
+                    break;
+                }
+                case 1:
+                {
+                    
+                    [self.btn1 setImage:[UIImage imageNamed:@"friend_unselected"] forState:UIControlStateNormal];
+                    [self.btn2 setImage:[UIImage imageNamed:@"friend_selected"] forState:UIControlStateNormal];
+                    [self.btn3 setImage:[UIImage imageNamed:@"friend_unselected"] forState:UIControlStateNormal];
+                    [self.btn4 setImage:[UIImage imageNamed:@"friend_unselected"] forState:UIControlStateNormal];
+                    
+                    break;
+                }
+                case 2:
+                {
+                    
+                    [self.btn1 setImage:[UIImage imageNamed:@"friend_unselected"] forState:UIControlStateNormal];
+                    [self.btn2 setImage:[UIImage imageNamed:@"friend_unselected"] forState:UIControlStateNormal];
+                    [self.btn3 setImage:[UIImage imageNamed:@"friend_selected"] forState:UIControlStateNormal];
+                    [self.btn4 setImage:[UIImage imageNamed:@"friend_unselected"] forState:UIControlStateNormal];
+                    
+                    break;
+                }
+                case 3:
+                {
+                    [self.btn1 setImage:[UIImage imageNamed:@"friend_unselected"] forState:UIControlStateNormal];
+                    [self.btn2 setImage:[UIImage imageNamed:@"friend_unselected"] forState:UIControlStateNormal];
+                    [self.btn3 setImage:[UIImage imageNamed:@"friend_unselected"] forState:UIControlStateNormal];
+                    [self.btn4 setImage:[UIImage imageNamed:@"friend_selected"] forState:UIControlStateNormal];
+                    
+                    break;
+                }
+                    
+                default:{
+                    
+                    [self.btn1 setImage:[UIImage imageNamed:@"friend_unselected"] forState:UIControlStateNormal];
+                    [self.btn2 setImage:[UIImage imageNamed:@"friend_unselected"] forState:UIControlStateNormal];
+                    [self.btn3 setImage:[UIImage imageNamed:@"friend_unselected"] forState:UIControlStateNormal];
+                    [self.btn4 setImage:[UIImage imageNamed:@"friend_unselected"] forState:UIControlStateNormal];
+                    
+                    break;
+                }
+            }
+            
+        }
+    }
+    
     
 }
 

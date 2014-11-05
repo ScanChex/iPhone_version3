@@ -26,5 +26,8 @@
 @property (nonatomic, retain) NSString * ticket_end_time;
 @property (nonatomic, retain) NSString * ticket_total_time;
 @property (nonatomic, assign) BOOL allow_id_card_scan;
+@property (nonatomic, retain) NSString * ticket_type;
+@property (nonatomic, retain) NSString * employee;
+
 +(id)initWithTicketInfo:(NSDictionary *)info;
 @end

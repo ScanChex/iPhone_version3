@@ -39,7 +39,7 @@
 {
 
     self.name.text=service.model;
-    self.description.text=service.description;
+    self.txtDescription.text=service.description;
     [self.time setText:service.estimated_time];
     if ([service.checkStatus isEqualToString:@"0"]) {
         
@@ -53,9 +53,10 @@
 }
 - (void)dealloc {
     [_name release];
-    [_description release];
+   // [_description release];
     [_checkButton release];
     [_time release];
+    [_txtDescription release];
     [super dealloc];
 }
 @end

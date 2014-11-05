@@ -12,6 +12,9 @@
 #import "VSSharedManager.h"
 #import "Constant.h"
 
+#define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+
+
 @interface VSLocationManager()
 
 @property (nonatomic, retain)CLLocationManager *manager;
@@ -30,7 +33,7 @@ int locationUpdateInterval = 300;//5 mins
 
 static VSLocationManager *sharedInstance;
 
-
+//http://mobileoop.com/background-location-update-programming-for-ios-7
 
 +(id)sharedManager{
     
@@ -63,8 +66,19 @@ static VSLocationManager *sharedInstance;
         
         [self.manager setPausesLocationUpdatesAutomatically:NO];
     }
+  
+  SEL requestSelector = NSSelectorFromString(@"requestWhenInUseAuthorization");
+  if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined &&
+      [self.manager respondsToSelector:requestSelector]) {
+    ((void (*)(id, SEL))[self.manager methodForSelector:requestSelector])(self.manager, requestSelector);
     [self.manager startUpdatingHeading];
     [self.manager startUpdatingLocation];
+  } else {
+    [self.manager startUpdatingHeading];
+    [self.manager startUpdatingLocation];
+  }
+    //[self.manager startUpdatingHeading];
+    //[self.manager startUpdatingLocation];
     
 }
 
@@ -170,7 +184,18 @@ static VSLocationManager *sharedInstance;
 //    locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
 //    locationManager.distanceFilter = kCLDistanceFilterNone;
 //    [locationManager startUpdatingLocation];
-    
+  
+  
+  CLLocationManager *locationManager = [VSLocationManager sharedManager];
+  locationManager.delegate = self;
+  locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
+  locationManager.distanceFilter = kCLDistanceFilterNone;
+  
+  if(IS_OS_8_OR_LATER) {
+    [locationManager requestAlwaysAuthorization];
+  }
+  [locationManager startUpdatingLocation];
+  
     //Use the BackgroundTaskManager to manage all the background Task
     self.bgTask = [BackgroundTaskManager sharedBackgroundTaskManager];
     [self.bgTask beginNewBackgroundTask];
@@ -193,6 +218,8 @@ static VSLocationManager *sharedInstance;
                                              deviceID:[[[UIDevice currentDevice] identifierForVendor] UUIDString]
                                              latitude:[NSString stringWithFormat:@"%.7f",lasKnownLocation.coordinate.latitude]
                                             longitude:[NSString stringWithFormat:@"%.7f",lasKnownLocation.coordinate.longitude]
+                                                speed:[NSString stringWithFormat:@"%.2f",lasKnownLocation.speed]
+                                        batteryStatus:[NSString stringWithFormat:@"%.2f",[[UIDevice currentDevice] batteryLevel]]
                                 withCompletionHandler:^(id data, BOOL error){
                                             
                                                 if (!error) {

@@ -14,6 +14,7 @@
 #define K_Update_ScanCode_CANCEL @"Cancel"
 //http://scanchex.net/modules/cron
 //#define BASE_URL @"http://demo.scanchex.net/modules/cron"
+//#define BASE_URL_NEW @"http://demo.scanchex.net/dev/api/asset/"
 #define BASE_URL @"http://www.scanchex.net/modules/cron"
 #define BASE_URL_NEW @"http://scanchex.net/dev/api/asset/"
 

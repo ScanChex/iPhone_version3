@@ -12,7 +12,8 @@
 @interface ServiceCell : UITableViewCell
 
 @property (retain, nonatomic) IBOutlet UILabel *name;
-@property (retain, nonatomic) IBOutlet UITextView *description;
+//@property (retain, nonatomic) IBOutlet UITextView *description;
+@property (retain, nonatomic) IBOutlet UITextView *txtDescription;
 @property (retain, nonatomic) IBOutlet UIButton *checkButton;
 @property (retain, nonatomic) IBOutlet UILabel * time;
 +(ServiceCell *)resuableCellForTableView:(UITableView *)tableview withOwner:(UIViewController *)owner;

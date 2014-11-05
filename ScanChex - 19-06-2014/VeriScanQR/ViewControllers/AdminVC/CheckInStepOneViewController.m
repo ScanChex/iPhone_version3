@@ -45,6 +45,7 @@
 
 - (void)viewDidLoad
 {
+    [self.signatureController.signatureView setUserInteractionEnabled:FALSE];
     [self fetchAllData];
     [self.scrollView setContentSize:CGSizeMake(320, 930)];
     self.signatureController = [[[SignatureViewController alloc] initWithNibName:@"SignatureView" bundle:nil] autorelease];
@@ -62,13 +63,24 @@
     [self.ticketIdLabel setText:ticketInfo.ticketID];
     [self.descriptionLabel setText:ticket.description];
     [self.assetIdLabel setText:ticket.unEncryptedAssetID];
+    self.assetImageView.layer.borderWidth=3.0;
+    self.assetImageView.layer.borderColor=[UIColor lightGrayColor].CGColor;
+  
     [self.assetImageView setImageURL:[NSURL URLWithString:ticket.assetPhoto]];
     TicketAddressDTO * address1 = ticket.address1;
     self.addressTextView.text =[NSString stringWithFormat:@"%@ \n%@, %@ %@ \n",address1.street,address1.city,address1.state,address1.postalCode];
 //    NSString * tempString = ticket.technician;
 //    NSArray * tempArray = [tempString componentsSeparatedByString:@"-"];
 //    tempString = [tempArray objectAtIndex:1];
-    [self.employeeTextField setText:ticket.technician];
+    NSString * tempStrinf = ticket.technician;
+    NSArray * tempArray = [tempStrinf componentsSeparatedByString:@"-"];
+    if ([tempArray count]>0) {
+        [self.employeeTextField setText:[tempArray objectAtIndex:1]];
+    }
+    else {
+        [self.employeeTextField setText:[tempArray objectAtIndex:0]];
+    }
+//    [self.employeeTextField setText:ticket.technician];
     [self.dueTextField setText:[SharedManager stringFromDate:[NSDate date] withFormat:@"MM/dd/YY hh:mm a"]];
     [self.dateTextField setText:ticketInfo.toleranceDate];
     [self.clientTextField setText:ticket.clientName];
@@ -149,6 +161,9 @@
 #pragma mark Button Pressed Events
 -(IBAction)checkButtonPressed:(id)sender {
     [self.checkButton setSelected:!self.checkButton.selected];
+    if ([self.checkButton isSelected]) {
+        [self.signatureController.signatureView setUserInteractionEnabled:TRUE];
+    }
 }
 - (IBAction)backButtonPressed:(id)sender {
     
@@ -237,6 +252,10 @@
          [SVProgressHUD dismiss];
          if (!error) {
              self.uploadedSignaturePath = [data mutableCopy];
+             [self.signatureController.signatureView erase];
+             [self.signatureController.signatureView setUserInteractionEnabled:NO];
+             UIAlertView * tempAlert = [[[UIAlertView alloc]initWithTitle:@"Signature" message:@"Signature Accepted" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+             [tempAlert show];
          }
          
          

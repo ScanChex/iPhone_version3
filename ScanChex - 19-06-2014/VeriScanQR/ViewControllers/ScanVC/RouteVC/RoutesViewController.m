@@ -274,6 +274,8 @@
     
 }
 #pragma mark- MapView Delegate
+//Different image for map pins
+//http://stackoverflow.com/questions/14999128/shows-different-pin-images-in-mkmapview?rq=1
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
     

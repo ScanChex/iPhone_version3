@@ -40,14 +40,25 @@
 {
     [super viewDidLoad];
     [self.scrollView setContentSize:CGSizeMake(320, 571)];
+  self.assetImageView.layer.borderWidth=3.0;
+  self.assetImageView.layer.borderColor=[UIColor lightGrayColor].CGColor;
+  
     [self.assetImageView setImageURL:[NSURL URLWithString:[self.initialData objectForKey:@"photo"]]];
     [self.descriptionLabel setText:[self.initialData objectForKey:@"desc"]];
     [self.serialNumberLabel setText:[self.initialData objectForKey:@"serial"]];
     [self.assetIdLabel setText:[self.initialData objectForKey:@"assetID"]];
     [self.departmentLabel setText:[self.initialData objectForKey:@"department"]];
     [self.addressTextView setText:[self.initialData objectForKey:@"address"]];
+    NSString * tempStrinf = [self.initialData objectForKey:@"employee"];
+    NSArray * tempArray = [tempStrinf componentsSeparatedByString:@"-"];
+//    if ([tempArray count]>0) {
+//        [self.employeeTextField setText:[tempArray objectAtIndex:1]];
+//    }
+//    else {
+//        [self.employeeTextField setText:[tempArray objectAtIndex:0]];
+//    }
     [self.employeeTextField setText:[self.initialData objectForKey:@"employee"]];
-    [self.returnTextField setText:[SharedManager stringFromDate:[NSDate date] withFormat:@"dd-MM-yyyy HH:mm"]];
+    [self.returnTextField setText:[SharedManager stringFromDate:[NSDate date] withFormat:@"dd/MM/yyyy hh:mm a"]];
     [self.ticketIDTextField setText:self.ticketID];
     // Do any additional setup after loading the view from its nib.
 }

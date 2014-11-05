@@ -27,6 +27,7 @@
 @property(nonatomic,retain)NSString *date_in_service;
 @property(nonatomic,retain)NSString *manufacturer;
 @property(nonatomic,retain)NSString *asset_description;
+@property (nonatomic, retain) NSString * ticketID;
 
 
 +(id)initWithHistoryData:(NSDictionary *)dict;

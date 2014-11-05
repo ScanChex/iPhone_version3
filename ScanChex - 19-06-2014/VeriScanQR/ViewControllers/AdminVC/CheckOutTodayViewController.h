@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CheckOutTodayViewController : UIViewController
+@interface CheckOutTodayViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
+@property (retain, nonatomic) IBOutlet UITableView *ticketsTable;
+@property(nonatomic,retain)   NSMutableArray *tickets;
++ (id)initWithTickets;
+- (IBAction)backButtonPressed:(id)sender;
 
 @end

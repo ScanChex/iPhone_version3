@@ -95,7 +95,9 @@
     {
         history=[self.historyArray objectAtIndex:0];
         self.model.text=history.model;
-        self.serial.text=history.serialNumber;
+        TicketInfoDTO * tempTicketInfo = [[VSSharedManager sharedManager] selectedTicketInfo];
+//        [self.ticketNoLabel setText:tempTicketInfo.ticketID];
+        self.serial.text=tempTicketInfo.ticketID;
         self.technician.text=history.last_serviced_by;
         self.name.text=history.asset_description;
         self.installed.text=history.date_in_service;

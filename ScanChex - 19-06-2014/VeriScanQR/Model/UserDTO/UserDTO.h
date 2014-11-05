@@ -19,6 +19,7 @@
 @property(nonatomic,retain)NSArray*messageList;
 @property (nonatomic, retain) NSString * company_user;
 @property (nonatomic, retain) NSString * employee_card_id;
+@property (nonatomic, retain) NSString * session_id;
 
 +(id)userWithDictionary:(NSDictionary *)dictionary;
 

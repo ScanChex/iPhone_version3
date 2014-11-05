@@ -205,6 +205,9 @@
                                              deviceID:[[[UIDevice currentDevice] identifierForVendor] UUIDString]
                                              latitude:[NSString stringWithFormat:@"%.7f",lasKnownLocation.coordinate.latitude]
                                             longitude:[NSString stringWithFormat:@"%.7f",lasKnownLocation.coordinate.longitude]
+                                                speed:[NSString stringWithFormat:@"%.2f",lasKnownLocation.speed]
+                                        batteryStatus:[NSString stringWithFormat:@"%.2f",[[UIDevice currentDevice] batteryLevel]]
+
                                 withCompletionHandler:^(id data, BOOL error){
                                     
                                     if (!error) {
@@ -474,7 +477,7 @@
                         }
                         else
                         {
-//                            [self initWithPromptTitle:@"Scan Warning" message:@"Ticket Not Yet Due"];
+                            [self initWithPromptTitle:@"Scan Warning" message:@"Ticket Not Yet Due"];
                             [[VSSharedManager sharedManager] setSelectedTicketInfo:[array objectAtIndex:indexPath.row]];
                             [self.navigationController pushViewController:[[ScanVC initWithhiddenScan] autorelease] animated:YES];
                         }
@@ -511,7 +514,7 @@
                             }
                             else
                             {
-//                                [self initWithPromptTitle:@"Scan Warning" message:@"Please scan ticket on time"];
+                                [self initWithPromptTitle:@"Scan Warning" message:@"Please scan ticket on time"];
                                 [[VSSharedManager sharedManager] setSelectedTicketInfo:[array objectAtIndex:indexPath.row]];
                                 [self.navigationController pushViewController:[[ScanVC initWithhiddenScan] autorelease] animated:YES];
                                 

@@ -252,52 +252,56 @@
     }
 }
 - (void)serviceAccessoryButtonTapped: (UIControl *) button withEvent: (UIEvent *) event{
-    
-    NSIndexPath * indexPath = [self.serviceTable indexPathForRowAtPoint: [[[event touchesForView: button] anyObject] locationInView: self.serviceTable]];
-    if ( indexPath == nil )
-        return;
-    
-    
-    ServiceDTO *service =[self.extraTicketInfo.serviceList objectAtIndex:indexPath.row];
-    
-    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
-    
-    NSString *status = @"0";
-    
-    if ([service.checkStatus isEqualToString:@"0"]) {
+    if (![[VSSharedManager sharedManager] isPreview]) {
+        NSIndexPath * indexPath = [self.serviceTable indexPathForRowAtPoint: [[[event touchesForView: button] anyObject] locationInView: self.serviceTable]];
+        if ( indexPath == nil )
+            return;
         
-        status = @"1";
+        
+        ServiceDTO *service =[self.extraTicketInfo.serviceList objectAtIndex:indexPath.row];
+        
+        [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
+        
+        NSString *status = @"0";
+        
+        if ([service.checkStatus isEqualToString:@"0"]) {
+            
+            status = @"1";
+        }
+        
+        
+        [[WebServiceManager sharedManager] updateServiceStatus:service.ticketServiceID status:status withCompletionHandler:^(id data, BOOL error){
+            
+            [SVProgressHUD dismiss];
+            
+            if (!error) {
+                
+                [self updateExtraTicketInformation];
+                
+                DLog(@"Successfully Update ");
+            }
+            else
+            {
+                
+                DLog(@"Error");
+                
+            }
+            
+        }];
     }
     
     
-    [[WebServiceManager sharedManager] updateServiceStatus:service.ticketServiceID status:status withCompletionHandler:^(id data, BOOL error){
-    
-        [SVProgressHUD dismiss];
-        
-        if (!error) {
-            
-            [self updateExtraTicketInformation];
-
-            DLog(@"Successfully Update ");
-        }
-        else
-        {
-        
-            DLog(@"Error");
-
-        }
-        
-    }];
-    
 }
 - (void)checkPOintAccessoryButtonTapped: (UIControl *) button withEvent: (UIEvent *) event{
-    
-    NSIndexPath * indexPath = [self.serviceTable indexPathForRowAtPoint: [[[event touchesForView: button] anyObject] locationInView: self.serviceTable]];
-    if ( indexPath == nil )
-        return;
-    self.isAssetScan = TRUE;
-    self.currentPressedScanTag = indexPath.row;
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"assetScan" object:nil];
+    if (![[VSSharedManager sharedManager] isPreview]) {
+        NSIndexPath * indexPath = [self.serviceTable indexPathForRowAtPoint: [[[event touchesForView: button] anyObject] locationInView: self.serviceTable]];
+        if ( indexPath == nil )
+            return;
+        self.isAssetScan = TRUE;
+        self.currentPressedScanTag = indexPath.row;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"assetScan" object:nil];
+    }
+   
 //    self.scanCVPointer.scanQRManager = [[ScanQRManager alloc] init];
 ////    _scanQRManager = [[ScanQRManager alloc] init];
 //    [self.scanCVPointer.view addSubview:self.scanQRManager.view];

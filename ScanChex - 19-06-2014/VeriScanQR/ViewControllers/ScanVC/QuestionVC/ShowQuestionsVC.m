@@ -20,6 +20,7 @@
 #import "TicketInfoDTO.h"
 #import <QuartzCore/QuartzCore.h>
 #import "SharedManager.h"
+#import "HistoryDTO.h"
 
 @interface ShowQuestionsVC ()
 
@@ -47,16 +48,22 @@
     return self;
 }
 
-+(id)initWithQuesitons:(NSMutableArray *)questionsData{
++(id)initWithQuesitons:(NSMutableArray *)questionsData history:(NSMutableArray*)historyData{
 
-    return [[[ShowQuestionsVC alloc] initWithData:questionsData] autorelease];
+    return [[[ShowQuestionsVC alloc] initWithData:questionsData history:historyData] autorelease];
 }
 
 - (IBAction)notesButtonPressed:(id)sender {
-    if (![[VSSharedManager sharedManager] isPreview]) {
-    
-        [self.delegate notesButtonPressed];
+    if ([self.historyArray count]>0) {
+        HistoryDTO * ticket = [self.historyArray objectAtIndex:0];
+        [self.delegate showNotes:ticket.notes];
+//         [self.navigationController pushViewController:[NotesVC initWithCompontentNotes:ticket.notes] animated:YES];
     }
+   
+//    if (![[VSSharedManager sharedManager] isPreview]) {
+//    
+//        [self.delegate notesButtonPressed];
+//    }
 
 }
 
@@ -96,8 +103,9 @@
 
 }
 
--(id)initWithData:(NSMutableArray*)data{
+-(id)initWithData:(NSMutableArray*)data history:(NSMutableArray*)history{
 
+    self.historyArray = [[NSMutableArray alloc] initWithObjects:nil];
     if (IS_IPHONE5) {
   
         self=[super initWithNibName:@"ShowQuestionsiPhone5VC" bundle:nil];
@@ -110,6 +118,7 @@
     if (self) {
         
         self.questionArray=[NSMutableArray arrayWithArray:data];
+        self.historyArray = [NSMutableArray arrayWithArray:history];
     }
     if (![[VSSharedManager sharedManager] isPreview]) {
         [self.submitButtonl setHidden:NO];
@@ -118,6 +127,8 @@
     else {
         [self.submitButtonl setHidden:YES];
     }
+  
+  
     return self;
 }
 - (void)viewDidLoad
@@ -152,12 +163,32 @@
     }
 }
 -(void)updateGUI{
-    
+//    if ([self.historyArray count]>0) {
+//        HistoryDTO * ticket = [self.historyArray objectAtIndex:0];
+//        if ([ticket.notes count]==0){ self.notesLabel.hidden = YES; }else{ self.notesLabel.hidden = NO;self.notesLabel.text = [NSString stringWithFormat:@"%d",[ticket.notes count]]; [self.notesLabel.layer setCornerRadius:5.0f];}
+//        if ([ticket.voice count]==0){ self.voiceLabel.hidden = YES;}else{ self.voiceLabel.hidden = NO;self.voiceLabel.text = [NSString stringWithFormat:@"%d",[ticket.voice count]];[self.voiceLabel.layer setCornerRadius:5.0f];}
+//        if ([ticket.video count]==0){ self.videoLabel.hidden = YES;}else{ self.videoLabel.hidden = NO;self.videoLabel.text = [NSString stringWithFormat:@"%d",[ticket.video count]];[self.videoLabel.layer setCornerRadius:5.0f];}
+//        if ([ticket.imgURL count]==0){self.imageLabel.hidden = YES;}else{ self.imageLabel.hidden = NO;self.imageLabel.text = [NSString stringWithFormat:@"%d",[ticket.imgURL count]];[self.imageLabel.layer setCornerRadius:5.0f];}
+//    }
+  
+  self.notesLabel.hidden = YES;
+  self.voiceLabel.hidden = YES;
+  self.videoLabel.hidden = YES;
+  self.imageLabel.hidden = YES;
+  
+  
      self.isSubmited =NO;
      TicketDTO *ticket =[[VSSharedManager sharedManager] selectedTicket];
      self.totalCodes.text=[NSString stringWithFormat:@"%@", ticket.totalCodes];
      self.remainingCodes.text=[NSString stringWithFormat:@"%@",ticket.remainingCodes];
      self.scannedCodes.text=[NSString stringWithFormat:@"%@",ticket.scannedCodes];
+  
+  if ([self isAllFilled]) {
+    // if ([self.delegate respondsToSelector:@selector(allQuestionsAnswered)]) {
+    [self.delegate allQuestionsAnswered];
+     self.isSubmited =YES;
+    //  }
+  }
 }
 
 
@@ -239,13 +270,13 @@
 
 -(BOOL)isAllFilled{
 
-    if (![[VSSharedManager sharedManager] isPreview]) {
+   // if (![[VSSharedManager sharedManager] isPreview]) {
     ///check all data is uploaded or not
     for (QuestionDTO *question in self.questionArray) {
         
         if(question.questionType ==1){
         
-            if (question.isTrue || question.isFalse) {
+            if (question.isTrue || question.isFalse || !([question.questionAnswer isKindOfClass:[NSNull class]])) {
                 
                 //do nothing 
             }
@@ -255,7 +286,7 @@
         }
         else if(question.questionType ==2){
         
-            if (question.selectedOption!=0) {
+            if ((question.selectedOption!=0)  || !([question.questionAnswer isKindOfClass:[NSNull class]])) {
                 
                 //do nothing
             }
@@ -264,7 +295,7 @@
         }
         else if(question.questionType ==3){
         
-            if ([question.fieldValue length]>0) {
+            if (([question.fieldValue length]>0) || !([question.questionAnswer isKindOfClass:[NSNull class]])) {
                 
                 // do nothing
             }
@@ -273,7 +304,7 @@
         }
         
     }
-    }
+  //  }
     return YES;
 }
 
@@ -481,13 +512,15 @@
     [[WebServiceManager sharedManager] upadteAnswers:[NSString stringWithFormat:@"%d",user.masterKey]
                                             questIDS:[self buildQuestionsArray]
                                              answers:[self buildAnswersArray]
-                                            ticketID:ticket.ticketID
+                                            ticketID:ticket.tblTicketID
                                withCompletionHandler:^(id data,BOOL error){
                             
                                    self.isSubmited = YES;
                                    [SVProgressHUD dismiss];
                                    if (!error)
                                        [self initWithPromptTitle:@"Data Uploaded" message:@"Data uploaded successfully"];
+                                   [self.delegate allQuestionsAnswered];
+                                 
                                }];
     }
 }

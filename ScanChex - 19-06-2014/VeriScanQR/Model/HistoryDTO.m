@@ -25,6 +25,7 @@
 @synthesize date_in_service = _date_in_service;
 @synthesize manufacturer = _manufacturer;
 @synthesize asset_description = _asset_description;
+@synthesize ticketID = _ticketID;
 +(id)initWithHistoryData:(NSDictionary *)dict{
 
 
@@ -48,6 +49,7 @@
     self.date_in_service = [dictionary valueForKey:@"date_in_service"];
     self.manufacturer = [dictionary valueForKey:@"manufacturer"];
     self.asset_description = [dictionary valueForKey:@"asset_description"];
+    self.ticketID = [dictionary valueForKey:@"ticket_id"];
 }
 -(void)dealloc{
 

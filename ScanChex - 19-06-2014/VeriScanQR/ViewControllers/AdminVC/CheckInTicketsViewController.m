@@ -52,7 +52,7 @@
     
     [self.tickets removeAllObjects];
     UserDTO*user=[[VSSharedManager sharedManager] currentUser];
-    [[WebServiceManager sharedManager] checkoutCheckInTicketsWithMasterKey:[NSString stringWithFormat:@"%d",user.masterKey] userName:[[NSUserDefaults standardUserDefaults] objectForKey:@"userID"] withCompletionHandler:^(id data,BOOL error){
+  [[WebServiceManager sharedManager] checkoutCheckInTicketsWithMasterKey:[NSString stringWithFormat:@"%d",user.masterKey] userName:[[NSUserDefaults standardUserDefaults] objectForKey:@"userID"] today:@"NO"  withCompletionHandler:^(id data,BOOL error){
         
         [SVProgressHUD dismiss];
         
@@ -107,7 +107,6 @@
 //        [cell.callButton addTarget: self
 //                            action: @selector(callAccessoryButtonTapped:withEvent:)
 //                  forControlEvents: UIControlEventTouchUpInside];
-        
         [cell.scanButton addTarget: self
                             action: @selector(scanAccessoryButtonTapped:withEvent:)
                   forControlEvents: UIControlEventTouchUpInside];

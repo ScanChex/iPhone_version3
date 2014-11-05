@@ -63,6 +63,15 @@
         [self.trueButton setImage:[UIImage imageNamed:@"friend_unselected"] forState: UIControlStateNormal];
     }
     
+    if ([question.questionAnswer isEqualToString:@"false"]) {
+        [self.falseButton setImage:[UIImage imageNamed:@"friend_selected"] forState:UIControlStateNormal];
+        [self.trueButton setImage:[UIImage imageNamed:@"friend_unselected"] forState: UIControlStateNormal];
+    }
+    else if ([question.questionAnswer isEqualToString:@"true"]){
+        [self.falseButton setImage:[UIImage imageNamed:@"friend_unselected"] forState:UIControlStateNormal];
+        [self.trueButton setImage:[UIImage imageNamed:@"friend_selected"] forState: UIControlStateNormal];
+    }
+    
     
 }
 

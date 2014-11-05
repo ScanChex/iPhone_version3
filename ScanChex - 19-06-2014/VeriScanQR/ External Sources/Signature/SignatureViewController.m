@@ -7,8 +7,8 @@
 #import "SignatureViewController.h"
 
 @interface SignatureViewController ()
-@property (strong, nonatomic) IBOutlet SignatureView *signatureView;
-@property (strong, nonatomic) IBOutlet UITextField *signatureTextField;
+
+
 @property (strong, nonatomic) NSData *signature;
 - (IBAction)signatureClearTapped:(id)sender;
 - (IBAction)signatureSignTapped:(id)sender;
@@ -56,7 +56,7 @@
 {
     [self.signatureView erase];
     [self.signatureView setUserInteractionEnabled:TRUE];
-    
+    [self.signatureTextField setText:@"SIGN INSIDE THE BOX"];
     [UIView animateWithDuration:0.6 animations:^
      {
          [self.signatureTextField setAlpha:1.0];
@@ -72,6 +72,7 @@
 {
     if ((self.signature = UIImagePNGRepresentation([self.signatureView getSignatureImage])))
     {
+        [self.signatureTextField setText:@"SIGNATURE ACCEPTED"];
         [self.delegate signatureViewController:self didSign:self.signature];
         [self.signatureView setUserInteractionEnabled:FALSE];
     }

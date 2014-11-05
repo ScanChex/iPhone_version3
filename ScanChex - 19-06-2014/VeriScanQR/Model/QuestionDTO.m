@@ -31,7 +31,7 @@
     self.question=[NSString stringWithFormat:@"%@",[dictionary valueForKey:@"question"]];
     self.questionID=[NSString stringWithFormat:@"%@",[dictionary valueForKey:@"quest_id"]];
     self.questionType=[[NSString stringWithFormat:@"%@",[dictionary valueForKey:@"quest_type_id"]] integerValue];
-    
+    self.questionAnswer = [NSString stringWithFormat:@"%@",[dictionary valueForKey:@"q_answer"]];
     if (self.questionType==2)
         self.answers =[NSMutableArray arrayWithArray:[dictionary valueForKey:@"answers"]];
         

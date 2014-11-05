@@ -37,6 +37,8 @@
 {
     [super viewDidLoad];
     [self.scrollView setContentSize:CGSizeMake(320, 571)];
+    self.assetImageView.layer.borderWidth=3.0;
+    self.assetImageView.layer.borderColor=[UIColor lightGrayColor].CGColor;
     [self.assetImageView setImageURL:[NSURL URLWithString:[self.initialData objectForKey:@"photo"]]];
     [self.descriptionLabel setText:[self.initialData objectForKey:@"desc"]];
     [self.serialNumberLabel setText:[self.initialData objectForKey:@"serial"]];
@@ -45,7 +47,8 @@
     [self.addressTextView setText:[self.initialData objectForKey:@"address"]];
     [self.employeeTextField setText:[self.initialData objectForKey:@"employee"]];
     [self.returnTextField setText:[self.initialData objectForKey:@"return"]];
-    [self.ticketIDTextField setText:[self.initialData objectForKey:@"ticket_id"]];
+    [self.ticketIDTextField setText:[self.initialData objectForKey:@"ticket_number"]];
+    
     // Do any additional setup after loading the view from its nib.
 }
 

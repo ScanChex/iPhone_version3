@@ -75,7 +75,7 @@ withCompletionHandler:(CompletionHandler)block;
 
 -(void)getTicketServices:(NSString *)masterkey ticketID:(NSString *)ticketID withCompletionHandler:(CompletionHandler)block;
 
--(void)getQuetsions:(NSString *)masterkey assetID:(NSString *)assetID withCompletionHandler:(CompletionHandler)block;
+-(void)getQuetsions:(NSString *)masterkey assetID:(NSString *)assetID tikcetID:(NSString*)ticketID withCompletionHandler:(CompletionHandler)block;
 
 
 -(void)getTickets:(NSString *)masterKey
@@ -100,6 +100,8 @@ withCompletionHandler:(CompletionHandler)block;
              deviceID:(NSString *)deviceID
              latitude:(NSString *)lat
             longitude:(NSString *)lon
+                speed:(NSString *)speed
+        batteryStatus:(NSString *)batteryStatus
 withCompletionHandler:(CompletionHandler)block;
 
 
@@ -177,7 +179,7 @@ withCompletionHandler:(CompletionHandler)handler;
 -(void)getID:(NSString *)userName masterkey:(NSString *)masterKey withCompletionHandler:(CompletionHandler)handler;
 
 -(void)sendMessage:(NSString *)sender_id masterkey:(NSString *)masterKey receiver_id:(NSString *)receiver_id message:(NSString *)message withCompletionHandler:(CompletionHandler)handler;
--(void)deviceRegister:(NSString *)userName masterkey:(NSString *)masterKey withCompletionHandler:(CompletionHandler)handler;
+-(void)deviceRegister:(NSString *)userName masterkey:(NSString *)masterKey currentUser:(NSString*)currentUser withCompletionHandler:(CompletionHandler)handler;
 -(void)paymentUpload:(NSString *)masterKey
            ticket_id:(NSString *)ticket_id
             comments:(NSString *)comments
@@ -220,7 +222,7 @@ withCompletionHandler:(CompletionHandler)handler;
                      tolerance:(NSString*)tolerance
                      checkID:(NSString*)checkID
                 withCompletionHandler:(CompletionHandler)handler;
--(void)checkoutCheckInTicketsWithMasterKey:(NSString *)masterKey userName:(NSString *)userName withCompletionHandler:(CompletionHandler)handler;
+-(void)checkoutCheckInTicketsWithMasterKey:(NSString *)masterKey userName:(NSString *)userName today:(NSString *)today withCompletionHandler:(CompletionHandler)handler;
 
 -(void)checkinWithMasterKey:(NSString *)masterKey
                     employee:(NSString *)employee
@@ -239,6 +241,11 @@ withCompletionHandler:(CompletionHandler)handler;
                serialNumber:(NSString*)serialNumber
                 description:(NSString*)description
        withCompletionHandler:(CompletionHandler)handler;
+
+-(void)logoutWithMasterKey:(NSString *)masterKey
+                   username:(NSString *)username
+                 session_id:(NSString *)session_id
+      withCompletionHandler:(CompletionHandler)handler;
 
 
 @end

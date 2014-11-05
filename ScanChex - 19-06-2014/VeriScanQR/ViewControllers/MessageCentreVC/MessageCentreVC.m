@@ -160,17 +160,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    DSTableViewWithDynamicHeight *table = (DSTableViewWithDynamicHeight *)self.messageTable;
     
     if ([self.messagesArray count] > 0) {
         MessageDTO * tempMessage =[self.messagesArray objectAtIndex:indexPath.row];
         if ([[[[NSUserDefaults standardUserDefaults] objectForKey:@"userID"] lowercaseString] isEqualToString:[tempMessage.sender_id lowercaseString]]) {
-            MessageCell *cell=[MessageCell resuableCellForTableView2:self.messageTable withOwner:self];
+            MessageCell *cell=[MessageCell resuableCellForTableView2:table withOwner:self];
             [cell updateCellWithMessage:tempMessage];
             
             return cell;
         }
         else {
-            MessageCell *cell=[MessageCell resuableCellForTableView:self.messageTable withOwner:self];
+            MessageCell *cell=[MessageCell resuableCellForTableView:table withOwner:self];
             [cell updateCellWithMessage:tempMessage];
             
             return cell;
@@ -201,21 +202,25 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    DSTableViewWithDynamicHeight *table = (DSTableViewWithDynamicHeight *)self.messageTable;
 
     if ([self.messagesArray count]>0) {
         MessageDTO *messageDTO = [self.messagesArray objectAtIndex:indexPath.row];
+        CGFloat height = [table heightForCellWithDefaultStyleAndText:messageDTO.message font:[UIFont systemFontOfSize:FONT_SIZE]];
+        return height+50.0F;
         
-        CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 20000.0f);
-        
-        CGSize size = [messageDTO.message sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
-        
-        CGFloat height = MAX(size.height, 44.0f);
-        if ([[[[NSUserDefaults standardUserDefaults] objectForKey:@"userID"] lowercaseString] isEqualToString:[messageDTO.sender_id lowercaseString]]) {
-            return height + (CELL_CONTENT_MARGIN * 2)+30;
-        }
-        else {
-            return height + (CELL_CONTENT_MARGIN * 2)+10;
-        }
+//
+//        CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 20000.0f);
+//        
+//        CGSize size = [messageDTO.message sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
+//        
+//        CGFloat height = MAX(size.height, 44.0f);
+//        if ([[[[NSUserDefaults standardUserDefaults] objectForKey:@"userID"] lowercaseString] isEqualToString:[messageDTO.sender_id lowercaseString]]) {
+//            return height + (CELL_CONTENT_MARGIN * 2)+30;
+//        }
+//        else {
+//            return height + (CELL_CONTENT_MARGIN * 2)+10;
+//        }
     }
     else
         return 44.0f;

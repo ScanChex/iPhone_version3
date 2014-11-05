@@ -19,6 +19,7 @@
 @synthesize levelID=_levelID;
 @synthesize company_user = _company_user;
 @synthesize employee_card_id = _employee_card_id;
+@synthesize session_id = _session_id;
 +(id)userWithDictionary:(NSDictionary *)dictionary{
 
     return [[[self alloc] initWithDictionary:dictionary] autorelease];
@@ -33,6 +34,7 @@
     self.levelID=[dict valueForKey:@"level_id"];
     self.company_user = [dict valueForKey:@"company_user"];
     self.employee_card_id = [dict valueForKey:@"employee_card_id"];
+    self.session_id = [dict valueForKey:@"session_id"];
     
 }
 

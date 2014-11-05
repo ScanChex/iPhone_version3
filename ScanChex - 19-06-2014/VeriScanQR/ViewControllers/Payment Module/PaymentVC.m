@@ -40,8 +40,14 @@
 - (void) signatureViewController:(SignatureViewController *)viewController didSign:(NSData *)signature;
 {
     NSData *thisSignature = signature;
-    UIImageWriteToSavedPhotosAlbum([UIImage imageWithData:thisSignature], nil, nil, nil);
+//    UIImageWriteToSavedPhotosAlbum([UIImage imageWithData:thisSignature], nil, nil, nil);
     self.signature = [UIImage imageWithData:thisSignature];
+    [self.signatureController.signatureView erase];
+    [self.signatureController.signatureView setUserInteractionEnabled:NO];
+//    [self.signatureController.signatureTextField setText:@"SIGNATURE ACCEPTED"];
+    UIAlertView * tempAlert = [[[UIAlertView alloc]initWithTitle:@"Signature" message:@"Signature Accepted" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+    [tempAlert show];
+    
     //
     // Do something with thisSignature, like save it to a file or a database as binary data.
     //
@@ -52,7 +58,7 @@
     self.signature = nil;
     self.assetID.text=ticket.unEncryptedAssetID;
     self.ticketID.text = [[[VSSharedManager sharedManager] selectedTicketInfo] ticketID];
-    [self.date setText:[SharedManager stringFromDate:[NSDate date] withFormat:@"dd-MM-yyyy"]];
+    [self.date setText:[SharedManager stringFromDate:[NSDate date] withFormat:@"dd/MM/yyyy"]];
     [self.amountDue setText:@"$999.99"];
     self.alertText =  [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 290, 200)];
     self.additionalCommentString = @"";

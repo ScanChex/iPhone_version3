@@ -16,6 +16,7 @@
 #import "PDF.h"
 #import "PDFDocument.h"
 
+
 @interface ScanVC : PDFAndMoviePlayerVC<DocumentDelegate,DownloadVCDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIAlertViewDelegate,UIActionSheetDelegate,UITableViewDataSource,UITableViewDelegate>
 
 @property (retain, nonatomic) IBOutlet UISegmentedControl *segmentControl;
@@ -38,6 +39,9 @@
 @property (retain , nonatomic) NSDate * startDate;
 @property (retain, nonatomic) NSTimer * startTimer;
 @property (nonatomic, strong)  PDFViewController *  pdfViewController;
+@property (nonatomic, retain) NSMutableArray * historyArray;
+@property (retain, nonatomic) IBOutlet UIImageView *notesimageSign;
+@property (retain, nonatomic) IBOutlet UIImageView *questionsimageSign;
 
 +(id)initWithScan;
 +(id)initWithPreview;
@@ -56,4 +60,5 @@
 - (NSString *)elapsedTimeSince:(NSDate *)date;
 -(void)timerRepeat;
 -(void)save:(id)sender;
+-(void)showDirections;
 @end
