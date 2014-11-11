@@ -107,11 +107,21 @@
 		04FE51021912BC7A009D2FAA /* bottomBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FE51001912BC7A009D2FAA /* bottomBar@2x.png */; };
 		63177DF21A009E7A0041AFD6 /* Icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 63177DF11A009E7A0041AFD6 /* Icon-120.png */; };
 		63177DF41A00A1F30041AFD6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63177DF31A00A1F30041AFD6 /* Images.xcassets */; };
+		633853981A11F37F00286563 /* fblue_flag_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 633853931A11F37F00286563 /* fblue_flag_32.png */; };
+		633853991A11F37F00286563 /* fgreen_flag_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 633853941A11F37F00286563 /* fgreen_flag_32.png */; };
+		6338539A1A11F37F00286563 /* fpink_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 633853951A11F37F00286563 /* fpink_32.png */; };
+		6338539B1A11F37F00286563 /* fred_flag_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 633853961A11F37F00286563 /* fred_flag_32.png */; };
+		6338539C1A11F37F00286563 /* fyellow_flag32.png in Resources */ = {isa = PBXBuildFile; fileRef = 633853971A11F37F00286563 /* fyellow_flag32.png */; };
+		6338539E1A1214D800286563 /* checkered32.png in Resources */ = {isa = PBXBuildFile; fileRef = 6338539D1A1214D800286563 /* checkered32.png */; };
 		637B6A7619FA86CD00DB93D2 /* CheckOutTodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 637B6A7419FA86CD00DB93D2 /* CheckOutTodayViewController.m */; };
 		637B6A7719FA86CD00DB93D2 /* CheckOutTodayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 637B6A7519FA86CD00DB93D2 /* CheckOutTodayViewController.xib */; };
+		6387DBE01A0A8F24007AC8D3 /* LocationShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6387DBDF1A0A8F24007AC8D3 /* LocationShareModel.m */; };
 		63D5705319FE41600013B599 /* FTWCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D5705219FE41600013B599 /* FTWCache.m */; };
 		63D5705619FE423F0013B599 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D5705519FE423F0013B599 /* NSString+MD5.m */; };
 		63D5705919FE42AD0013B599 /* WebImageOperations.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D5705819FE42AD0013B599 /* WebImageOperations.m */; };
+		63E9BF9C1A11C8E000100FDD /* Icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 63E9BF9B1A11C8E000100FDD /* Icon-120.png */; };
+		63E9BF9E1A11C8F000100FDD /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 63E9BF9D1A11C8F000100FDD /* splash.png */; };
+		63E9BFA01A11C8FC00100FDD /* splash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63E9BF9F1A11C8FC00100FDD /* splash@2x.png */; };
 		63FC1D5319FFBFCE00C68DCE /* Icon120*120.png in Resources */ = {isa = PBXBuildFile; fileRef = 63FC1D5219FFBFCE00C68DCE /* Icon120*120.png */; };
 		9D1753881711E50400675ACA /* UIDevice-Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1753871711E50400675ACA /* UIDevice-Hardware.m */; };
 		9D1D180C1688D6BB0036C024 /* AssetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1D180A1688D6BB0036C024 /* AssetVC.m */; };
@@ -556,15 +566,26 @@
 		04FE51001912BC7A009D2FAA /* bottomBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottomBar@2x.png"; sourceTree = "<group>"; };
 		63177DF11A009E7A0041AFD6 /* Icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-120.png"; sourceTree = "<group>"; };
 		63177DF31A00A1F30041AFD6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ScanChex/Images.xcassets; sourceTree = "<group>"; };
+		633853931A11F37F00286563 /* fblue_flag_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fblue_flag_32.png; sourceTree = "<group>"; };
+		633853941A11F37F00286563 /* fgreen_flag_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fgreen_flag_32.png; sourceTree = "<group>"; };
+		633853951A11F37F00286563 /* fpink_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fpink_32.png; sourceTree = "<group>"; };
+		633853961A11F37F00286563 /* fred_flag_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fred_flag_32.png; sourceTree = "<group>"; };
+		633853971A11F37F00286563 /* fyellow_flag32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fyellow_flag32.png; sourceTree = "<group>"; };
+		6338539D1A1214D800286563 /* checkered32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkered32.png; sourceTree = "<group>"; };
 		637B6A7319FA86CD00DB93D2 /* CheckOutTodayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckOutTodayViewController.h; sourceTree = "<group>"; };
 		637B6A7419FA86CD00DB93D2 /* CheckOutTodayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckOutTodayViewController.m; sourceTree = "<group>"; };
 		637B6A7519FA86CD00DB93D2 /* CheckOutTodayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckOutTodayViewController.xib; sourceTree = "<group>"; };
+		6387DBDE1A0A8F23007AC8D3 /* LocationShareModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationShareModel.h; sourceTree = "<group>"; };
+		6387DBDF1A0A8F24007AC8D3 /* LocationShareModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationShareModel.m; sourceTree = "<group>"; };
 		63D5705119FE41600013B599 /* FTWCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTWCache.h; sourceTree = "<group>"; };
 		63D5705219FE41600013B599 /* FTWCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTWCache.m; sourceTree = "<group>"; };
 		63D5705419FE423F0013B599 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		63D5705519FE423F0013B599 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		63D5705719FE42AD0013B599 /* WebImageOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebImageOperations.h; sourceTree = "<group>"; };
 		63D5705819FE42AD0013B599 /* WebImageOperations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebImageOperations.m; sourceTree = "<group>"; };
+		63E9BF9B1A11C8E000100FDD /* Icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-120.png"; sourceTree = "<group>"; };
+		63E9BF9D1A11C8F000100FDD /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
+		63E9BF9F1A11C8FC00100FDD /* splash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash@2x.png"; sourceTree = "<group>"; };
 		63FC1D5219FFBFCE00C68DCE /* Icon120*120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon120*120.png"; sourceTree = "<group>"; };
 		9D1753861711E50400675ACA /* UIDevice-Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice-Hardware.h"; sourceTree = "<group>"; };
 		9D1753871711E50400675ACA /* UIDevice-Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice-Hardware.m"; sourceTree = "<group>"; };
@@ -1635,9 +1656,18 @@
 		9D75C2C51679CF0400A777E3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				63E9BF9D1A11C8F000100FDD /* splash.png */,
+				633853931A11F37F00286563 /* fblue_flag_32.png */,
+				633853941A11F37F00286563 /* fgreen_flag_32.png */,
+				633853951A11F37F00286563 /* fpink_32.png */,
+				6338539D1A1214D800286563 /* checkered32.png */,
+				633853961A11F37F00286563 /* fred_flag_32.png */,
+				633853971A11F37F00286563 /* fyellow_flag32.png */,
 				04D75BEE1923666F00CC9012 /* employeeCard.png */,
 				0469B35D1911780700D4E0E0 /* Chat.png */,
+				63E9BF9F1A11C8FC00100FDD /* splash@2x.png */,
 				63FC1D5219FFBFCE00C68DCE /* Icon120*120.png */,
+				63E9BF9B1A11C8E000100FDD /* Icon-120.png */,
 				0454603618F5AE4400FF460C /* lightningImage.png */,
 				0454603018F5AC4600FF460C /* detailIcon.png */,
 				0454603418F5ADD600FF460C /* excalamationIcon.png */,
@@ -1761,6 +1791,8 @@
 				9DCEE2101686393100540E96 /* TicketDTO.m */,
 				9DCEE21616864D1200540E96 /* VSLocationManager.h */,
 				9DCEE21716864D1200540E96 /* VSLocationManager.m */,
+				6387DBDE1A0A8F23007AC8D3 /* LocationShareModel.h */,
+				6387DBDF1A0A8F24007AC8D3 /* LocationShareModel.m */,
 				9D1D18291688DB910036C024 /* AddressesDTO.h */,
 				9D1D182A1688DB910036C024 /* AddressesDTO.m */,
 				9D33106E169D4F48004EB03E /* TicketInfoDTO.h */,
@@ -2455,6 +2487,7 @@
 				048F9E591926577A0021220D /* video_recorder@2x.png in Resources */,
 				9D75C34B167A32A600A777E3 /* zbar-help.html in Resources */,
 				9D75C34C167A32A600A777E3 /* zbar-helpicons.png in Resources */,
+				6338539C1A11F37F00286563 /* fyellow_flag32.png in Resources */,
 				9D75C34D167A32A600A777E3 /* zbar-samples.png in Resources */,
 				04146E9619953FEC00FD3B37 /* cb_green_on@2x.png in Resources */,
 				9D75C368167A37E100A777E3 /* LASER.WAV in Resources */,
@@ -2505,10 +2538,12 @@
 				9D3310E9169D9899004EB03E /* Reader-Thumbs.png in Resources */,
 				9D3310EA169D9899004EB03E /* Reader-Thumbs@2x.png in Resources */,
 				9D331110169DA00F004EB03E /* pdfDownload.jpeg in Resources */,
+				6338539B1A11F37F00286563 /* fred_flag_32.png in Resources */,
 				04740727199BA36800007BEC /* CheckInConfirmationViewController.xib in Resources */,
 				9DB7683E16A07EC700C925ED /* DownloadVC.xib in Resources */,
 				9D762F3016B3FAEA001B315C /* ShowQuestionsVC.xib in Resources */,
 				04515F051997C4B000785D18 /* TicketCellCICO.xib in Resources */,
+				63E9BFA01A11C8FC00100FDD /* splash@2x.png in Resources */,
 				9D762F3716B40B18001B315C /* TrueFalseCell.xib in Resources */,
 				9D762F4816B414CA001B315C /* friend_selected.png in Resources */,
 				9D762F4916B414CA001B315C /* friend_selected@2x.png in Resources */,
@@ -2533,6 +2568,8 @@
 				9DED89B616BA74D600D0B9DC /* SVProgressHUD.podspec in Resources */,
 				045666D81934E0E90053E55E /* TicketCellPreview.xib in Resources */,
 				9D6A9FD818C3C58B00FF0ED8 /* button_secondary_selected.png in Resources */,
+				63E9BF9C1A11C8E000100FDD /* Icon-120.png in Resources */,
+				63E9BF9E1A11C8F000100FDD /* splash.png in Resources */,
 				9D61051416C58B4C00678760 /* logo.png in Resources */,
 				04515F031997BFCC00785D18 /* CheckInTicketsViewController.xib in Resources */,
 				9DCAB13C16C635C700CB36C4 /* VoiceRecordViewController.xib in Resources */,
@@ -2542,6 +2579,7 @@
 				04687A5919839C2D00F6BE96 /* CheckOutOptionsViewController.xib in Resources */,
 				9DCAB15B16C64CCD00CB36C4 /* submit@2x.png in Resources */,
 				9DB0AFA616C78F34003F8756 /* SplashVC.xib in Resources */,
+				6338539A1A11F37F00286563 /* fpink_32.png in Resources */,
 				637B6A7719FA86CD00DB93D2 /* CheckOutTodayViewController.xib in Resources */,
 				9DA15B2216CAD932002A268B /* Photo_not_available.jpg in Resources */,
 				9DAF605416CFFA750031BE14 /* SplashiPhone5.xib in Resources */,
@@ -2590,6 +2628,7 @@
 				048F9E581926577A0021220D /* take_picture@2x.png in Resources */,
 				9D772220173CC7C3001FAD14 /* DocumentsiPhone5VC.xib in Resources */,
 				04B07B1D18D0BB7900C53F75 /* InfColorPickerView.xib in Resources */,
+				633853991A11F37F00286563 /* fgreen_flag_32.png in Resources */,
 				9D772222173CD1CB001FAD14 /* MapiPhone5VC.xib in Resources */,
 				9DA58977173D01740012CBF1 /* PDF_icon.png in Resources */,
 				9D92F098174AB69D00EDAD60 /* Icon.png in Resources */,
@@ -2598,6 +2637,7 @@
 				9DB00A43176B6B3400D8C398 /* alert-black-button@2x.png in Resources */,
 				04E0EF2319096C740088B808 /* RoutesViewController.xib in Resources */,
 				9DB00A44176B6B3400D8C398 /* alert-gray-button.png in Resources */,
+				633853981A11F37F00286563 /* fblue_flag_32.png in Resources */,
 				9D6A9FDC18C3C58B00FF0ED8 /* ios_sample_icon.png in Resources */,
 				9DB00A45176B6B3400D8C398 /* alert-gray-button@2x.png in Resources */,
 				9DB00A46176B6B3400D8C398 /* alert-red-button.png in Resources */,
@@ -2620,6 +2660,7 @@
 				9D6A9FD918C3C58B00FF0ED8 /* button_secondary_selected@2x.png in Resources */,
 				9DAEA7C6178DD2B200542491 /* video_recorder.png in Resources */,
 				9DAEA7C7178DD2B200542491 /* voice_recorder.png in Resources */,
+				6338539E1A1214D800286563 /* checkered32.png in Resources */,
 				9DAEA7C8178DD2B200542491 /* write_notes.png in Resources */,
 				048F9E5B1926577A0021220D /* write_notes@2x.png in Resources */,
 			);
@@ -2671,6 +2712,7 @@
 				9DB683AD167C662D0002DC40 /* ASIS3Bucket.m in Sources */,
 				9DB683AE167C662D0002DC40 /* ASIS3BucketObject.m in Sources */,
 				9DB683AF167C662D0002DC40 /* ASIS3BucketRequest.m in Sources */,
+				6387DBE01A0A8F24007AC8D3 /* LocationShareModel.m in Sources */,
 				9DB683B0167C662D0002DC40 /* ASIS3ObjectRequest.m in Sources */,
 				045957911945AE34006909B1 /* NSArray+Sort.m in Sources */,
 				9DB683B1167C662D0002DC40 /* ASIS3Request.m in Sources */,

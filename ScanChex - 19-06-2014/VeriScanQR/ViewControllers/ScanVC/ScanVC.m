@@ -381,6 +381,8 @@
             self.documentsView.view.hidden=YES;
             self.historyView.view.hidden=YES;
             self.mapView.view.hidden=YES;
+           [[VSSharedManager sharedManager] setIsHistoryTab:FALSE];
+          
             
             break;
         }
@@ -436,6 +438,8 @@
             self.documentsView.view.hidden=YES;
             self.historyView.view.hidden=YES;
             self.mapView.view.hidden=YES;
+          [[VSSharedManager sharedManager] setIsHistoryTab:FALSE];
+          
             
             break;
         }
@@ -490,6 +494,8 @@
             self.documentsView.view.hidden=NO;
             self.historyView.view.hidden=YES;
             self.mapView.view.hidden=YES;
+          [[VSSharedManager sharedManager] setIsHistoryTab:FALSE];
+          
             
             break;
         }
@@ -511,6 +517,8 @@
             self.documentsView.view.hidden=YES;
             self.historyView.view.hidden=NO;
             self.mapView.view.hidden=YES;
+            [[VSSharedManager sharedManager] setIsHistoryTab:TRUE];
+          
             
             break;
         }
@@ -1046,13 +1054,13 @@
     [self.navigationController pushViewController:[VoiceRecordViewController initWithRecording] animated:YES];
 }
 -(void)notesButtonPressed{
-    if ([self.self.historyView.historyArray count]>0) {
-        HistoryDTO *historyData=[self.historyView.historyArray objectAtIndex:0];
-        [self.navigationController pushViewController:[NotesVC initWithCompontentNotes:historyData.notes] animated:YES];
-    }
-    else {
+//    if ([self.self.historyView.historyArray count]>0) {
+//        HistoryDTO *historyData=[self.historyView.historyArray objectAtIndex:0];
+//        [self.navigationController pushViewController:[NotesVC initWithCompontentNotes:historyData.notes] animated:YES];
+//    }
+//    else {
         [self.navigationController pushViewController:[NotesVC initWithNotes] animated:YES];
-    }
+//    }
     
     
 }

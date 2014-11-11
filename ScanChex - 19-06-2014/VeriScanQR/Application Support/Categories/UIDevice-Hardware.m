@@ -203,6 +203,10 @@
         case UIDevice4iPhone: return IPHONE_4_NAMESTRING;
         case UIDevice4SiPhone: return IPHONE_4S_NAMESTRING;
         case UIDevice5iPhone: return IPHONE_5_NAMESTRING;
+        case UIDevice5SiPhone: return IPHONE_5S_NAMESTRING;
+        case UIDevice6iPhone: return IPHONE_6_NAMESTRING;
+        case UIDevice6PLUSiPhone: return IPHONE_6_PLUS_NAMESTRING;
+
         case UIDeviceUnknowniPhone: return IPHONE_UNKNOWN_NAMESTRING;
         
         case UIDevice1GiPod: return IPOD_1G_NAMESTRING;

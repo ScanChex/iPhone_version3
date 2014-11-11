@@ -108,11 +108,14 @@
 
     [self resignKeyBoard];
   
-//  UserDTO *user =[[VSSharedManager sharedManager] currentUser];
+ // UserDTO *user =[[VSSharedManager sharedManager] currentUser];
+  UserDTO *user = [self loadUserObjectWithKey:@"user"];
 //  
-//  if ( ( [user.name isEqual:[NSNull null]] ) || ( [user.name length] == 0 ) ) {
+  if ( ( [user.name isEqual:[NSNull null]] ) || ( [user.name length] == 0 ) ) {
 //  
   
+    [self deleteUserObjectWithKey:@"user"];
+
     [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
     
     [[WebServiceManager sharedManager] loginWithCustomerID:self.companyID.text userID:self.userID.text password:self.password.text withCompletionHandler:^(id data,BOOL error){
@@ -125,23 +128,59 @@
             UserDTO*user =[[VSSharedManager sharedManager] currentUser];
             if ([user.levelID isEqualToString:@"Admin"])
                 [self.navigationController pushViewController:[AdminVC initWithAdmin] animated:YES];
-            else
-                [self.navigationController pushViewController:[SelectionVC initWithSelection] animated:YES];
+            else {
+              
+              [self saveUserObject:user];
+              
             
+                [self.navigationController pushViewController:[SelectionVC initWithSelection] animated:YES];
+            }
+          
         }
         else
             [self initWithPromptTitle:@"Error" message:(NSString*)data];
         
     }];
-//  } else {
-//    UserDTO*user =[[VSSharedManager sharedManager] currentUser];
-//    if ([user.levelID isEqualToString:@"Admin"])
-//      [self.navigationController pushViewController:[AdminVC initWithAdmin] animated:YES];
-//    else
-//      [self.navigationController pushViewController:[SelectionVC initWithSelection] animated:YES];
-//  }
+  } else {
+    
+   // UserDTO*user =[[VSSharedManager sharedManager] currentUser];
+    
+    if ([user.levelID isEqualToString:@"Admin"])
+      [self.navigationController pushViewController:[AdminVC initWithAdmin] animated:YES];
+    else
+      [self.navigationController pushViewController:[SelectionVC initWithSelection] animated:YES];
+   
+  }
+  
+
+}
+
+-(void)saveUserObject:(UserDTO *)userobject
+{
+  NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+  NSData *myEncodedObject = [NSKeyedArchiver archivedDataWithRootObject:userobject];
+  [prefs setObject:myEncodedObject forKey:@"user"];
+  [prefs synchronize];
+}
+
+-(UserDTO *)loadUserObjectWithKey:(NSString*)key
+{
+  NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+  NSData *myEncodedObject = [prefs objectForKey:key ];
+  UserDTO *obj = (UserDTO *)[NSKeyedUnarchiver unarchiveObjectWithData: myEncodedObject];
+  return obj;
+}
+
+
+-(void)deleteUserObjectWithKey:(NSString*)key
+{
+  NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+  [prefs removeObjectForKey:key];
+  [prefs synchronize];
   
 }
+
+
 
 - (IBAction)forgotPasswordButtonPressed:(id)sender {
     

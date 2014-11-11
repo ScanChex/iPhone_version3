@@ -54,15 +54,15 @@
 }
 
 - (IBAction)notesButtonPressed:(id)sender {
-    if ([self.historyArray count]>0) {
-        HistoryDTO * ticket = [self.historyArray objectAtIndex:0];
-        [self.delegate showNotes:ticket.notes];
-//         [self.navigationController pushViewController:[NotesVC initWithCompontentNotes:ticket.notes] animated:YES];
-    }
-   
+//    if ([self.historyArray count]>0) {
+//        HistoryDTO * ticket = [self.historyArray objectAtIndex:0];
+//        [self.delegate showNotes:ticket.notes];
+////         [self.navigationController pushViewController:[NotesVC initWithCompontentNotes:ticket.notes] animated:YES];
+//    }
+  
 //    if (![[VSSharedManager sharedManager] isPreview]) {
 //    
-//        [self.delegate notesButtonPressed];
+        [self.delegate notesButtonPressed];
 //    }
 
 }

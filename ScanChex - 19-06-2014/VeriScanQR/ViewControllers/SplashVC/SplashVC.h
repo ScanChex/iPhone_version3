@@ -11,6 +11,8 @@
 @interface SplashVC : UIViewController
 
 @property (retain, nonatomic) IBOutlet UIView *iPhone5Splash;
+@property (retain, nonatomic) IBOutlet UILabel * versionNumberLabel;
+
 +(id) initWithSplash;
 - (IBAction)loginButtonPressed:(id)sender;
 - (IBAction)aboutUsButtonPressed:(id)sender;

@@ -291,7 +291,7 @@
         
         annotationView.enabled = YES;
         annotationView.canShowCallout = YES;
-        annotationView.image=[UIImage imageNamed:@"arrest.png"];//here we use a nice image instead of the default pins
+        annotationView.image=[UIImage imageNamed:@"fgreen_flag_32.png"];//here we use a nice image instead of the default pins
         
         return annotationView;
     }

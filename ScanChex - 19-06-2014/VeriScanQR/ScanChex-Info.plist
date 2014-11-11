@@ -25,11 +25,13 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>12.0.2</string>
+	<string>12.1.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationUsageDescription</key>
-	<string>I need location</string>
+	<string>This application use to update user location on background</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This application use to update user location on background</string>
 	<key>NSSupportsSuddenTermination</key>
 	<false/>
 	<key>UIApplicationExitsOnSuspend</key>

@@ -86,7 +86,7 @@
     // Do any additional setup after loading the view from its nib.
     
     
-//    [[VSLocationManager sharedManager] startListening];
+    [[VSLocationManager sharedManager] startListening];
     [self performSelector:@selector(updateUserLocation) withObject:nil afterDelay:30];
     
     UIRefreshControl *refreshControl = [[[UIRefreshControl alloc] init] autorelease];
@@ -551,7 +551,7 @@
 - (IBAction)logoutButtonPressed:(id)sender {
     
     [self.timer invalidate];
-    [[VSLocationManager sharedManager] stopListening];
+   // [[VSLocationManager sharedManager] stopListening];
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)messageNotification:(NSNotification*)notif {

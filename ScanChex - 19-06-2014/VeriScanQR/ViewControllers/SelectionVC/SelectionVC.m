@@ -127,9 +127,20 @@
     [[VSLocationManager sharedManager] stopListening];
     UserDTO * user = [[VSSharedManager sharedManager] currentUser];
     [[WebServiceManager sharedManager] logoutWithMasterKey:[NSString stringWithFormat:@"%d",user.masterKey] username:[[VSSharedManager sharedManager] currentUser].name session_id:[[VSSharedManager sharedManager] currentUser].session_id withCompletionHandler:^(id data,BOOL error){
+      
+      [self deleteUserObjectWithKey:@"user"];
         
     }];
     [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+
+-(void)deleteUserObjectWithKey:(NSString*)key
+{
+  NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+  [prefs removeObjectForKey:key];
+  [prefs synchronize];
+  
 }
 
 - (IBAction)messageButtonPressed:(id)sender {

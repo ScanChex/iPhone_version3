@@ -13,6 +13,6 @@
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 @property (copy) NSString *pinColor;
 
-- (id)initWithName:(NSString*)name address:(NSString*)address coordinate:(CLLocationCoordinate2D)coordinate;
+- (id)initWithName:(NSString*)name address:(NSString*)address coordinate:(CLLocationCoordinate2D)coordinate pincolor:(NSString *)color;
 
 @end

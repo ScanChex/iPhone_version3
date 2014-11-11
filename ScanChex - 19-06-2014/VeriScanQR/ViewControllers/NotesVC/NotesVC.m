@@ -85,7 +85,7 @@
     }
     
     
-     if ([[VSSharedManager sharedManager] isPreview]) {
+     if ([[VSSharedManager sharedManager] isPreview] || [[VSSharedManager sharedManager] isHistoryTab]  ) {
          [self.addNoteButton setHidden:YES];
     }
 

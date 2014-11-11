@@ -18,6 +18,7 @@
 @synthesize historyID=_historyID;
 @synthesize CurrentSelectedSection = _CurrentSelectedSection;
 @synthesize CurrentSelectedIndex = _CurrentSelectedIndex;
+@synthesize isHistoryTab = _isHistoryTab;
 
 static VSSharedManager *sharedInstance;
 

@@ -161,7 +161,22 @@
         double  latitude = [address.latitude doubleValue];
         double  longitude = [address.longitude doubleValue];
         NSString * name1 =address.unEncryptedAssetID;
-        
+      
+      NSArray *tickets = address.tickets;
+      
+      NSString *ticketstatus = [[tickets objectAtIndex:0] ticketStatus];
+      NSString *pinColor=@"";
+      
+      if ( [ticketstatus isEqualToString:@"pending"]) {
+        pinColor = @"blue";
+      } else if ( [ticketstatus isEqualToString:@"complete"]) {
+          pinColor = @"checkered";
+      }else   if ( [ticketstatus isEqualToString:@"Assigned"]) {
+            pinColor = @"green";
+          }else {
+            pinColor = @"red";
+          }
+      
         
         if ([name1 isKindOfClass:[NSNull class]]) {
             
@@ -181,13 +196,13 @@
         CLLocationCoordinate2D coordinate;
         coordinate.latitude = latitude;
         coordinate.longitude = longitude;
-        MyLocation *annotation = [[MyLocation alloc] initWithName:name1 address:addressLocation coordinate:coordinate] ;
+        MyLocation *annotation = [[MyLocation alloc] initWithName:name1 address:addressLocation coordinate:coordinate  pincolor:pinColor];
         [self.mapView addAnnotation:annotation];
         
        
     }
     
-    MyLocation *annotation = [[MyLocation alloc] initWithName:@"Current Location" address:@"" coordinate:[[[VSLocationManager sharedManager] currentLocation] coordinate]] ;
+    MyLocation *annotation = [[MyLocation alloc] initWithName:@"Current Location" address:@"" coordinate:[[[VSLocationManager sharedManager] currentLocation] coordinate] pincolor:@"green"] ;
     [self.mapView addAnnotation:annotation];
 //    MKMapRect zoomRect = MKMapRectNull;
 //    MKMapPoint annotationPoint = MKMapPointForCoordinate(self.mapView.userLocation.coordinate);
@@ -325,17 +340,32 @@
     static NSString *identifier = @"MyLocation";
     if ([annotation isKindOfClass:[MyLocation class]]) {
         
-        MKPinAnnotationView *annotationView = (MKPinAnnotationView *) [self.mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+        MKAnnotationView *annotationView = (MKAnnotationView *) [self.mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
         if (annotationView == nil) {
-            annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+            annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
         } else {
             annotationView.annotation = annotation;
         }
         
         annotationView.enabled = YES;
         annotationView.canShowCallout = YES;
-        annotationView.image=[UIImage imageNamed:@"arrest.png"];//here we use a nice image instead of the default pins
+      
+      MyLocation *ann = (MyLocation *) annotation;
+      
+      if ( [ann.pinColor isEqualToString:@"green"] ) {
+        annotationView.image=[UIImage imageNamed:@"fgreen_flag_32.png"];//here we use a nice image instead of the default pins
+      } else if ( [ann.pinColor isEqualToString:@"checkered"] ) {
+        annotationView.image=[UIImage imageNamed:@"checkered32.png"];//here we use a nice image instead of the default pins
         
+      }
+      else if ( [ann.pinColor isEqualToString:@"blue"] ) {
+        annotationView.image=[UIImage imageNamed:@"fblue_flag_32.png"];//here we use a nice image instead of the default pins
+      }
+      else {
+        annotationView.image=[UIImage imageNamed:@"fred_flag_32.png"];//here we use a nice image instead of the default pins
+        
+      }
+    
         return annotationView;
     }
     

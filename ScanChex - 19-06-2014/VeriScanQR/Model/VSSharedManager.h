@@ -19,6 +19,7 @@
 @property (nonatomic,retain) NSString *userName;
 @property (nonatomic, retain) NSString *historyID;
 @property (nonatomic, assign) BOOL isPreview;
+@property (nonatomic, assign) BOOL isHistoryTab;
 @property (nonatomic, assign) NSInteger CurrentSelectedSection;
 @property (nonatomic,assign) NSInteger CurrentSelectedIndex;
 +(id)sharedManager;

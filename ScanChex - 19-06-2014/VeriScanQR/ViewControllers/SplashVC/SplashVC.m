@@ -50,6 +50,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
+    NSString* version = [infoDict objectForKey:@"CFBundleVersion"];
+    
+    self.versionNumberLabel.text = [NSString stringWithFormat:@"Version:%@",version];
+    
     [UIApplication sharedApplication].statusBarHidden=YES;
 }
 
@@ -89,10 +94,12 @@
     [self.navigationController pushViewController:[AboutUsLinksVC initWithAboutUS:@"http://scanchex.com/contact-us/"] animated:YES];
 }
 - (void)dealloc {
+    [_versionNumberLabel release];
     [_iPhone5Splash release];
     [super dealloc];
 }
 - (void)viewDidUnload {
+    [self setVersionNumberLabel:nil];
     [self setIPhone5Splash:nil];
     [super viewDidUnload];
 }

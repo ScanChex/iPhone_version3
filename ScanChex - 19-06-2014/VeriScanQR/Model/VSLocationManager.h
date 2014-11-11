@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 #import "BackgroundTaskManager.h"
+#import "LocationShareModel.h"
 
 @interface VSLocationManager : NSObject<CLLocationManagerDelegate>
 
@@ -16,6 +17,7 @@
 @property (nonatomic, retain)CLLocation *lastKnownLocation;
 @property (nonatomic,retain)NSString * assetID;
 @property (nonatomic,retain) BackgroundTaskManager * bgTask;
+@property (strong,nonatomic) LocationShareModel * shareModel;
 
 +(id)sharedManager;
 -(void)startListening;
