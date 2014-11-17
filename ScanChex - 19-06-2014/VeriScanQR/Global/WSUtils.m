@@ -140,6 +140,16 @@ static NSMutableArray *controllers=nil;
 }
 
 
++(NSString *)getStringFormCurrentDate
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];//yyyy
+    NSString *string = [formatter stringFromDate:[NSDate date]];
+    [formatter release];
+    
+    return string;
+}
+
 +(NSString*)getStrindFromDate:(NSDate*)date withFormat:(NSString*)format
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];

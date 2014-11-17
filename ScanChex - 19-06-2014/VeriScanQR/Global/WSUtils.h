@@ -21,6 +21,8 @@
 
 + (NSString*)getStrindFromDate:(NSDate*)date;
 + (NSString*)getStrindFromDate:(NSDate*)date withFormat:(NSString*)format;
++(NSString *)getStringFormCurrentDate;
+
 + (NSDate*)getDateFromString:(NSString*)stirng withFormat:(NSString*)format;
 
 + (BOOL)ifString:(NSString*)string isFoundInString:(NSString*)completeString;

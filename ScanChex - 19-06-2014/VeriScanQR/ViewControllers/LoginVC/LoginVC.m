@@ -109,9 +109,9 @@
     [self resignKeyBoard];
   
  // UserDTO *user =[[VSSharedManager sharedManager] currentUser];
-  UserDTO *user = [self loadUserObjectWithKey:@"user"];
+ // UserDTO *user = [self loadUserObjectWithKey:@"user"];
 //  
-  if ( ( [user.name isEqual:[NSNull null]] ) || ( [user.name length] == 0 ) ) {
+ // if ( ( [user.name isEqual:[NSNull null]] ) || ( [user.name length] == 0 ) ) {
 //  
   
     [self deleteUserObjectWithKey:@"user"];
@@ -141,7 +141,9 @@
             [self initWithPromptTitle:@"Error" message:(NSString*)data];
         
     }];
-  } else {
+ // }
+  
+  /*else {
     
    // UserDTO*user =[[VSSharedManager sharedManager] currentUser];
     
@@ -150,7 +152,7 @@
     else
       [self.navigationController pushViewController:[SelectionVC initWithSelection] animated:YES];
    
-  }
+  }*/
   
 
 }

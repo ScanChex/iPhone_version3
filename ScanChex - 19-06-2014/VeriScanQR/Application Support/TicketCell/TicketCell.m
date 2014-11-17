@@ -50,6 +50,10 @@
     return cell;
 }
 -(void)updateCellWithCheckTicket:(TicketDTO *)ticket {
+    
+    
+    self.onHoldLabel.hidden = YES;
+
   TicketInfoDTO *info=[ticket.tickets objectAtIndex:indexPath.row];
   
   
@@ -128,6 +132,14 @@
         }
 //        [self.scanButton setHidden:YES];
     }
+    else if([[info.ticketStatus lowercaseString] isEqualToString:@"suspended"]){
+        
+        [self.imageSign setImage:nil];
+        self.onHoldLabel.hidden = NO;
+        self.contentView.backgroundColor = [UIColor purpleColor];
+        
+    }
+
     [self.photoImageView setImage:[UIImage imageNamed:@"Photo_not_available.jpg"]];
   self.photoImageView.layer.borderWidth=3.0;
   self.photoImageView.layer.borderColor=[UIColor lightGrayColor].CGColor;
@@ -142,8 +154,11 @@
 
 -(void)updateCellWithTicket:(TicketDTO *)ticket{
 
+    self.onHoldLabel.hidden = YES;
+
     TicketAddressDTO *address1 =ticket.address1;
     TicketAddressDTO *address2 =ticket.address2;
+    
     
     self.address.text =[NSString stringWithFormat:@"%@ \n%@, %@ %@ \n",address1.street,address1.city,address1.state,address1.postalCode];
     
@@ -206,6 +221,13 @@
         [self.imageSign setImage:[UIImage imageNamed:@"checkmarkgreen.png"]];
         self.contentView.backgroundColor=[UIColor colorWithRed:236.0f/255.0f green:236.0f/255.0f blue:236.0f/255.0f alpha:1.0];
     }
+    else if([[info.ticketStatus lowercaseString] isEqualToString:@"suspended"]){
+    
+        [self.imageSign setImage:nil];
+        self.onHoldLabel.hidden = NO;
+        self.contentView.backgroundColor = [UIColor purpleColor];
+    
+    }
     [self.photoImageView setImage:[UIImage imageNamed:@"Photo_not_available.jpg"]];
     self.photoImageView.layer.borderWidth=3.0;
     self.photoImageView.layer.borderColor=[UIColor lightGrayColor].CGColor;
@@ -217,6 +239,9 @@
     
 }
 -(void)updateCellWithTicket:(TicketDTO *)ticket index:(NSInteger)index {
+    
+    self.onHoldLabel.hidden = YES;
+
     TicketAddressDTO *address1 =ticket.address1;
     TicketAddressDTO *address2 =ticket.address2;
     
@@ -276,6 +301,14 @@
         [self.imageSign setImage:[UIImage imageNamed:@"checkmarkgreen.png"]];
         self.contentView.backgroundColor=[UIColor colorWithRed:236.0f/255.0f green:236.0f/255.0f blue:236.0f/255.0f alpha:1.0];
     }
+    else if([[info.ticketStatus lowercaseString] isEqualToString:@"suspended"]){
+        
+        [self.imageSign setImage:nil];
+        self.onHoldLabel.hidden = NO;
+        self.contentView.backgroundColor = [UIColor purpleColor];
+        
+    }
+
  [self.photoImageView setImage:[UIImage imageNamed:@"Photo_not_available.jpg"]];
   self.photoImageView.layer.borderWidth=3.0;
   self.photoImageView.layer.borderColor=[UIColor lightGrayColor].CGColor;
@@ -324,6 +357,7 @@
     [_mapButton release];
     [_photoImageView release];
     [_imageSign release];
+    [_onHoldLabel release];
     [super dealloc];
 }
 @end

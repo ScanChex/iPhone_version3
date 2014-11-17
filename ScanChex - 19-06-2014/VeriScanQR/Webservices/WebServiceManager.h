@@ -248,4 +248,20 @@ withCompletionHandler:(CompletionHandler)handler;
       withCompletionHandler:(CompletionHandler)handler;
 
 
+-(void)suspendTicket:(NSString *)masterKey
+            ticketID:(NSString *)ticketID
+            stopTime:(NSString *)stopTime
+          StopReason:(NSString *)stopReason
+              userID:(NSString *)userID
+withCompletionHandler:(CompletionHandler)handler;
+
+
+
+-(void)restartTicket:(NSString *)masterKey
+            ticketID:(NSString *)ticketID
+            restartTime:(NSString *)restartTime
+              userID:(NSString *)userID
+withCompletionHandler:(CompletionHandler)handler;
+
+
 @end

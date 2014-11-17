@@ -529,15 +529,18 @@
         return;
     
     
-    
-    
     self.isCurrentLocation=NO;
+
+    [[VSSharedManager sharedManager] openMapWithLocation:[self.tickets objectAtIndex:indexPath.section]];
+
+    
+    /*
     RoutesViewController * tempRoute = [[RoutesViewController alloc] initWithNibName:@"RoutesViewController" bundle:[NSBundle mainBundle]];
     tempRoute.tickets = self.tickets;
     tempRoute.currentSelectedTicket = indexPath.row;
     tempRoute.currentSelectedSection = indexPath.section;
     [self.navigationController pushViewController:tempRoute animated:YES];
-    
+    */
 //    TicketDTO *ticket=[self.tickets objectAtIndex:indexPath.section];
 //    
 //    

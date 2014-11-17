@@ -85,7 +85,7 @@
     [self.dateTextField setText:ticketInfo.toleranceDate];
     [self.clientTextField setText:ticket.clientName];
     self.addressTextField.text =[NSString stringWithFormat:@"%@ \n%@, %@ %@ \n",address1.street,address1.city,address1.state,address1.postalCode];
-    [self fetchAllData];
+   // [self fetchAllData];
 //    [self.departmentLabel setText:ticket.]
 //    [self.serialNumberLabel setText:ticket.]
 //    [self.descriptionLabel setText:[self.initialData objectForKey:@"description"]];

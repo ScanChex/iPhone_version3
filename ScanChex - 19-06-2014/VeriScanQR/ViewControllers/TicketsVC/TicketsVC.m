@@ -86,7 +86,7 @@
     // Do any additional setup after loading the view from its nib.
     
     
-    [[VSLocationManager sharedManager] startListening];
+   // [[VSLocationManager sharedManager] startListening];
     [self performSelector:@selector(updateUserLocation) withObject:nil afterDelay:30];
     
     UIRefreshControl *refreshControl = [[[UIRefreshControl alloc] init] autorelease];
@@ -336,8 +336,9 @@
     if ( indexPath == nil )
         return;
     
+    [[VSSharedManager sharedManager] openMapWithLocation:[self.tickets objectAtIndex:indexPath.section]];
     
-    
+    /*
     
 //    self.isCurrentLocation=NO;
     RoutesViewController * tempRoute = [[RoutesViewController alloc] initWithNibName:@"RoutesViewController" bundle:[NSBundle mainBundle]];
@@ -345,6 +346,8 @@
     tempRoute.currentSelectedTicket = indexPath.row;
     tempRoute.currentSelectedSection = indexPath.section;
     [self.navigationController pushViewController:tempRoute animated:YES];
+     
+     */
     
     //    TicketDTO *ticket=[self.tickets objectAtIndex:indexPath.section];
     //
@@ -412,12 +415,37 @@
         NSMutableArray *array=[NSMutableArray arrayWithArray:ticket.tickets];
         TicketInfoDTO *ticketInfo =[array objectAtIndex:indexPath.row];
         
-        if ([[ticketInfo.ticketStatus lowercaseString] isEqualToString:@"complete"])
+        
+        
+        if ([[ticketInfo.ticketStatus lowercaseString] isEqualToString:@"suspended"]){
+            
+            UserDTO*user=[[VSSharedManager sharedManager] currentUser];
+            
+            //+(NSString *)getStringFormCurrentDate
+
+            NSString *startDateString=[WSUtils getStringFormCurrentDate];
+            NSString *userID =  [[NSUserDefaults standardUserDefaults] valueForKey:@"userID"];
+            [SVProgressHUD show];
+            
+            [[WebServiceManager sharedManager] restartTicket:[NSString stringWithFormat:@"%d",user.masterKey] ticketID:ticketInfo.tblTicketID restartTime:startDateString userID:userID withCompletionHandler:^(id data, BOOL error) {
+                
+                [SVProgressHUD dismiss];
+                if (!error) {
+                    
+            
+                    [[VSSharedManager sharedManager] setSelectedTicketInfo:[array objectAtIndex:indexPath.row]];
+                    [self.navigationController pushViewController:[ScanVC initWithPreview] animated:YES];
+                    
+                }
+            }];
+            
+        }
+       else if ([[ticketInfo.ticketStatus lowercaseString] isEqualToString:@"complete"])
         {
             
 //            [self initWithPromptTitle:@"Ticket Scanned already" message:@"You have finished this job already"];
             [[VSSharedManager sharedManager] setSelectedTicketInfo:[array objectAtIndex:indexPath.row]];
-            [self.navigationController pushViewController:[[ScanVC initWithhiddenScan] autorelease] animated:YES];
+            [self.navigationController pushViewController:[ScanVC initWithhiddenScan] animated:YES];
             
 //            return;
             
@@ -464,14 +492,14 @@
                         if (currentDateDifference > 0) {
                             
                             [[VSSharedManager sharedManager] setSelectedTicketInfo:[array objectAtIndex:indexPath.row]];
-                            [self.navigationController pushViewController:[[ScanVC initWithPreview] autorelease] animated:YES];
+                            [self.navigationController pushViewController:[ScanVC initWithPreview] animated:YES];
 //                            [self.navigationController pushViewController:[HomeVC initWithHome] animated:YES];
                             
                         }
                        else if ((-differenceInSeconds >= -[ticket.tolerance integerValue]) || (differenceInSeconds <= [ticket.tolerance integerValue]))//Check the Tolerance factor here
                        {
                             [[VSSharedManager sharedManager] setSelectedTicketInfo:[array objectAtIndex:indexPath.row]];
-                           [self.navigationController pushViewController:[[ScanVC initWithPreview] autorelease] animated:YES];
+                           [self.navigationController pushViewController:[ScanVC initWithPreview]  animated:YES];
 //                            [self.navigationController pushViewController:[HomeVC initWithHome] animated:YES];
 
                         }
@@ -479,7 +507,7 @@
                         {
                             [self initWithPromptTitle:@"Scan Warning" message:@"Ticket Not Yet Due"];
                             [[VSSharedManager sharedManager] setSelectedTicketInfo:[array objectAtIndex:indexPath.row]];
-                            [self.navigationController pushViewController:[[ScanVC initWithhiddenScan] autorelease] animated:YES];
+                            [self.navigationController pushViewController:[ScanVC initWithhiddenScan]  animated:YES];
                         }
                     }
                     else{
@@ -499,7 +527,7 @@
                         if (differenceInSeconds==0) {
                             
                             [[VSSharedManager sharedManager] setSelectedTicketInfo:[array objectAtIndex:indexPath.row]];
-                            [self.navigationController pushViewController:[[ScanVC initWithPreview] autorelease] animated:YES];
+                            [self.navigationController pushViewController:[ScanVC initWithPreview] animated:YES];
 //                            [self.navigationController pushViewController:[HomeVC initWithHome] animated:YES];
 
                         }
@@ -508,7 +536,7 @@
                             if (currentDateDifference > 0) {
                                 
                                 [[VSSharedManager sharedManager] setSelectedTicketInfo:[array objectAtIndex:indexPath.row]];
-                                [self.navigationController pushViewController:[[ScanVC initWithPreview] autorelease] animated:YES];
+                                [self.navigationController pushViewController:[ScanVC initWithPreview]  animated:YES];
 //                                [self.navigationController pushViewController:[HomeVC initWithHome] animated:YES];
                                 
                             }
@@ -516,7 +544,7 @@
                             {
                                 [self initWithPromptTitle:@"Scan Warning" message:@"Please scan ticket on time"];
                                 [[VSSharedManager sharedManager] setSelectedTicketInfo:[array objectAtIndex:indexPath.row]];
-                                [self.navigationController pushViewController:[[ScanVC initWithhiddenScan] autorelease] animated:YES];
+                                [self.navigationController pushViewController:[ScanVC initWithhiddenScan] animated:YES];
                                 
                             }
                         }
@@ -526,7 +554,7 @@
                 else{
                 
                     [[VSSharedManager sharedManager] setSelectedTicketInfo:[array objectAtIndex:indexPath.row]];
-                    [self.navigationController pushViewController:[[ScanVC initWithPreview] autorelease] animated:YES];
+                    [self.navigationController pushViewController:[ScanVC initWithPreview] animated:YES];
 //                    [self.navigationController pushViewController:[HomeVC initWithHome] animated:YES];
 
                 }
@@ -535,7 +563,7 @@
             {
                 
                 [[VSSharedManager sharedManager] setSelectedTicketInfo:[array objectAtIndex:indexPath.row]];
-                [self.navigationController pushViewController:[[ScanVC initWithPreview] autorelease] animated:YES];
+                [self.navigationController pushViewController:[ScanVC initWithPreview] animated:YES];
 //                [self.navigationController pushViewController:[HomeVC initWithHome] animated:YES];
                 
             }
@@ -551,7 +579,7 @@
 - (IBAction)logoutButtonPressed:(id)sender {
     
     [self.timer invalidate];
-   // [[VSLocationManager sharedManager] stopListening];
+    //[[VSLocationManager sharedManager] stopListening];
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)messageNotification:(NSNotification*)notif {

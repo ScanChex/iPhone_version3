@@ -28,7 +28,7 @@
 @property(nonatomic,retain)NSString *manufacturer;
 @property(nonatomic,retain)NSString *asset_description;
 @property (nonatomic, retain) NSString * ticketID;
-
+@property(nonatomic,retain) NSString *is_questions;
 
 +(id)initWithHistoryData:(NSDictionary *)dict;
 @end

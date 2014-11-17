@@ -325,6 +325,7 @@ static WebServiceManager *sharedInstance;
     
     [request setFailedBlock:^{
         
+        NSLog(@"Response String %@",[request responseString]);
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -850,7 +851,7 @@ withCompletionHandler:(CompletionHandler)block{
         dispatch_async(dispatch_get_main_queue(), ^{
          
             NSMutableArray* array=[NSMutableArray array];
-            
+    
             for (NSDictionary *dict in rootDictionary) {
                 
                 HistoryDTO *history=[HistoryDTO initWithHistoryData:dict];
@@ -2350,6 +2351,7 @@ withCompletionHandler:(CompletionHandler)handler{
                   username:(NSString *)username
                 session_id:(NSString *)session_id
      withCompletionHandler:(CompletionHandler)handler {
+   
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/veriscanAPI.php",BASE_URL]];
     
     __block  ASIFormDataRequest *request = [self createRequest:url];
@@ -2384,6 +2386,96 @@ withCompletionHandler:(CompletionHandler)handler{
     }];
     
     [request startAsynchronous];
+}
+
+-(void)suspendTicket:(NSString *)masterKey
+            ticketID:(NSString *)ticketID
+            stopTime:(NSString *)stopTime
+          StopReason:(NSString *)stopReason
+              userID:(NSString *)userID
+withCompletionHandler:(CompletionHandler)handler{
+
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/veriscanAPI.php",BASE_URL]];
+    
+    __block  ASIFormDataRequest *request = [self createRequest:url];
+    
+    [request setRequestMethod:@"POST"];
+    [request setPostValue:masterKey forKey:@"master_key"];
+    [request setPostValue:ticketID forKey:@"ticket_id"];
+    [request setPostValue:stopTime forKey:@"stop_time"];
+    [request setPostValue:stopReason forKey:@"stop_reason"];
+    [request setPostValue:userID forKey:@"user_id"];
+    [request setPostValue:@"suspend_ticket" forKey:@"action"];
+    [request setCompletionBlock:^{
+        
+        NSString *response = [request responseString];
+        NSMutableDictionary *suspendTicketDictionary = [response JSONValue];
+        
+        DLog(@"Suspend Ticket Response %@",response);
+        
+        ///Block Calling
+        dispatch_async(dispatch_get_main_queue(), ^{
+            handler(suspendTicketDictionary,NO);
+        });
+        
+        
+    }];
+    
+    [request setFailedBlock:^{
+        
+        ///Block Calling
+        dispatch_async(dispatch_get_main_queue(), ^{
+            handler(@"Check your internet connection",YES);
+        });
+    }];
+    
+    [request startAsynchronous];
+    
+}
+
+
+-(void)restartTicket:(NSString *)masterKey
+            ticketID:(NSString *)ticketID
+         restartTime:(NSString *)restartTime
+              userID:(NSString *)userID
+withCompletionHandler:(CompletionHandler)handler{
+
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/veriscanAPI.php",BASE_URL]];
+    
+    __block  ASIFormDataRequest *request = [self createRequest:url];
+    
+    [request setRequestMethod:@"POST"];
+    [request setPostValue:masterKey forKey:@"master_key"];
+    [request setPostValue:ticketID forKey:@"ticket_id"];
+    [request setPostValue:restartTime forKey:@"restart_time"];
+    [request setPostValue:userID forKey:@"user_id"];
+    [request setPostValue:@"restart_ticket" forKey:@"action"];
+    [request setCompletionBlock:^{
+        
+        NSString *response = [request responseString];
+        NSMutableDictionary *restartTicketDictionary = [response JSONValue];
+        
+        DLog(@"Restart Ticket Response %@",response);
+        
+        ///Block Calling
+        dispatch_async(dispatch_get_main_queue(), ^{
+            handler(restartTicketDictionary,NO);
+        });
+        
+        
+    }];
+    
+    [request setFailedBlock:^{
+        
+        ///Block Calling
+        dispatch_async(dispatch_get_main_queue(), ^{
+            handler(@"Check your internet connection",YES);
+        });
+    }];
+    
+    [request startAsynchronous];
+
+
 }
 
 @end

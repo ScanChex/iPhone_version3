@@ -35,6 +35,7 @@
 @property (nonatomic ,retain) NSMutableArray * checkPoints;
 @property (nonatomic ,retain) NSString * check_point_ids;
 @property (nonatomic, retain) NSString * technician;
+@property (nonatomic, retain) NSString *is_questions;
 
 //@property (nonatomic, retain) NSString * photo;
 

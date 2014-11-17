@@ -171,12 +171,16 @@
 //        if ([ticket.imgURL count]==0){self.imageLabel.hidden = YES;}else{ self.imageLabel.hidden = NO;self.imageLabel.text = [NSString stringWithFormat:@"%d",[ticket.imgURL count]];[self.imageLabel.layer setCornerRadius:5.0f];}
 //    }
   
-  self.notesLabel.hidden = YES;
-  self.voiceLabel.hidden = YES;
-  self.videoLabel.hidden = YES;
-  self.imageLabel.hidden = YES;
+    self.notesLabel.hidden = YES;
+    self.voiceLabel.hidden = YES;
+    self.videoLabel.hidden = YES;
+    self.imageLabel.hidden = YES;
   
-  
+    self.imageLabel.layer.cornerRadius = 5.0;
+    self.voiceLabel.layer.cornerRadius = 5.0;
+    self.videoLabel.layer.cornerRadius = 5.0;
+    self.notesLabel.layer.cornerRadius = 5.0;
+    
      self.isSubmited =NO;
      TicketDTO *ticket =[[VSSharedManager sharedManager] selectedTicket];
      self.totalCodes.text=[NSString stringWithFormat:@"%@", ticket.totalCodes];

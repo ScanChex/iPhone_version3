@@ -131,6 +131,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+ 
     if (indexPath.section == 0) {
         [SharedManager getInstance].isEditable = FALSE;
     }
@@ -147,7 +148,7 @@
             [self.delegate selectedFileWithPath:[document.link stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         }
         else {
-            [SharedManager getInstance].isEditable = FALSE;
+            //[SharedManager getInstance].isEditable = FALSE;
             [self.delegate selectedFileWithPath:[document.link stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         }
         //[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]

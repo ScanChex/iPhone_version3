@@ -10,29 +10,29 @@
 	<string>ScanChex</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>982BDE77-5575-4D3D-A1BF-F08A2A2634CE</key>
+		<key>E8A36903CFABC1410BD70CC7032A1CB48E247F2E</key>
 		<string>https://github.com/Veriscan/iPhone_version3.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>ScanChex - 19-06-2014/ScanChex.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>982BDE77-5575-4D3D-A1BF-F08A2A2634CE</key>
+		<key>E8A36903CFABC1410BD70CC7032A1CB48E247F2E</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/Veriscan/iPhone_version3.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>982BDE77-5575-4D3D-A1BF-F08A2A2634CE</string>
+	<string>E8A36903CFABC1410BD70CC7032A1CB48E247F2E</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>982BDE77-5575-4D3D-A1BF-F08A2A2634CE</string>
+			<string>E8A36903CFABC1410BD70CC7032A1CB48E247F2E</string>
 			<key>IDESourceControlWCCName</key>
 			<string>iPhone_version3</string>
 		</dict>

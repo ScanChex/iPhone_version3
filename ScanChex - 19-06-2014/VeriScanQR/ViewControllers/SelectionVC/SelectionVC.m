@@ -54,7 +54,7 @@
 }
 - (void)viewDidLoad
 {
-        [[VSLocationManager sharedManager] startListening];
+    [[VSLocationManager sharedManager] startListening];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messageNotification:) name:kPushReceived object:nil];
     if ([[SharedManager getInstance] isMessage]) {
         [self.lblMessage setHidden:YES];

@@ -84,7 +84,6 @@
     }
     // Do any additional setup after loading the view from its nib.
     
-//    [self initalizeMessageData];
     [self fetchData];
 }
 
@@ -95,52 +94,6 @@
 }
 
 
--(void)initalizeMessageData
-{
-    
-
-
-    self.messagesArray = [NSMutableArray array];
-    
-    for (int i =0; i<10; i++) {
-        
-        if(i%2==0)
-        {
-        
-            NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-            
-            [dict setValue:@"This is a test comment to test height of a cell dynamically.This is a test comment to test height of a cell dynamically.This is a test comment to test height of a cell dynamically.This is a test comment to test height of a cell dynamically.This is a test comment to test height of a cell dynamically.This is a test comment to test height of a cell dynamically.This is a test comment to test height of a cell dynamically.This is a test comment to test height of a cell dynamically.This is a test comment to test height of a cell dynamically.This is a test comment to test height of a cell dynamically.This is a test comment to test height of a cell dynamically." forKey:@"message"];
-            
-            [dict setValue:@"www.google.com" forKey:@"image_url"];
-            
-            
-            CGSize renderedSize = [[dict objectForKey:@"message"] sizeWithFont:[UIFont fontWithName:@"Helvetica" size:12] constrainedToSize:CGSizeMake(320, CGFLOAT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
-            
-
-            [dict setValue:[NSNumber numberWithInteger:renderedSize.height] forKey:@"height"];
-            
-            [self.messagesArray addObject:[MessageDTO initWithMessage:dict]];
-        }
-        else
-        {
-            NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-        
-            [dict setValue:@"This is Small test comment to test height of a cell dynamically.This is a test comment to test height of a cell dynamically." forKey:@"message"];
-        
-            [dict setValue:@"www.google.com" forKey:@"image_url"];
-        
-            CGSize renderedSize = [[dict objectForKey:@"message"] sizeWithFont:[UIFont fontWithName:@"Helvetica" size:12] constrainedToSize:CGSizeMake(320, CGFLOAT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
-            
-            
-            [dict setValue:[NSNumber numberWithInteger:renderedSize.height] forKey:@"height"];
-            
-            [self.messagesArray addObject:[MessageDTO initWithMessage:dict]];
-        }
-    }
-    
-    [self.messageTable reloadData];
-
-}
 - (IBAction)onBackClick:(id)sender {
     
     [self.navigationController popViewControllerAnimated:YES];
@@ -280,13 +233,6 @@
         [alertView show];
         
         
-//        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Reply" message:@"Please enter your reply:" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Reply",nil];
-//        [alert setTag:indexPath.row];
-//        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-//        UITextField * alertTextField = [alert textFieldAtIndex:0];
-//        alertTextField.placeholder = @"Enter your Reply";
-//        [alert show];
-//        [alert release];
     }
     
 }

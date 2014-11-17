@@ -26,6 +26,8 @@
 @synthesize manufacturer = _manufacturer;
 @synthesize asset_description = _asset_description;
 @synthesize ticketID = _ticketID;
+@synthesize is_questions = _is_questions;
+
 +(id)initWithHistoryData:(NSDictionary *)dict{
 
 
@@ -50,6 +52,7 @@
     self.manufacturer = [dictionary valueForKey:@"manufacturer"];
     self.asset_description = [dictionary valueForKey:@"asset_description"];
     self.ticketID = [dictionary valueForKey:@"ticket_id"];
+    self.is_questions = [dictionary valueForKey:@"is_questions"];
 }
 -(void)dealloc{
 
@@ -66,6 +69,7 @@
     [_date_in_service release];
     [_manufacturer release];
     [_asset_description release];
+    [_is_questions release];
     [super dealloc];
 }
 @end

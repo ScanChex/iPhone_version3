@@ -140,6 +140,15 @@
 - (void)viewDidLoad
 {
     TicketDTO *ticketAsset =[[VSSharedManager sharedManager] selectedTicket];
+    
+    
+    if ([ticketAsset.is_questions isEqualToString:@"1"])
+        [self.questionsimageSign setImage:[UIImage imageNamed:@"excalamationIcon.png"]];
+    else
+        self.questionsimageSign.hidden = YES;
+
+    self.alertText =  [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 290, 200)];
+    
     [self.historyArray removeAllObjects];
     UserDTO *user=[[VSSharedManager sharedManager] currentUser];
     [[WebServiceManager sharedManager] showHistory:[NSString stringWithFormat:@"%d",user.masterKey] ticketID:ticketAsset.assetID withCompletionHandler:^(id data, BOOL error){
@@ -149,8 +158,7 @@
             
             //                                [self.historyArray removeAllObjects];
             self.historyArray  = [NSMutableArray arrayWithArray:(NSMutableArray*)data];
-            
-            
+
         }
         else
             [self initWithPromptTitle:@"Error" message:(NSString *)data];
@@ -189,6 +197,11 @@
 
     
     TicketInfoDTO *ticketInfoDTO = [[VSSharedManager sharedManager] selectedTicketInfo];
+    
+    if ([[ticketInfoDTO.overDue lowercaseString] isEqualToString:@"1"]) {
+        self.suspendButton.hidden = YES;
+    }
+    
     if ([[VSSharedManager sharedManager] isPreview]) {
         [self.backButton setTitle:@"RETURN" forState:UIControlStateNormal];
     }
@@ -227,7 +240,6 @@
       _notesimageSign.hidden=YES;
     }
   
-   [self.questionsimageSign setImage:[UIImage imageNamed:@"excalamationIcon.png"]];
   
   
   //DEBUG****remove for testing.
@@ -277,6 +289,8 @@
     _assetsView = nil;
     [_startTimer invalidate];
     _startTimer = nil;
+    [_suspendButton release];
+    [_alertText release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -400,8 +414,7 @@
                     [SVProgressHUD dismiss];
                     
                     if (!error) {
-                        
-                        
+                    
                         
                         self.questionView=[ShowQuestionsVC initWithQuesitons:(NSMutableArray*)data history:self.historyArray];
                         self.questionView.delegate=self;
@@ -596,10 +609,9 @@
             [alert release];
         }
     }
-
-
-
 }
+
+
 - (IBAction)nextScanButtonPressed:(id)sender {
     
 }
@@ -620,6 +632,55 @@
    
     [self.view addSubview:self.scanQRManager.view];
     [_scanQRManager showQrScanner];
+
+}
+
+- (IBAction)onClickSuspend:(id)sender {
+    
+    CustomIOS7AlertView *alertView = [[CustomIOS7AlertView alloc] init];
+    [self.alertText setText:@""];
+    // Add some custom content to the alert view
+    [alertView setContainerView:[self createDemoView:@"Please enter reason to suspend a ticket"]];
+    // Modify the parameters
+    [alertView setButtonTitles:[NSMutableArray arrayWithObjects:@"Cancel", @"OK", nil]];
+    //        [alertView setDelegate:self];
+    
+    // You may use a Block, rather than a delegate.
+    [alertView setOnButtonTouchUpInside:^(CustomIOS7AlertView *alertView, int buttonIndex) {
+        NSString* detailString = [self.alertText text];
+        NSLog(@"String is: %@", detailString); //Put it on the debugger
+        if ( buttonIndex == 0){
+            return; //If cancel or 0 length string the string doesn't matter
+        }
+        if (buttonIndex == 1 && [detailString length]>0) {
+
+            UserDTO*user=[[VSSharedManager sharedManager] currentUser];
+            TicketInfoDTO *selectedTicketInfo = [[VSSharedManager sharedManager] selectedTicketInfo];
+            
+            //
+             NSString *startDateString=[WSUtils getStringFormCurrentDate];
+             NSString *userID =  [[NSUserDefaults standardUserDefaults] valueForKey:@"userID"];
+            [SVProgressHUD show];
+            [[WebServiceManager sharedManager] suspendTicket:[NSString stringWithFormat:@"%d",user.masterKey] ticketID:selectedTicketInfo.tblTicketID stopTime:startDateString StopReason:detailString userID:userID withCompletionHandler:^(id data, BOOL error) {
+                
+                [SVProgressHUD dismiss];
+                
+                if (!error) {
+                    
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+                
+            }];
+            
+        }
+        [alertView close];
+    }];
+    
+    [alertView setUseMotionEffects:true];
+    
+    // And launch the dialog
+    [alertView show];
+    
 
 }
 -(void)assetScanNotification:(NSNotification*)notif {
@@ -957,6 +1018,45 @@
 //    NSString * tempString = [filePath stringByReplacingOccurrencesOfString:@".pdf" withString:@""];
     if([[filePath lowercaseString] rangeOfString:@".pdf"].length>0) {
         if ([SharedManager getInstance].isEditable) {
+         
+            UserDTO*user=[[VSSharedManager sharedManager] currentUser];
+            TicketInfoDTO *selectedTicketInfo = [[VSSharedManager sharedManager] selectedTicketInfo];
+            
+            NSString *userMasterKey = [NSString stringWithFormat:@"%d", user.masterKey];
+            NSString *ticketID = selectedTicketInfo.tblTicketID;
+            
+            long currentTime = (long)[[NSDate date] timeIntervalSince1970];
+    
+            NSString *fileName = [NSString stringWithFormat:@"%@_%@_%ld.pdf",userMasterKey,ticketID,currentTime];
+            NSString *newFilePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:fileName];
+            NSError *error = nil;
+            
+            [[NSFileManager defaultManager] copyItemAtPath:path toPath:newFilePath error:&error];
+            
+            
+            if (!error) {
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    
+                    self.docController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:newFilePath]];
+                    self.navigationController.toolbarHidden = YES;
+                    BOOL isValid = [self.docController presentOpenInMenuFromRect:CGRectZero inView:self.view animated:YES];
+                    
+                    if (isValid) {
+                        
+                        NSLog(@"yeahhh");
+                    }
+                    else{
+                        
+                        NSLog(@"False");
+                    }
+
+                });
+                
+            }
+            
+            
+            /*
             self.pdfViewController = [[PDFViewController alloc] initWithPath:path];
             UINavigationController * navigationController = [[UINavigationController alloc] initWithRootViewController:self.pdfViewController];
             navigationController.view.autoresizingMask =  UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleLeftMargin;
@@ -964,7 +1064,7 @@
             UIBarButtonItem* saveBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(save:)];
             
             [self.pdfViewController.navigationItem setRightBarButtonItems:@[saveBarButtonItem]];
-            [self presentViewController:navigationController animated:YES completion:nil];
+            [self presentViewController:navigationController animated:YES completion:nil];*/
         }
         else {
             [self openPDFWithPath:path];
@@ -1560,7 +1660,7 @@
         
         TicketCell *cell=[TicketCell resuableCellForTableView:self.tableView withOwner:self];
         cell.indexPath=indexPath;
-    VSSharedManager * temp = [VSSharedManager sharedManager];
+  //  VSSharedManager * temp = [VSSharedManager sharedManager];
     NSInteger tempint = [[VSSharedManager sharedManager] CurrentSelectedIndex];
         [cell updateCellWithTicket:[[VSSharedManager sharedManager] selectedTicket] index:tempint];
 //    [cell.mapButton setHidden:YES];
@@ -1597,11 +1697,16 @@
     
 }
 -(void)showDirections {
+    
+    [[VSSharedManager sharedManager] openMapWithLocation:[[VSSharedManager sharedManager] selectedTicket]];
+
+    /*
     RoutesViewController * tempRoute = [[RoutesViewController alloc] initWithNibName:@"RoutesViewController" bundle:[NSBundle mainBundle]];
     tempRoute.tickets = [NSArray arrayWithArray:[[VSSharedManager sharedManager] ticketInfo]];
     tempRoute.currentSelectedTicket = [[VSSharedManager sharedManager] CurrentSelectedIndex];
     tempRoute.currentSelectedSection = [[VSSharedManager sharedManager] CurrentSelectedSection];
     [self.navigationController pushViewController:tempRoute animated:YES];
+     */
 }
 
 - (NSString *)elapsedTimeSince:(NSDate *)date {
@@ -1643,5 +1748,22 @@
     [self.assetsView.timeInLabel setText:[SharedManager stringFromDate:self.startDate withFormat:@"HH:mm"]];
     [self.assetsView.totalTimeLabel setText:[self elapsedTimeSince:self.startDate]];
 }
+
+
+- (UIView *)createDemoView:(NSString*)text
+{
+    UIView *demoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 290, 200)];
+    [self.alertText setFrame:CGRectMake(0, 50, 290,150)];
+    UILabel *imageView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 290, 50)];
+    [imageView setTextAlignment:NSTextAlignmentCenter];
+    [imageView setText:text];
+    [imageView setNumberOfLines:2];
+    [imageView setLineBreakMode:NSLineBreakByWordWrapping];
+    [demoView addSubview:self.alertText];
+    [demoView addSubview:imageView];
+    
+    return demoView;
+}
+
 
 @end

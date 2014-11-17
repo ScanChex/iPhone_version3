@@ -2877,8 +2877,8 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Veriscan, Inc (EHZ88WLSRM)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Veriscan, Inc (EHZ88WLSRM)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -2894,8 +2894,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				"LIBRARY_SEARCH_PATHS[arch=*]" = "";
 				ONLY_ACTIVE_ARCH = NO;
-				PROVISIONING_PROFILE = "6ea196fd-731f-42e7-8c81-eba1a6c7244b";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6ea196fd-731f-42e7-8c81-eba1a6c7244b";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv7 arm7a";
 			};
@@ -2919,8 +2919,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "6ea196fd-731f-42e7-8c81-eba1a6c7244b";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6ea196fd-731f-42e7-8c81-eba1a6c7244b";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "03e4cb05-6a8b-4ec9-bd41-73db011514b7";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "armv7 arm7a";
@@ -2932,8 +2932,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Veriscan, Inc (EHZ88WLSRM)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Veriscan, Inc (EHZ88WLSRM)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "VeriScanQR/ScanChex-Prefix.pch";
 				"HEADER_SEARCH_PATHS[arch=*]" = /usr/include/libxml2;
@@ -2954,8 +2954,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = ScanChex;
-				PROVISIONING_PROFILE = "03e4cb05-6a8b-4ec9-bd41-73db011514b7";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "03e4cb05-6a8b-4ec9-bd41-73db011514b7";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;

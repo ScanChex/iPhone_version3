@@ -42,6 +42,11 @@
 @property (nonatomic, retain) NSMutableArray * historyArray;
 @property (retain, nonatomic) IBOutlet UIImageView *notesimageSign;
 @property (retain, nonatomic) IBOutlet UIImageView *questionsimageSign;
+@property (retain, nonatomic) IBOutlet UIButton *suspendButton;
+@property (nonatomic, retain) UITextView * alertText;
+
+@property (retain)UIDocumentInteractionController *docController;
+
 
 +(id)initWithScan;
 +(id)initWithPreview;
@@ -55,6 +60,7 @@
 - (IBAction)menuButtonPressed:(id)sender;
 - (IBAction)nextScanButtonPressed:(id)sender;
 - (IBAction)SecondScanButtonPressed:(id)sender;
+- (IBAction)onClickSuspend:(id)sender;
 -(void)messageNotification:(NSNotification*)notif;
 -(void)assetScanNotification:(NSNotification*)notif;
 - (NSString *)elapsedTimeSince:(NSDate *)date;

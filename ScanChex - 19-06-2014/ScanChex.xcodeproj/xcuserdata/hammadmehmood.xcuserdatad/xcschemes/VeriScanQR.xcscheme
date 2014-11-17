@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9DA562641678CBB5006CC95E"
-            BuildableName = "VeriScanQR.app"
-            BlueprintName = "VeriScanQR"
-            ReferencedContainer = "container:VeriScanQR.xcodeproj">
+            BuildableName = "ScanChex.app"
+            BlueprintName = "ScanChex"
+            ReferencedContainer = "container:ScanChex.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -52,9 +52,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9DA562641678CBB5006CC95E"
-            BuildableName = "VeriScanQR.app"
-            BlueprintName = "VeriScanQR"
-            ReferencedContainer = "container:VeriScanQR.xcodeproj">
+            BuildableName = "ScanChex.app"
+            BlueprintName = "ScanChex"
+            ReferencedContainer = "container:ScanChex.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
