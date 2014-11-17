@@ -38,7 +38,6 @@
 @synthesize checkPoints = _checkPoints;
 @synthesize check_point_ids = _check_point_ids;
 @synthesize technician = _technician;
-@synthesize is_questions = _is_questions;
 
 
 
@@ -69,7 +68,6 @@
     self.totalCheckpoints = [dictionary valueForKey:@"total_checkpoints"];
     self.check_point_ids = [dictionary valueForKey:@"check_point_ids"];
     self.technician = [dictionary valueForKey:@"technician"];
-    self.is_questions = [dictionary valueForKey:@"is_questions"];
     if (![[dictionary valueForKey:@"address2"] isKindOfClass:[NSNull class]]) {
         
      //   self.address2=[TicketAddressDTO initWithTicketAdderss:[dictionary valueForKey:@"address2"]];

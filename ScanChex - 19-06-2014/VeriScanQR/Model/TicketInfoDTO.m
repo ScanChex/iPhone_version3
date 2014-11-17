@@ -27,6 +27,9 @@
 @synthesize ticket_total_time = _ticket_total_time;
 @synthesize ticket_type = _ticket_type;
 @synthesize employee = _employee;
+@synthesize is_questions = _is_questions;
+@synthesize suspended_by = _suspended_by;
+
 
 +(id)initWithTicketInfo:(NSDictionary *)info{
 
@@ -52,7 +55,7 @@
     self.ticket_end_time = [dictionary valueForKey:@"ticket_end_time"];
     self.ticket_total_time = [dictionary valueForKey:@"ticket_total_time"];
     self.employee = [dictionary valueForKey:@"employee"];
-  
+    
     if ([[dictionary valueForKey:@"allow_id_card_scan"] isEqualToString:@"Yes"]) {
         self.allow_id_card_scan = TRUE;
     }
@@ -62,6 +65,9 @@
     if ([dictionary valueForKey:@"ticket_type"]) {
         self.ticket_type = [dictionary valueForKey:@"ticket_type"];
     }
+    self.is_questions = [dictionary valueForKey:@"is_questions"];
+    self.suspended_by = [dictionary valueForKey:@"suspended_by"];
+    
 }
 
 -(void)dealloc{

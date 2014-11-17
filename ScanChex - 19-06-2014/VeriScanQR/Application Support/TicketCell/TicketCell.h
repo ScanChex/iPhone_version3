@@ -27,6 +27,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *dateLabel;
 @property (retain, nonatomic) IBOutlet UIImageView * employeeCardImageView;
 @property (retain, nonatomic) IBOutlet UILabel *onHoldLabel;
+@property (retain, nonatomic) IBOutlet UILabel *onHoldStatus;
 
 +(TicketCell *)resuableCellForTableView:(UITableView *)tableview withOwner:(UIViewController *)owner;
 +(TicketCell *)resuableCellForTableView2:(UITableView *)tableview withOwner:(UIViewController *)owner;

@@ -218,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VeriScanQR/Application Support/TicketCell/TicketCell.m"
-            timestampString = "437824804.319177"
+            timestampString = "437946063.912771"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
             landmarkName = "-updateCellWithCheckTicket:"
             landmarkType = "5">
          </BreakpointContent>
@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VeriScanQR/Model/TicketDTO.m"
-            timestampString = "437844651.442126"
+            timestampString = "437944807.270615"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
             landmarkName = "+initWithTicketDTO:"
             landmarkType = "5">
          </BreakpointContent>
@@ -282,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VeriScanQR/Model/TicketInfoDTO.m"
-            timestampString = "396401103.085992"
+            timestampString = "437946063.912771"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
             landmarkName = "+initWithTicketInfo:"
             landmarkType = "5">
          </BreakpointContent>
@@ -511,6 +511,36 @@
             endingLineNumber = "1288"
             landmarkName = "-upadteAnswers:questIDS:answers:ticketID:withCompletionHandler:"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__83-[WebServiceManager upadteAnswers:questIDS:answers:ticketID:withCompletionHandler:]_block_invoke"
+                  moduleName = "ScanChex"
+                  urlString = "file:///Users/hammadmehmood/Development/Don%20Projects/Ravi%20Final%20Code/Ravi%20Github/iPhone_version3/ScanChex%20-%2019-06-2014/VeriScanQR/Webservices/WebServiceManager.m"
+                  timestampString = "437944849.584606"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1289"
+                  endingLineNumber = "1289"
+                  offsetFromSymbolStart = "178">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__83-[WebServiceManager upadteAnswers:questIDS:answers:ticketID:withCompletionHandler:]_block_invoke_2"
+                  moduleName = "ScanChex"
+                  urlString = "file:///Users/hammadmehmood/Development/Don%20Projects/Ravi%20Final%20Code/Ravi%20Github/iPhone_version3/ScanChex%20-%2019-06-2014/VeriScanQR/Webservices/WebServiceManager.m"
+                  timestampString = "437944849.585244"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1289"
+                  endingLineNumber = "1289"
+                  offsetFromSymbolStart = "14">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -680,11 +710,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VeriScanQR/ViewControllers/ScanVC/ScanVC.m"
-            timestampString = "437849000.850588"
+            timestampString = "437944302.907659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "936"
-            endingLineNumber = "936"
+            startingLineNumber = "937"
+            endingLineNumber = "937"
             landmarkName = "-scanTicket"
             landmarkType = "5">
          </BreakpointContent>
@@ -760,11 +790,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VeriScanQR/ViewControllers/ScanVC/ScanVC.m"
-            timestampString = "437849000.850588"
+            timestampString = "437944302.907659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "914"
-            endingLineNumber = "914"
+            startingLineNumber = "915"
+            endingLineNumber = "915"
             landmarkName = "-scanTicket"
             landmarkType = "5">
          </BreakpointContent>
@@ -776,11 +806,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VeriScanQR/ViewControllers/ScanVC/ScanVC.m"
-            timestampString = "437848386.220585"
+            timestampString = "437944302.907659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "440"
-            endingLineNumber = "440"
+            startingLineNumber = "441"
+            endingLineNumber = "441"
             landmarkName = "-segmentChanged:"
             landmarkType = "5">
          </BreakpointContent>
@@ -792,11 +822,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VeriScanQR/ViewControllers/ScanVC/ScanVC.m"
-            timestampString = "437848386.220585"
+            timestampString = "437944302.907659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "470"
-            endingLineNumber = "470"
+            startingLineNumber = "471"
+            endingLineNumber = "471"
             landmarkName = "-segmentChanged:"
             landmarkType = "5">
          </BreakpointContent>
@@ -808,11 +838,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VeriScanQR/ViewControllers/ScanVC/ScanVC.m"
-            timestampString = "437849000.850588"
+            timestampString = "437944302.907659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "927"
-            endingLineNumber = "927"
+            startingLineNumber = "928"
+            endingLineNumber = "928"
             landmarkName = "-scanTicket"
             landmarkType = "5">
          </BreakpointContent>
@@ -1032,11 +1062,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VeriScanQR/ViewControllers/ScanVC/ScanVC.m"
-            timestampString = "437848386.220585"
+            timestampString = "437944302.907659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -1048,11 +1078,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VeriScanQR/ViewControllers/ScanVC/ScanVC.m"
-            timestampString = "437848386.220585"
+            timestampString = "437944302.907659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "198"
-            endingLineNumber = "198"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -1064,11 +1094,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VeriScanQR/ViewControllers/ScanVC/ScanVC.m"
-            timestampString = "437848386.220585"
+            timestampString = "437944302.907659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "383"
-            endingLineNumber = "383"
+            startingLineNumber = "384"
+            endingLineNumber = "384"
             landmarkName = "-segmentChanged:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1127,12 +1157,12 @@
                   symbolName = "__79-[WebServiceManager loginWithCustomerID:userID:password:withCompletionHandler:]_block_invoke209"
                   moduleName = "ScanChex"
                   urlString = "file:///Users/hammadmehmood/Development/Don%20Projects/Ravi%20Final%20Code/Ravi%20Github/iPhone_version3/ScanChex%20-%2019-06-2014/VeriScanQR/Webservices/WebServiceManager.m"
-                  timestampString = "437850143.660786"
+                  timestampString = "437944849.689382"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "330"
                   endingLineNumber = "330"
-                  offsetFromSymbolStart = "113">
+                  offsetFromSymbolStart = "146">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -1141,12 +1171,12 @@
                   symbolName = "__79-[WebServiceManager loginWithCustomerID:userID:password:withCompletionHandler:]_block_invoke_2212"
                   moduleName = "ScanChex"
                   urlString = "file:///Users/hammadmehmood/Development/Don%20Projects/Ravi%20Final%20Code/Ravi%20Github/iPhone_version3/ScanChex%20-%2019-06-2014/VeriScanQR/Webservices/WebServiceManager.m"
-                  timestampString = "437850143.661036"
+                  timestampString = "437944849.68965"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "330"
                   endingLineNumber = "330"
-                  offsetFromSymbolStart = "30">
+                  offsetFromSymbolStart = "24">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1158,11 +1188,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VeriScanQR/ViewControllers/ScanVC/ScanVC.m"
-            timestampString = "437849000.850588"
+            timestampString = "437944302.907659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1014"
-            endingLineNumber = "1014"
+            startingLineNumber = "1015"
+            endingLineNumber = "1015"
             landmarkName = "-readPdfFileAtPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1190,11 +1220,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VeriScanQR/ViewControllers/ScanVC/ScanVC.m"
-            timestampString = "437849000.850588"
+            timestampString = "437944302.907659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1027"
-            endingLineNumber = "1027"
+            startingLineNumber = "1028"
+            endingLineNumber = "1028"
             landmarkName = "-readPdfFileAtPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1244,6 +1274,22 @@
             startingLineNumber = "434"
             endingLineNumber = "434"
             landmarkName = "-scanAccessoryButtonTapped:withEvent:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VeriScanQR/ViewControllers/ScanVC/ScanVC.m"
+            timestampString = "437944321.399124"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "240"
+            endingLineNumber = "240"
+            landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

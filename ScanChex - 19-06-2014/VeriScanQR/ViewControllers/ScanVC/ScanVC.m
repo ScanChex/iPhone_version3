@@ -141,11 +141,6 @@
 {
     TicketDTO *ticketAsset =[[VSSharedManager sharedManager] selectedTicket];
     
-    
-    if ([ticketAsset.is_questions isEqualToString:@"1"])
-        [self.questionsimageSign setImage:[UIImage imageNamed:@"excalamationIcon.png"]];
-    else
-        self.questionsimageSign.hidden = YES;
 
     self.alertText =  [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 290, 200)];
     
@@ -198,9 +193,9 @@
     
     TicketInfoDTO *ticketInfoDTO = [[VSSharedManager sharedManager] selectedTicketInfo];
     
-    if ([[ticketInfoDTO.overDue lowercaseString] isEqualToString:@"1"]) {
-        self.suspendButton.hidden = YES;
-    }
+//    if ([[ticketInfoDTO.overDue lowercaseString] isEqualToString:@"1"]) {
+//        self.suspendButton.hidden = YES;
+//    }
     
     if ([[VSSharedManager sharedManager] isPreview]) {
         [self.backButton setTitle:@"RETURN" forState:UIControlStateNormal];
@@ -241,6 +236,12 @@
     }
   
   
+    
+    if ([ticketInfoDTO.is_questions isEqualToString:@"YES"])
+        [self.questionsimageSign setImage:[UIImage imageNamed:@"excalamationIcon.png"]];
+    else
+        self.questionsimageSign.hidden = YES;
+
   
   //DEBUG****remove for testing.
   //[[VSSharedManager sharedManager] setIsPreview:FALSE];

@@ -28,6 +28,8 @@
 @property (nonatomic, assign) BOOL allow_id_card_scan;
 @property (nonatomic, retain) NSString * ticket_type;
 @property (nonatomic, retain) NSString * employee;
+@property (nonatomic, retain) NSString *is_questions;
+@property (nonatomic, retain) NSString *suspended_by;
 
 +(id)initWithTicketInfo:(NSDictionary *)info;
 @end

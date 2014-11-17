@@ -53,6 +53,7 @@
     
     
     self.onHoldLabel.hidden = YES;
+    self.onHoldStatus.hidden = YES;
 
   TicketInfoDTO *info=[ticket.tickets objectAtIndex:indexPath.row];
   
@@ -136,6 +137,8 @@
         
         [self.imageSign setImage:nil];
         self.onHoldLabel.hidden = NO;
+        self.onHoldStatus.hidden  = NO;
+        self.onHoldStatus.text  = info.suspended_by;
         self.contentView.backgroundColor = [UIColor purpleColor];
         
     }
@@ -155,6 +158,7 @@
 -(void)updateCellWithTicket:(TicketDTO *)ticket{
 
     self.onHoldLabel.hidden = YES;
+    self.onHoldStatus.hidden = YES;
 
     TicketAddressDTO *address1 =ticket.address1;
     TicketAddressDTO *address2 =ticket.address2;
@@ -225,6 +229,8 @@
     
         [self.imageSign setImage:nil];
         self.onHoldLabel.hidden = NO;
+        self.onHoldStatus.hidden  = NO;
+        self.onHoldStatus.text = info.suspended_by;
         self.contentView.backgroundColor = [UIColor purpleColor];
     
     }
@@ -241,6 +247,7 @@
 -(void)updateCellWithTicket:(TicketDTO *)ticket index:(NSInteger)index {
     
     self.onHoldLabel.hidden = YES;
+    self.onHoldStatus.hidden= YES;
 
     TicketAddressDTO *address1 =ticket.address1;
     TicketAddressDTO *address2 =ticket.address2;
@@ -305,6 +312,8 @@
         
         [self.imageSign setImage:nil];
         self.onHoldLabel.hidden = NO;
+        self.onHoldStatus.hidden  = NO;
+        self.onHoldStatus.text = info.suspended_by;
         self.contentView.backgroundColor = [UIColor purpleColor];
         
     }
@@ -358,6 +367,7 @@
     [_photoImageView release];
     [_imageSign release];
     [_onHoldLabel release];
+    [_onHoldStatus release];
     [super dealloc];
 }
 @end
