@@ -11,6 +11,8 @@
 #import "VSLocationManager.h"
 #import "Flurry.h"
 #import "MessageCentreVC.h"
+#import "Constant.h"
+
 @implementation AppDelegate
 @synthesize navController;
 
@@ -212,5 +214,20 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     
 }
+
+-(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:PDF_FILE_SHARE object:url];
+    
+//    NSFileManager *filemgr = [NSFileManager defaultManager];
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documentsDirectory = [paths objectAtIndex:0];
+//    NSString* inboxPath = [documentsDirectory stringByAppendingPathComponent:@"Inbox"];
+//    NSArray *dirFiles = [filemgr contentsOfDirectoryAtPath:inboxPath error:nil];
+//    
+    return YES;
+}
+
 
 @end

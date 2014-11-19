@@ -419,25 +419,11 @@
         
         if ([[ticketInfo.ticketStatus lowercaseString] isEqualToString:@"suspended"]){
             
-            UserDTO*user=[[VSSharedManager sharedManager] currentUser];
             
             //+(NSString *)getStringFormCurrentDate
-
-            NSString *startDateString=[WSUtils getStringFormCurrentDate];
-            NSString *userID =  [[NSUserDefaults standardUserDefaults] valueForKey:@"userID"];
-            [SVProgressHUD show];
             
-            [[WebServiceManager sharedManager] restartTicket:[NSString stringWithFormat:@"%d",user.masterKey] ticketID:ticketInfo.tblTicketID restartTime:startDateString userID:userID withCompletionHandler:^(id data, BOOL error) {
-                
-                [SVProgressHUD dismiss];
-                if (!error) {
-                    
-            
-                    [[VSSharedManager sharedManager] setSelectedTicketInfo:[array objectAtIndex:indexPath.row]];
-                    [self.navigationController pushViewController:[ScanVC initWithPreview] animated:YES];
-                    
-                }
-            }];
+            [[VSSharedManager sharedManager] setSelectedTicketInfo:[array objectAtIndex:indexPath.row]];
+            [self.navigationController pushViewController:[ScanVC initWithPreview] animated:YES];
             
         }
        else if ([[ticketInfo.ticketStatus lowercaseString] isEqualToString:@"complete"])

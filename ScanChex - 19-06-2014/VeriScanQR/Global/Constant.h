@@ -37,3 +37,5 @@
 
 #define IS_IPHONE5 (([[UIScreen mainScreen] bounds].size.height-568)?NO:YES)
 #define K_SECOND_SCAN "Second Scan"
+
+#define PDF_FILE_SHARE @"PDF_FILE_SHARE"

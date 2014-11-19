@@ -189,6 +189,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCode:) name:K_Update_ScanCode object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(assetScanNotification:) name:@"assetScan" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cancelTab:) name:K_Update_ScanCode_CANCEL object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sharePDF:) name:PDF_FILE_SHARE object:nil];
+
 
     
     TicketInfoDTO *ticketInfoDTO = [[VSSharedManager sharedManager] selectedTicketInfo];
@@ -830,6 +832,24 @@
                                                             
                                                         }
                                                         
+                                                        if ([[ticketInfoDTO.ticketStatus lowercaseString] isEqualToString:@"suspended"]) {
+                                                            
+                                                            UserDTO*user=[[VSSharedManager sharedManager] currentUser];
+                                                            NSString *startDateString=[WSUtils getStringFormCurrentDate];
+                                                            NSString *userID =  [[NSUserDefaults standardUserDefaults] valueForKey:@"userID"];
+                                                            [SVProgressHUD show];
+                                                            
+                                                            [[WebServiceManager sharedManager] restartTicket:[NSString stringWithFormat:@"%d",user.masterKey] ticketID:ticketInfoDTO.tblTicketID restartTime:startDateString userID:userID withCompletionHandler:^(id data, BOOL error) {
+                                                                
+                                                                [SVProgressHUD dismiss];
+                                                                if (!error) {
+                                                                    
+                                                                    
+                                                                }
+                                                            }];
+
+                                                        }
+                                                        
                                                     }
                                                 }
                                                 else {
@@ -840,6 +860,7 @@
                                                         {
                                                             [[VSLocationManager sharedManager] setAssetID:ticketAsset.assetID];
                                                         }
+                                                        
                                                     }
                                                     else
                                                     {
@@ -968,46 +989,38 @@
         
     }
 }
--(void)save:(id)sender
+
+-(void)uploadPDFWithFilePath:(NSURL *)filePath
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
-    [self.pdfViewController.document saveFormsToDocumentData:^(BOOL success) {
-        
-        if(success) {
-            UserDTO*user=[[VSSharedManager sharedManager] currentUser];
-            
-            [[WebServiceManager sharedManager] uploadPdf:[NSString stringWithFormat:@"%d",user.masterKey]
-                                                 historyID:[[VSSharedManager sharedManager] historyID]
-                                               contentType:@"application/pdf"
-                                                 pdfData:self.pdfViewController.document.documentData
-                                               progressBar:self.myProgressIndicator
-                                     withCompletionHandler:^(id data,BOOL error){
-                                         
-                                         [SVProgressHUD dismiss];
-                                         //  self.view.userInteractionEnabled=YES;
-                                         
-                                         [self.myProgressIndicator removeFromSuperview];
-                                         if (!error)
-                                             [self initWithPromptTitle:@"Document Uploaded" message:@"Document uploaded successfully"];
-                                         else{
-                                             [self initWithPromptTitle:@"Error" message:(NSString *)data];
-                                         }
-                                         
-                                         
-//                                         [[NSFileManager defaultManager] removeItemAtPath:path error:&fileError];
-                                         
-                                     }];
-//            [self.pdfViewController.document writeToFile:@"editedpdf.pdf"];
-            
-        }else
-        {
-            UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Failure" message:@"Save Failed. Make sure you are not using object streams (PDF 1.5)" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alertView show];
-            
-        }
-        
-        
-    }];
+    
+    NSData *fileData = [[NSData alloc] initWithContentsOfURL:filePath];
+
+    if (!filePath) {
+        return;
+    }
+    
+    UserDTO*user=[[VSSharedManager sharedManager] currentUser];
+    [SVProgressHUD showWithStatus:@"Uploading..." maskType:SVProgressHUDMaskTypeBlack];
+    [[WebServiceManager sharedManager] uploadPdf:[NSString stringWithFormat:@"%d",user.masterKey]
+                                       historyID:[[VSSharedManager sharedManager] historyID]
+                                     contentType:@"application/pdf"
+                                         pdfData:fileData
+                                    // pdfFilePath:filePath
+                                     progressBar:self.myProgressIndicator
+                           withCompletionHandler:^(id data,BOOL error){
+                               
+                               [SVProgressHUD dismiss];
+                               //  self.view.userInteractionEnabled=YES;
+                               
+                               [self.myProgressIndicator removeFromSuperview];
+                               if (!error)
+                                   [self initWithPromptTitle:@"Document Uploaded" message:@"Document uploaded successfully"];
+                               else{
+                                   [self initWithPromptTitle:@"Error" message:(NSString *)data];
+                               }
+                               
+                           }];
+
 }
 -(void)readPdfFileAtPath:(NSString *)filePath{
     
@@ -1020,26 +1033,26 @@
     if([[filePath lowercaseString] rangeOfString:@".pdf"].length>0) {
         if ([SharedManager getInstance].isEditable) {
          
-            UserDTO*user=[[VSSharedManager sharedManager] currentUser];
-            TicketInfoDTO *selectedTicketInfo = [[VSSharedManager sharedManager] selectedTicketInfo];
+//            UserDTO*user=[[VSSharedManager sharedManager] currentUser];
+//            TicketInfoDTO *selectedTicketInfo = [[VSSharedManager sharedManager] selectedTicketInfo];
+//            
+//            NSString *userMasterKey = [NSString stringWithFormat:@"%d", user.masterKey];
+//            NSString *ticketID = selectedTicketInfo.tblTicketID;
+//            
+//            long currentTime = (long)[[NSDate date] timeIntervalSince1970];
+//    
+//            NSString *fileName = [NSString stringWithFormat:@"%@_%@_%ld.pdf",userMasterKey,ticketID,currentTime];
+//            NSString *newFilePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:fileName];
+//            NSError *error = nil;
+//            
+//            [[NSFileManager defaultManager] copyItemAtPath:path toPath:newFilePath error:&error];
+//            
             
-            NSString *userMasterKey = [NSString stringWithFormat:@"%d", user.masterKey];
-            NSString *ticketID = selectedTicketInfo.tblTicketID;
-            
-            long currentTime = (long)[[NSDate date] timeIntervalSince1970];
-    
-            NSString *fileName = [NSString stringWithFormat:@"%@_%@_%ld.pdf",userMasterKey,ticketID,currentTime];
-            NSString *newFilePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:fileName];
-            NSError *error = nil;
-            
-            [[NSFileManager defaultManager] copyItemAtPath:path toPath:newFilePath error:&error];
-            
-            
-            if (!error) {
+            //if (!error) {
                 
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     
-                    self.docController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:newFilePath]];
+                    self.docController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:path]];
                     self.navigationController.toolbarHidden = YES;
                     BOOL isValid = [self.docController presentOpenInMenuFromRect:CGRectZero inView:self.view animated:YES];
                     
@@ -1054,7 +1067,7 @@
 
                 });
                 
-            }
+            //}
             
             
             /*
@@ -1617,6 +1630,15 @@
         [self removeQRView];
         
         self.view.userInteractionEnabled = YES;
+    });
+}
+
+-(void)sharePDF:(NSNotification *)notif{
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        NSURL *url =(NSURL *) [notif object];
+        [self uploadPDFWithFilePath:url];
     });
 }
 
