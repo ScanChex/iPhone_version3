@@ -139,7 +139,8 @@
         self.onHoldLabel.hidden = NO;
         self.onHoldStatus.hidden  = NO;
         self.onHoldStatus.text  = info.suspended_by;
-        self.contentView.backgroundColor = [UIColor purpleColor];
+        //self.contentView.backgroundColor = [UIColor purpleColor];
+        self.contentView.backgroundColor=[UIColor colorWithRed:255.0f/255.0f green:255.0f/255.0f blue:182.0f/255.0f alpha:1.0];
         
     }
 
@@ -231,7 +232,8 @@
         self.onHoldLabel.hidden = NO;
         self.onHoldStatus.hidden  = NO;
         self.onHoldStatus.text = info.suspended_by;
-        self.contentView.backgroundColor = [UIColor purpleColor];
+        //self.contentView.backgroundColor = [UIColor purpleColor];
+        self.contentView.backgroundColor=[UIColor colorWithRed:255.0f/255.0f green:255.0f/255.0f blue:181.0f/255.0f alpha:1.0];
     
     }
     [self.photoImageView setImage:[UIImage imageNamed:@"Photo_not_available.jpg"]];
@@ -314,7 +316,8 @@
         self.onHoldLabel.hidden = NO;
         self.onHoldStatus.hidden  = NO;
         self.onHoldStatus.text = info.suspended_by;
-        self.contentView.backgroundColor = [UIColor purpleColor];
+        //self.contentView.backgroundColor = [UIColor purpleColor];
+      self.contentView.backgroundColor=[UIColor colorWithRed:255.0f/255.0f green:255.0f/255.0f blue:182.0f/255.0f alpha:1.0];
         
     }
 

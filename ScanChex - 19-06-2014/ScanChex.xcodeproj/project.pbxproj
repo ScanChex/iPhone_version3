@@ -2954,8 +2954,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = ScanChex;
-				PROVISIONING_PROFILE = "6ea196fd-731f-42e7-8c81-eba1a6c7244b";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6ea196fd-731f-42e7-8c81-eba1a6c7244b";
+				PROVISIONING_PROFILE = "03e4cb05-6a8b-4ec9-bd41-73db011514b7";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "03e4cb05-6a8b-4ec9-bd41-73db011514b7";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
@@ -2988,8 +2988,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = ScanChex;
-				PROVISIONING_PROFILE = "6ea196fd-731f-42e7-8c81-eba1a6c7244b";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6ea196fd-731f-42e7-8c81-eba1a6c7244b";
+				PROVISIONING_PROFILE = "03e4cb05-6a8b-4ec9-bd41-73db011514b7";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "03e4cb05-6a8b-4ec9-bd41-73db011514b7";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;

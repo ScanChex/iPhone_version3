@@ -12,6 +12,7 @@
 #import "Flurry.h"
 #import "MessageCentreVC.h"
 #import "Constant.h"
+#import "LoginVC.h"
 
 @implementation AppDelegate
 @synthesize navController;
@@ -103,11 +104,24 @@
             ///Handle PushNotificaiton Thing here 
 		}
 	}
+  
+  // If application is launched due to  notification,present another view controller.
+  UILocalNotification *notification = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+  
+  if (notification)
+  {
+    LoginVC *loginViewController = [[LoginVC alloc]initWithNibName:NSStringFromClass([LoginVC class]) bundle:nil];
+    [self.window.rootViewController presentViewController:loginViewController animated:YES completion:nil];
+    
+  }
+  
     #if TARGET_IPHONE_SIMULATOR
     [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%@",@"na"] forKey:@"apns_device_token"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     #endif
     return YES;
+  
+  
 }
 
 - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
@@ -196,6 +210,13 @@
     
     myLongTask = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
     }];
+  
+  //Schedule local notification after 10 mins
+  NSDate *newDate = [[NSDate date] dateByAddingTimeInterval:10*60];
+  
+  [self scheduleAlarmForDate:newDate];
+  
+  NSLog(@"In applicationDidEnterBackground");
 
 }
 
@@ -227,6 +248,29 @@
 //    NSArray *dirFiles = [filemgr contentsOfDirectoryAtPath:inboxPath error:nil];
 //    
     return YES;
+}
+
+- (void)scheduleAlarmForDate:(NSDate*)theDate
+{
+  UIApplication* app = [UIApplication sharedApplication];
+  NSArray*    oldNotifications = [app scheduledLocalNotifications];
+  
+  // Clear out the old notification before scheduling a new one.
+  if ([oldNotifications count] > 0)
+    [app cancelAllLocalNotifications];
+  
+  // Create a new notification.
+  UILocalNotification* alarm = [[UILocalNotification alloc] init];
+  if (alarm)
+  {
+    alarm.fireDate = theDate;
+    alarm.timeZone = [NSTimeZone defaultTimeZone];
+    alarm.repeatInterval = 0;
+    alarm.soundName = @"alarmsound.caf";
+    alarm.alertBody = @"Please re-login";
+    
+    [app scheduleLocalNotification:alarm];
+  }
 }
 
 
