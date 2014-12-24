@@ -115,11 +115,19 @@
     
   }
   
+  if([[NSUserDefaults standardUserDefaults] objectForKey:@"uuid"] == nil) {
+    
+    NSString *uuid = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    [[NSUserDefaults standardUserDefaults]setObject:uuid forKey:@"uuid"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+  }
+  
     #if TARGET_IPHONE_SIMULATOR
     [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%@",@"na"] forKey:@"apns_device_token"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     #endif
     return YES;
+  
   
   
 }
@@ -211,15 +219,16 @@
     myLongTask = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
     }];
   
-  NSString *userID = [[NSUserDefaults standardUserDefaults] objectForKey:@"userID"];
-  
-  if (userID == nil || userID == (id)[NSNull null]) {
-    // nil branch
-  } else {
-    //Schedule local notification after 10 mins
-    NSDate *newDate = [[NSDate date] dateByAddingTimeInterval:10*60];
-    [self scheduleAlarmForDate:newDate];
-  }
+  // Local notification not required
+//  NSString *userID = [[NSUserDefaults standardUserDefaults] objectForKey:@"userID"];
+//  
+//  if (userID == nil || userID == (id)[NSNull null]) {
+//    // nil branch
+//  } else {
+//    //Schedule local notification after 10 mins
+//    NSDate *newDate = [[NSDate date] dateByAddingTimeInterval:10*60];
+//    [self scheduleAlarmForDate:newDate];
+//  }
   
 
   

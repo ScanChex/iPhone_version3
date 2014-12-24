@@ -224,7 +224,7 @@ static VSLocationManager *sharedInstance;
                                            deviceMake:@"Apple"
                                           deviceModel:machineName()
                                              deviceOS:[[UIDevice currentDevice] systemVersion]
-                                             deviceID:[[[UIDevice currentDevice] identifierForVendor] UUIDString]
+                                             deviceID:[[NSUserDefaults standardUserDefaults] stringForKey:@"uuid"]
                                              latitude:[NSString stringWithFormat:@"%.7f",lasKnownLocation.coordinate.latitude]
                                             longitude:[NSString stringWithFormat:@"%.7f",lasKnownLocation.coordinate.longitude]
                                                 speed:[NSString stringWithFormat:@"%.2f",lasKnownLocation.speed]

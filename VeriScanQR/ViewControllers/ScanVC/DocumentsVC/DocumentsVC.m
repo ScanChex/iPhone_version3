@@ -114,7 +114,7 @@
 
 #pragma TableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 3;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
@@ -141,7 +141,12 @@
     ///download pdf and show view them here
     if ([self.delegate respondsToSelector:@selector(selectedFileWithPath:)]) {
         DocumentDTO *document=[[self.documents objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-        if (indexPath.section == 1 &&  ![[VSSharedManager sharedManager] isPreview]) {
+      
+      if (indexPath.section == 2 &&  ![[VSSharedManager sharedManager] isPreview]) {
+        //  [self.delegate selectedFileWithPath:[document.link stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        [self.delegate selectedFileWithPath:document];
+      }
+      else  if (indexPath.section == 1 &&  ![[VSSharedManager sharedManager] isPreview]) {
           //  [self.delegate selectedFileWithPath:[document.link stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
           [self.delegate selectedFileWithPath:document];
         }
@@ -176,8 +181,11 @@
     if (section ==0) {
         return self.documentsHeader;
     }
+  else if (section ==1) {
+    return self.editableDocumentsHeader;
+  }
     else {
-        return self.editableDocumentsHeader;
+        return self.inProgressDocumentHeader;
     }
 }
 @end

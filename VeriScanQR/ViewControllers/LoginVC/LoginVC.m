@@ -62,7 +62,13 @@
     
     self.companyID.text=[[NSUserDefaults standardUserDefaults] objectForKey:@"companyID"];
     self.userID.text=[[NSUserDefaults standardUserDefaults] objectForKey:@"userID"];
-}    
+  
+  NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
+  NSString* version = [infoDict objectForKey:@"CFBundleVersion"];
+  
+  self.versionNumberLabel.text = [NSString stringWithFormat:@"Version:d%@",version];
+
+}
 
 
 - (void)didReceiveMemoryWarning

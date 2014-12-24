@@ -37,6 +37,7 @@
 @synthesize ticketData=_ticketData;
 @synthesize timer=_timer;
 @synthesize messagesArray=_messagesArray;
+@synthesize ticketsInfo=_ticketsInfo;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -180,8 +181,14 @@
         if (!error) {
             
             // self.ticketData=(TicketDTO*)data;
-            self.tickets=[NSMutableArray arrayWithArray:(NSMutableArray*)data];
-            [self.ticketsTable reloadData];
+          self.tickets=[NSMutableArray arrayWithArray:(NSMutableArray*)data];
+          
+          for (id ticketInfo in self.tickets) {
+            TicketDTO *ticket = (TicketDTO *) ticketInfo;
+            [self.ticketsInfo addObject:ticket.tickets];
+            }
+          
+                  [self.ticketsTable reloadData];
         }
         else
             [self initWithPromptTitle:@"Error" message:(NSString *)data];
@@ -202,7 +209,7 @@
                                            deviceMake:@"Apple"
                                           deviceModel:[[UIDevice currentDevice] platformString]
                                              deviceOS:[[UIDevice currentDevice] systemVersion]
-                                             deviceID:[[[UIDevice currentDevice] identifierForVendor] UUIDString]
+                                             deviceID:[[NSUserDefaults standardUserDefaults] stringForKey:@"uuid"]
                                              latitude:[NSString stringWithFormat:@"%.7f",lasKnownLocation.coordinate.latitude]
                                             longitude:[NSString stringWithFormat:@"%.7f",lasKnownLocation.coordinate.longitude]
                                                 speed:[NSString stringWithFormat:@"%.2f",lasKnownLocation.speed]

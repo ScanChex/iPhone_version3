@@ -53,7 +53,7 @@
     NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
     NSString* version = [infoDict objectForKey:@"CFBundleVersion"];
     
-    self.versionNumberLabel.text = [NSString stringWithFormat:@"Version:%@",version];
+    self.versionNumberLabel.text = [NSString stringWithFormat:@"Version:d%@",version];
     
     [UIApplication sharedApplication].statusBarHidden=YES;
 }

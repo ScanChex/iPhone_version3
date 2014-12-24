@@ -273,7 +273,7 @@ static WebServiceManager *sharedInstance;
     [request setPostValue:customerId forKey:@"company_id"];
     [request setPostValue:userID forKey:@"username"];
     [request setPostValue:password forKey:@"password"];
-    [request setPostValue:[[[UIDevice currentDevice] identifierForVendor] UUIDString] forKey:@"uuid"];
+    [request setPostValue:[[NSUserDefaults standardUserDefaults] stringForKey:@"uuid"] forKey:@"uuid"];
     NSString * tempString  =[[NSUserDefaults standardUserDefaults] objectForKey:@"apns_device_token"];
     [request setPostValue:tempString forKey:@"device_token"];
 //    UIAlertView * tempAlert = [[UIAlertView alloc] initWithTitle:@"DeviceToken login" message:tempString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -791,7 +791,7 @@ withCompletionHandler:(CompletionHandler)block{
         NSDictionary *rootDictionary = [response JSONValue];
         NSMutableArray* array=[NSMutableArray array];
          NSMutableArray* array1=[NSMutableArray array];
-    //  NSMutableArray* array2=[NSMutableArray array];
+      NSMutableArray* array2=[NSMutableArray array];
       
       
         for (NSDictionary *dict in [rootDictionary objectForKey:@"non_fillable"]) {
@@ -816,15 +816,15 @@ withCompletionHandler:(CompletionHandler)block{
         
         NSMutableDictionary *dict1 = [dict mutableCopy];
         
-        [dict1 setObject:@"hold" forKey:@"status"];
+        //[dict1 setObject:@"hold" forKey:@"status"];
         
         DocumentDTO *document=[DocumentDTO initWithDocument:dict1];
-        [array1 addObject:document];
+        [array2 addObject:document];
       }
         NSMutableArray* array3=[NSMutableArray array];
         [array3 addObject:array];
         [array3 addObject:array1];
-     // [array3 addObject:array2];
+      [array3 addObject:array2];
         ///Block Calling
         dispatch_async(dispatch_get_main_queue(), ^{
             block(array3,NO);
@@ -1858,7 +1858,7 @@ withCompletionHandler:(CompletionHandler)handler
     [request setRequestMethod:@"POST"];
     [request setPostValue:masterKey forKey:@"master_key"];
     [request setPostValue:@"employees_list" forKey:@"action"];
-    [request setPostValue:[[[UIDevice currentDevice] identifierForVendor] UUIDString] forKey:@"udid"];
+    [request setPostValue:[[NSUserDefaults standardUserDefaults] stringForKey:@"uuid"] forKey:@"udid"];
     [request setCompletionBlock:^{
         
         NSString *response = [request responseString];
@@ -1917,7 +1917,7 @@ withCompletionHandler:(CompletionHandler)handler
     [request setPostValue:@"iphone" forKey:@"device_type"];
     [request setPostValue:@"model" forKey:@"model"];
     [request setPostValue:@"12123101234" forKey:@"phone"];
-      [request setPostValue:[[[UIDevice currentDevice] identifierForVendor] UUIDString] forKey:@"uuid"];
+      [request setPostValue:[[NSUserDefaults standardUserDefaults] stringForKey:@"uuid"] forKey:@"uuid"];
     [request setPostValue:@"device" forKey:@"action"];
     [request setCompletionBlock:^{
         

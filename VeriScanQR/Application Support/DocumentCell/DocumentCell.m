@@ -48,6 +48,9 @@
     ( [ticket.status isEqualToString:@"hold"]) {
       self.status.text=  @"(Hold)";
       self.imagetype.image = [UIImage imageNamed:@"pdfonhold.png"];
+    } else if  ( [ticket.status isEqualToString:@"completed"]) {
+      self.status.text=  @"(Completed)";
+      self.imagetype.image = [UIImage imageNamed:@"pdfclosed.png"];
     }
     self.backgroundColor=[UIColor clearColor];
 }

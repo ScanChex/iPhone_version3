@@ -17,6 +17,7 @@
 @property (retain, nonatomic) IBOutlet AsyncImageView *logo;
 @property (retain, nonatomic) IBOutlet UITableView *ticketsTable;
 @property(nonatomic,retain)   NSMutableArray *tickets;
+@property(nonatomic,retain)   NSMutableArray *ticketsInfo;
 @property (retain, nonatomic) IBOutlet UITextView *messages;
 @property(nonatomic,retain)TicketDTO *ticketData;
 @property (retain, nonatomic) IBOutlet UILabel *messageLbl;

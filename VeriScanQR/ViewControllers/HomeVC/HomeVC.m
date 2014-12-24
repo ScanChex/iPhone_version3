@@ -133,7 +133,7 @@
                                              handsetMake:@"Apple"
                                                    os:[[UIDevice currentDevice] systemVersion]
                                           modelNumber:[[UIDevice currentDevice] platformString]
-                                         serialNumber:[[[UIDevice currentDevice] identifierForVendor] UUIDString]
+                                         serialNumber:[[NSUserDefaults standardUserDefaults] stringForKey:@"uuid"]
                                 withCompletionHandler:^(id data, BOOL error){
                                     
                                     [SVProgressHUD dismissWithSuccess:@"Ticket Scanned Successfully"];

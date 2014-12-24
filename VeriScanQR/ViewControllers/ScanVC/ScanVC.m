@@ -808,7 +808,7 @@ int version;
                                                       handsetMake:@"Apple"
                                                                os:[[UIDevice currentDevice] systemVersion]
                                                       modelNumber:[[UIDevice currentDevice] platformString]
-                                                     serialNumber:[[[UIDevice currentDevice] identifierForVendor] UUIDString]
+                                                     serialNumber:[[NSUserDefaults standardUserDefaults] stringForKey:@"uuid"]
                                             withCompletionHandler:^(id data, BOOL error){
                                                 
                                                 //  self.view.userInteractionEnabled=YES;
@@ -924,7 +924,7 @@ int version;
                                                       handsetMake:@"Apple"
                                                                os:[[UIDevice currentDevice] systemVersion]
                                                       modelNumber:[[UIDevice currentDevice] platformString]
-                                                     serialNumber:[[[UIDevice currentDevice] identifierForVendor] UUIDString]
+                                                     serialNumber:[[NSUserDefaults standardUserDefaults] stringForKey:@"uuid"]
                                             withCompletionHandler:^(id data, BOOL error){
                                                 
                                                 //  self.view.userInteractionEnabled=YES;
@@ -1740,11 +1740,12 @@ int version;
     
     NSURL *url =(NSURL *) [notif object];
     self.shareURL =(NSURL *) [notif object];
-//    if ([[VSSharedManager sharedManager] isPreview]) {
-//      [self uploadPDFWithFilePath:url];
-//    } else {
+    if (![[VSSharedManager sharedManager] isPreview]  ) {
       [self askDocumentStatus];
-//    }
+      
+    } else {
+      //[self uploadPDFWithFilePath:url];
+    }
     //   [self uploadPDFWithFilePath:url];
   });
 }

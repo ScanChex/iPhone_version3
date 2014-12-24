@@ -28,5 +28,6 @@
 @property (assign, nonatomic) id<DocumentDelegate>delegate;
 @property (retain, nonatomic) IBOutlet UIView * documentsHeader;
 @property (retain, nonatomic) IBOutlet UIView * editableDocumentsHeader;
+@property (retain, nonatomic) IBOutlet UIView * inProgressDocumentHeader;
 +(id)initWithDocumentWithArray:(NSArray *)data andDelegate:(id<DocumentDelegate>)delegate;
 @end
